@@ -55,7 +55,6 @@
   home.packages = with pkgs; [
     kitty
     vscode-fhs
-    nerdfonts
     papirus-icon-theme
     libnotify
 

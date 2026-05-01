@@ -14,7 +14,7 @@
     settings = {
       # Caelestia will look here for wallpapers automatically
       paths.wallpaperDir = "~/Pictures/Wallpapers";
-      bar.status.showBattery = true;
+      bar.status.showBattery = false;
     };
   };
 
@@ -25,31 +25,70 @@
     settings = {
       "$mod" = "SUPER";
 
+      # 2. Disable all animations
+      animations = {
+        enabled = false;
+      };
+
       "exec-once" = [
         "caelestia"
       ];
 
+      # 3. Stripped down Hyprland bindings
+      # Most logic is now handled by the 'SPACE' trigger for which-key
       bind = [
-        "$mod, T, exec, kitty"
+        "$mod, SPACE, exec, wlr-which-key"
+        "$mod, RETURN, exec, kitty"
+        "$mod, Q, killactive,"
         "$mod, M, exit,"
-        # Toggle the launcher (native Caelestia command)
-        "$mod, D, exec, caelestia shell drawers toggle launcher"
-        # Optional: Toggle the dashboard/control center
-        "$mod, N, exec, caelestia shell drawers toggle dashboard"
+        "$mod, V, togglefloating,"
+        "$mod, F, fullscreen,"
+
+        # Focus Movement
+        "$mod, left, movefocus, l"
+        "$mod, right, movefocus, r"
+        "$mod, up, movefocus, u"
+        "$mod, down, movefocus, d"
+
+        # Workspace switching
+        "$mod, 1, workspace, 1"
+        "$mod, 2, workspace, 2"
+        "$mod, 3, workspace, 3"
+        "$mod, 4, workspace, 4"
+        "$mod, 5, workspace, 5"
+
+        # Move active window to workspace
+        "$mod SHIFT, 1, movetoworkspace, 1"
+        "$mod SHIFT, 2, movetoworkspace, 2"
+        "$mod SHIFT, 3, movetoworkspace, 3"
       ];
 
-      # Basic Catppuccin-style look
+      # Foundation & Aesthetics
       general = {
         gaps_in = 5;
         gaps_out = 10;
-        "col.active_border" = "rgba(33ccffee) rgba(00ff99ee) 45deg";
+        "col.active_border" = "rgba(00000000)";
+        "col.inactive_border" = "rgba(00000000)";
         border_size = 2;
+        layout = "dwindle"; # Ensuring your preferred layout engine
       };
 
       decoration = {
-      drop_shadow = false;
         rounding = 10;
-        blur.enabled = true;
+        blur = {
+          enabled = true;
+          size = 3;
+          passes = 1;
+        };
+      };
+
+      master = {
+        new_status = "master";
+      };
+
+      misc = {
+        disable_hyprland_logo = true;
+        force_default_wallpaper = 0;
       };
     };
   };

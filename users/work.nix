@@ -59,7 +59,8 @@
     papirus-icon-theme
     libnotify
 
-(nerdfonts.override { fonts = [ "CaskaydiaCove" "JetBrainsMono" ]; })
+    nerd-fonts.jetbrains-mono
+    nerd-fonts.caskaydia-cove
   ];
 
   fonts.fontconfig.enable = true;

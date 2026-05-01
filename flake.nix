@@ -21,8 +21,11 @@
       modules = [
         ./configuration.nix
         jovian.nixosModules.default
-        mango.nixosModules.mango
+        mango.nixosModules.default
         home-manager.nixosModules.home-manager
+        {
+          home-manager.extraSpecialArgs = { inherit inputs; };
+        }
       ];
     };
   };

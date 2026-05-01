@@ -4,9 +4,9 @@
   home.homeDirectory = "/home/work";
   home.stateVersion = "25.11";
 
-  # Import MangoWM Home Manager module
-  imports = [ inputs.mango.hmModules.mango ];
-
+imports = [
+    inputs.mango.hmModules.mango  # This tells Home Manager how to handle 'programs.mango'
+  ];
   # User-specific packages
   home.packages = with pkgs; [
     ghostty

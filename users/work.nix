@@ -9,7 +9,7 @@
     settings = {
       "$mod" = "SUPER";
       bind = [
-        "$mod, T, exec, ghostty"
+        "$mod, T, exec, kitty"
         "$mod, M, exit,"
       ];
       # Basic Catppuccin-style look
@@ -22,6 +22,7 @@
   };
 
   home.packages = with pkgs; [
+    kitty
     ghostty
   ];
 

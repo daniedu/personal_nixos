@@ -53,6 +53,8 @@
   services.displayManager.ly.enable = true;
   services.desktopManager.plasma6.enable = true;
   programs.hyprland.enable = true;
+
+  services.flatpak.enable = true;
 /*
   jovian.steam = {
     enable = true;

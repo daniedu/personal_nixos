@@ -1,4 +1,4 @@
-{ pkgs, caelestia-shell... }: {
+{ pkgs, caelestia-shell, ... }: {
 
   imports = [
     caelestia-shell.homeManagerModules.default

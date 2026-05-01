@@ -11,6 +11,12 @@
 
     caelestia-shell = {
       url = "github:caelestia-dots/shell";
+      inputs.quickshell.follows = "quickshell";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    quickshell = {
+      url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -23,16 +29,22 @@
   outputs = { self, nixpkgs, home-manager, caelestia-shell, mango, ... }@inputs: {
     nixosConfigurations.dan = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
-      specialArgs = { inherit inputs; inherit caelestia-shell; };
+      specialArgs = { inherit inputs caelestia-shell; };
       modules = [
         ./configuration.nix
         home-manager.nixosModules.home-manager
         {
-          # Enable Hyprland at the system level
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-
-          home-manager.extraSpecialArgs = { inherit inputs caelestia-shell mango; };
+         home-manager = {
+            useGlobalPkgs = true;
+            useUserPackages = true;
+            # This passes your flake inputs to work.nix and lab.nix
+            extraSpecialArgs = { inherit inputs caelestia-shell mango; };
+            users = {
+              work = import ./users/work.nix;
+              lab = import ./users/lab.nix;
+              # gaming = import ./users/gaming.nix;
+            };
+          };
         }
       ];
     };

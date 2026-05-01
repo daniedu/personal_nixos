@@ -15,8 +15,6 @@
     enable = true;
     device = "/dev/sda";
     useOSProber = true;
-    # Add these two to hide the GRUB menu unless you hold Shift
-    timeout = 3;
   };
 
   networking.hostName = "dan"; # Define your hostname.
@@ -110,17 +108,6 @@
     extraGroups = [ "networkmanager" "video" "render"];
   };
 
- home-manager = {
-    # This allows your home-manager files to see the 'inputs' from your flake
-    extraSpecialArgs = { inherit inputs; };
-    useGlobalPkgs = true;
-    useUserPackages = true;
-    users = {
-      # gaming = import ./users/gaming.nix;
-      work = import ./users/work.nix;
-      lab = import ./users/lab.nix;
-    };
-  };
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [

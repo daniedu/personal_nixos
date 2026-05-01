@@ -7,17 +7,19 @@
 {
   imports =
     [ # Include the results of the hardware scan.
-
       ./hardware-configuration.nix
     ];
 
   # Bootloader.
-  boot.loader.grub.enable = true;
-  boot.loader.grub.device = "/dev/sda";
-  boot.loader.grub.useOSProber = true;
+  boot.loader.grub = {
+    enable = true;
+    device = "/dev/sda";
+    useOSProber = true;
+    # Add these two to hide the GRUB menu unless you hold Shift
+    timeout = 3;
+  };
 
   networking.hostName = "dan"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
   nix.settings.experimental-features = ["nix-command" "flakes"];
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
@@ -47,21 +49,17 @@
   # Enable the X11 windowing system.
   # You can disable this if you're only using the Wayland session.
   services.xserver.enable = true;
-  services.displayManager.sddm.enable = true;
+  # services.displayManager.sddm.enable = true;
+  services.displayManager.ly.enable = true;
   services.desktopManager.plasma6.enable = true;
-
+  programs.hyprland.enable = true;
+/*
   jovian.steam = {
     enable = true;
     user = "gaming"; # Add this line
     desktopSession = "plasma"; # Add this so "Switch to Desktop" works
-  };
-  programs.hyprland.enable = true;
+  };*/
 
-  # Optional: Recommended for Hyprland on many systems
-  xdg.portal = {
-    enable = true;
-    extraPortals = [ pkgs.xdg-desktop-portal-hyprland ];
-  };
   programs.firefox.enable = true;
   nixpkgs.config.allowUnfree = true;
 
@@ -94,28 +92,20 @@
   # services.xserver.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-#   users.users.dan = {
+
+#   users.users.gaming = {
 #     isNormalUser = true;
-#     description = "dan";
-#     extraGroups = [ "networkmanager" "wheel" ];
-#     packages = with pkgs; [
-#       kdePackages.kate
-#     #  thunderbird
-#     ];
+#     extraGroups = [ "networkmanager" "video" "render" ];
 #   };
-  users.users.gaming = {
-    isNormalUser = true;
-    extraGroups = [ "networkmanager" "video" ];
-  };
 
   users.users.work = {
     isNormalUser = true;
-    extraGroups = [ "networkmanager" "wheel" "video" ]; # Added 'wheel' so you can use sudo
+    extraGroups = [ "networkmanager" "wheel" "video" "render" ]; # Added 'wheel' so you can use sudo
   };
 
   users.users.lab = {
     isNormalUser = true;
-    extraGroups = [ "networkmanager" ];
+    extraGroups = [ "networkmanager" "video" "render"];
   };
 
   # List packages installed in system profile. To search, run:
@@ -158,7 +148,7 @@
     useGlobalPkgs = true;
     useUserPackages = true;
     users = {
-      gaming = import ./users/gaming.nix;
+#       gaming = import ./users/gaming.nix;
       work = import ./users/work.nix;
       lab = import ./users/lab.nix;
     };

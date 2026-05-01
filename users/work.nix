@@ -23,12 +23,9 @@
 
   home.packages = with pkgs; [
     ghostty
-    waybar # Status bar
-    hyprpaper # Wallpaper
   ];
 
   programs.ghostty = {
     enable = true;
-    settings = { theme = "catppuccin-mocha"; };
   };
 }

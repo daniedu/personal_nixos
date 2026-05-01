@@ -32,8 +32,6 @@
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
 
-          programs.hyprland.enable = true;
-
           home-manager.extraSpecialArgs = { inherit inputs caelestia-shell mango; };
         }
       ];

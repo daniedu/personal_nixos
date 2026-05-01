@@ -24,6 +24,7 @@
   home.packages = with pkgs; [
     kitty
     ghostty
+    vscode-fhs
   ];
 
   programs.ghostty = {

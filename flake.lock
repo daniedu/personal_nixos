@@ -30,7 +30,9 @@
         "nixpkgs": [
           "nixpkgs"
         ],
-        "quickshell": "quickshell"
+        "quickshell": [
+          "quickshell"
+        ]
       },
       "locked": {
         "lastModified": 1777553262,
@@ -140,16 +142,15 @@
     "quickshell": {
       "inputs": {
         "nixpkgs": [
-          "caelestia-shell",
           "nixpkgs"
         ]
       },
       "locked": {
-        "lastModified": 1772925576,
-        "narHash": "sha256-mMoiXABDtkSJxCYDrkhJ/TrrJf5M46oUfIlJvv2gkZ0=",
+        "lastModified": 1777341401,
+        "narHash": "sha256-QEAVYeXxvTamsYJVBq8+qSJV9ml2MxqRaZvkobfuPWA=",
         "ref": "refs/heads/master",
-        "rev": "15a84097653593dd15fad59a56befc2b7bdc270d",
-        "revCount": 750,
+        "rev": "0baa81aa03559ca315668e5a306364cddf1a6f49",
+        "revCount": 812,
         "type": "git",
         "url": "https://git.outfoxxed.me/outfoxxed/quickshell"
       },
@@ -163,7 +164,8 @@
         "caelestia-shell": "caelestia-shell",
         "home-manager": "home-manager",
         "mango": "mango",
-        "nixpkgs": "nixpkgs"
+        "nixpkgs": "nixpkgs",
+        "quickshell": "quickshell"
       }
     },
     "scenefx": {

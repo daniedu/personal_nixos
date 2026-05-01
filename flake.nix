@@ -21,7 +21,13 @@
       modules = [
         ./configuration.nix
         jovian.nixosModules.default
-        mango.nixosModules.mango
+        ({ pkgs, ... }: {
+          imports = [ mango.nixosModules.mango ];
+          # This tells mango where to find its missing dependency
+          programs.mango.package = mango.packages.${pkgs.system}.mango.override {
+            libxcb-wm = pkgs.xorg.libxcbwm;
+          };
+        })
         home-manager.nixosModules.home-manager
         {
           home-manager.extraSpecialArgs = { inherit inputs; };

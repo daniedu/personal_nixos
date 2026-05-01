@@ -13,8 +13,6 @@ imports = [
     # Add other work apps here
   ];
 
-  programs.mango.enable = true;
-
   # Basic Ghostty config
   programs.ghostty = {
     enable = true;

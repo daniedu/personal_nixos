@@ -110,6 +110,17 @@
     extraGroups = [ "networkmanager" "video" "render"];
   };
 
+ home-manager = {
+    # This allows your home-manager files to see the 'inputs' from your flake
+    extraSpecialArgs = { inherit inputs; };
+    useGlobalPkgs = true;
+    useUserPackages = true;
+    users = {
+      # gaming = import ./users/gaming.nix;
+      work = import ./users/work.nix;
+      lab = import ./users/lab.nix;
+    };
+  };
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
@@ -144,15 +155,5 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "25.11"; # Did you read the comment?
-  home-manager = {
-    # This allows your home-manager files to see the 'inputs' from your flake
-    extraSpecialArgs = { inherit inputs; };
-    useGlobalPkgs = true;
-    useUserPackages = true;
-    users = {
-#       gaming = import ./users/gaming.nix;
-      work = import ./users/work.nix;
-      lab = import ./users/lab.nix;
-    };
-  };
+
 }

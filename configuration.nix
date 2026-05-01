@@ -55,7 +55,6 @@
     user = "gaming"; # Add this line
     desktopSession = "plasma"; # Add this so "Switch to Desktop" works
   };
-  programs.mango.enable = true;
   programs.firefox.enable = true;
   nixpkgs.config.allowUnfree = true;
 

@@ -21,15 +21,10 @@
       modules = [
         ./configuration.nix
         jovian.nixosModules.default
-        # Corrected Mango module override
-        ({ pkgs, ... }: {
-          imports = [ mango.nixosModules.mango ];
-          programs.mango.package = mango.packages.${pkgs.stdenv.hostPlatform.system}.mango.override {
-            libxcb-wm = pkgs.xorg.libxcbwm;
-          };
-        })
         home-manager.nixosModules.home-manager
         {
+        # Enable Hyprland at the system level
+          programs.hyprland.enable = true;
           home-manager.extraSpecialArgs = { inherit inputs; };
         }
       ];

@@ -21,10 +21,10 @@
       modules = [
         ./configuration.nix
         jovian.nixosModules.default
+        # Corrected Mango module override
         ({ pkgs, ... }: {
           imports = [ mango.nixosModules.mango ];
-          # This tells mango where to find its missing dependency
-          programs.mango.package = mango.packages.${pkgs.system}.mango.override {
+          programs.mango.package = mango.packages.${pkgs.stdenv.hostPlatform.system}.mango.override {
             libxcb-wm = pkgs.xorg.libxcbwm;
           };
         })

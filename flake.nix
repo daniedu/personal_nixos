@@ -1,17 +1,22 @@
 {
-  description = "Multi-User System";
+  description = "Multi-User NixOS System";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+
+    stylix = {
+      url = "github:nix-community/stylix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    caelestia-shell = {
-      url = "github:caelestia-dots/shell";
-      inputs.quickshell.follows = "quickshell";
+    # Noctalia shell — replaces caelestia-shell, more stable with Stylix
+    noctalia = {
+      url = "github:noctalia-dev/noctalia-shell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -20,29 +25,30 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    mango = {
-      url = "github:mangowm/mango";
+    helium = {
+      url = "github:schembriaiden/helium-browser-nix-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, caelestia-shell, mango, ... }@inputs: {
+  outputs = { self, nixpkgs, stylix, home-manager, noctalia, quickshell, ... }@inputs: {
     nixosConfigurations.dan = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
-      specialArgs = { inherit inputs caelestia-shell; };
+      specialArgs = { inherit inputs; };
       modules = [
         ./configuration.nix
+        stylix.nixosModules.stylix
+
         home-manager.nixosModules.home-manager
         {
-         home-manager = {
-            useGlobalPkgs = true;
-            useUserPackages = true;
-            # This passes your flake inputs to work.nix and lab.nix
-            extraSpecialArgs = { inherit inputs caelestia-shell mango; };
+          home-manager = {
+            useGlobalPkgs    = true;
+            useUserPackages  = true;
+            extraSpecialArgs = { inherit inputs; };
             users = {
-              work = import ./users/work.nix;
-              lab = import ./users/lab.nix;
-              # gaming = import ./users/gaming.nix;
+              work   = import ./users/work.nix;
+              lab    = import ./users/lab.nix;
+              gaming = import ./users/gaming.nix;
             };
           };
         }

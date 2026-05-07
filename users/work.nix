@@ -189,7 +189,7 @@
       tab_bar_edge            = "bottom";
       # Transparency is set by stylix.opacity.terminal (0.90).
       # Uncomment to override:
-      # background_opacity = "0.90";
+      background_opacity = "0.90";
     };
   };
 
@@ -419,6 +419,9 @@
     ripgrep
     fd
     tree
+    
+    nil
+    lazygit
   ];
 
   fonts.fontconfig.enable = true;

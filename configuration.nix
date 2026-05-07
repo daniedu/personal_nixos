@@ -271,7 +271,7 @@
   # ─────────────────────────────────────────────────────────────────────────
   services.xserver.enable             = true;
   services.displayManager.ly.enable   = true;
-  services.desktopManager.plasma6.enable = true;
+  # services.desktopManager.plasma6.enable = true;
   services.flatpak.enable             = true;
 
   services.xserver.xkb = { layout = "us"; variant = ""; };

@@ -3,12 +3,12 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
-#     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-25.11";
+    #nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-25.11";
 
-    stylix = {
-      url = "github:nix-community/stylix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # stylix = {
+    #   url = "github:nix-community/stylix";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
 
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -32,35 +32,31 @@
     };
   };
 
-  outputs = { self, nixpkgs, stylix, home-manager, noctalia, quickshell, ... }@inputs: {
+  outputs = { self, nixpkgs, home-manager, ... }@inputs: {
     nixosConfigurations.dan = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       specialArgs = { inherit inputs; };
       modules = [
         ./configuration.nix
-        stylix.nixosModules.stylix
-        ({ pkgs, ... }: {
-        nixpkgs.overlays = [
-          (final: prev: {
-            openldap = prev.openldap.overrideAttrs (old: {
-              doCheck = false;
-            });
-          })
-        ];
-        })
         home-manager.nixosModules.home-manager
         {
           home-manager = {
             useGlobalPkgs    = true;
             useUserPackages  = true;
             extraSpecialArgs = { inherit inputs; };
-            users = {
-              work   = import ./users/work.nix;
-              lab    = import ./users/lab.nix;
-              gaming = import ./users/gaming.nix;
-            };
+            users.work = import ./users/work.nix;
           };
         }
+        # Overlay for openldap to skip tests and save time
+        ({ ... }: {
+          nixpkgs.overlays = [
+            (final: prev: {
+              openldap = prev.openldap.overrideAttrs (old: {
+                doCheck = false;
+              });
+            })
+          ];
+        })
       ];
     };
   };

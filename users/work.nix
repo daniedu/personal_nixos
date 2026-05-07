@@ -151,11 +151,11 @@
 
       # Blur Noctalia layer-shell surfaces
       layerrule = [
-        "blur, bar"
-        "blur, notifications"
-        "blur, system-menu"
-        "blur, osd"
-        "blur, logout_dialog"
+        # "blur, bar"
+        # "blur, notifications"
+        # "blur, system-menu"
+        # "blur, osd"
+        # "blur, logout_dialog"
         "ignorealpha 0.2, notifications"
         "ignorealpha 0.2, system-menu"
         "ignorealpha 0.5, osd"
@@ -419,7 +419,7 @@
     ripgrep
     fd
     tree
-    
+
     nil
     lazygit
   ];

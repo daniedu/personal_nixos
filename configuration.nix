@@ -23,11 +23,13 @@
   #
   # To override a colour: uncomment the relevant line inside `override = {}`
   # and set it to a 6-digit hex value (no leading #).
-  stylix = {
-    enable     = true;
-    autoEnable = true;  # automatically theme every supported application
+#   xdg.userDirs.setSessionVariables = false;
 
-    # ── Wallpaper ─────────────────────────────────────────────────────────
+  stylix = {
+    enable     = false;
+    autoEnable = false;  # automatically theme every supported application
+
+   # ── Wallpaper ─────────────────────────────────────────────────────────
     # Stylix reads this image and derives the full palette from it.
     # Change the path to any image; the palette updates on the next rebuild.
     image = ./assets/fuji.png;
@@ -73,7 +75,7 @@
         name    = "Noto Serif";
       };
       emoji = {
-        package = pkgs.noto-fonts-emoji;
+        package = pkgs.noto-fonts-color-emoji;
         name    = "Noto Color Emoji";
       };
       sizes = {
@@ -99,11 +101,7 @@
       desktop      = 1.0;
     };
 
-    targets = {
-      gtk.enable      = true;
-      plymouth.enable = true;
-      grub.enable     = true;
-    };
+
   };
 
   # ─────────────────────────────────────────────────────────────────────────

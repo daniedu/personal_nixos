@@ -7,13 +7,13 @@
 # with DX8/DX9-era titles; native X11 via KDE avoids all of that.
 #
 # Session selection: at the Ly login screen, pick "Plasma (X11)" for gaming.
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 
 {
   home.username      = "gaming";
   home.homeDirectory = "/home/gaming";
   home.stateVersion  = "25.11";
-
+#   stylix.targets.kde.enable = false;
   # ─────────────────────────────────────────────────────────────────────────
   # KDE / PLASMA SETTINGS
   # ─────────────────────────────────────────────────────────────────────────
@@ -45,11 +45,11 @@
     # Steam is system-wide — just launch it from the KDE app menu
     lutris              # open-source launcher — best for old Windows games via Wine
     heroic              # Epic Games Store + GOG native client
-    bottles             # Wine prefix manager with easy per-game isolation
+    # bottles             # Wine prefix manager with easy per-game isolation
 
     # ── Proton / Wine ─────────────────────────────────────────────────────
     protonup-qt                    # install Proton-GE builds (better DX9 compat)
-    wineWowPackages.stagingFull    # Wine Staging with 32+64-bit — best for old games
+    wineWow64Packages.stagingFull    # Wine Staging with 32+64-bit — best for old games
     winetricks                     # vcredist, dxvk, d3dx9, dotnet installs etc.
     dxvk                           # Vulkan-backed Direct3D 9/10/11 translation
     # vkd3d-proton                 # DX12 → Vulkan (uncomment for DX12 titles)
@@ -86,14 +86,14 @@
 
     # ── KDE apps (complement the Plasma session) ─────────────────────────
     # Konsole is the KDE terminal — already part of plasma6
-    ark                   # KDE archive manager (open game zip/rar/7z files)
-    okular                # KDE document viewer (game manuals, readmes)
-    gwenview              # KDE image viewer (game artwork, screenshots)
+    #ark                   # KDE archive manager (open game zip/rar/7z files)
+    #okular                # KDE document viewer (game manuals, readmes)
+    #gwenview              # KDE image viewer (game artwork, screenshots)
 
     # ── Misc utilities ────────────────────────────────────────────────────
     htop
     btop
-    libnotify
+    #libnotify
     xclip                 # X11 clipboard utility (X11 session, not wl-clipboard)
     xdotool               # X11 window scripting — handy for old game quirks
     wmctrl                # window manager control — force window positions/sizes

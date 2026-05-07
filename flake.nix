@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+#     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-25.11";
 
     stylix = {
       url = "github:nix-community/stylix";
@@ -38,7 +39,15 @@
       modules = [
         ./configuration.nix
         stylix.nixosModules.stylix
-
+        ({ pkgs, ... }: {
+        nixpkgs.overlays = [
+          (final: prev: {
+            openldap = prev.openldap.overrideAttrs (old: {
+              doCheck = false;
+            });
+          })
+        ];
+        })
         home-manager.nixosModules.home-manager
         {
           home-manager = {

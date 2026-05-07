@@ -10,6 +10,8 @@
   home.username    = "work";
   home.homeDirectory = "/home/work";
   home.stateVersion  = "25.11";
+#   stylix.targets.kde.enable = false;
+#   stylix.targets.vscode.enable = true;
 
   # ─────────────────────────────────────────────────────────────────────────
   # NOCTALIA — sidebar (left bar) mode
@@ -63,7 +65,7 @@
         predefinedScheme = "custom";
       };
 
-      ui.fontDefault = "JetBrainsMono Nerd Font";
+      ui.fontDefault = lib.mkForce "JetBrainsMono Nerd Font";
     };
   };
 
@@ -202,13 +204,14 @@
     defaultEditor = true;
     viAlias       = true;
     vimAlias      = true;
-
+    withRuby      = false;
+    withPython3    = false;
     # Extra CLI tools available inside Neovim's PATH
     extraPackages = with pkgs; [
       # LSP servers
       lua-language-server
       nil               # Nix LSP
-      nodePackages.typescript-language-server
+      typescript-language-server
       pyright           # Python LSP
       rust-analyzer
       # Formatters / linters
@@ -369,7 +372,8 @@
   };
 
   # Let Stylix theme Neovim with the wallpaper-extracted base16 palette
-  stylix.targets.neovim.enable = true;
+#   stylix.targets.neovim.enable = true;
+
 
   # ─────────────────────────────────────────────────────────────────────────
   # VSCODE
@@ -380,8 +384,6 @@
     package = pkgs.vscode-fhs;  # FHS wrapper — best extension compatibility
 
     userSettings = {
-      "editor.fontFamily"           = "'JetBrainsMono Nerd Font Mono', monospace";
-      "editor.fontSize"             = 14;
       "editor.lineHeight"           = 1.6;
       "editor.tabSize"              = 2;
       "editor.renderWhitespace"     = "boundary";
@@ -410,8 +412,6 @@
     ];
   };
 
-  stylix.targets.vscode.enable = true;
-
   # ─────────────────────────────────────────────────────────────────────────
   # PACKAGES
   # ─────────────────────────────────────────────────────────────────────────
@@ -427,7 +427,7 @@
     wl-clipboard
 
     # ── Work / productivity ───────────────────────────────────────────────
-    onlyoffice-bin        # Microsoft-compatible office suite (docx/xlsx/pptx)
+    onlyoffice-desktopeditors        # Microsoft-compatible office suite (docx/xlsx/pptx)
     hunspell              # spell checking backend
     hunspellDicts.en_US
     hunspellDicts.es_CO   # Spanish (Colombia) — matches your locale

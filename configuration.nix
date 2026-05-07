@@ -25,84 +25,84 @@
   # and set it to a 6-digit hex value (no leading #).
 #   xdg.userDirs.setSessionVariables = false;
 
-  stylix = {
-    enable     = false;
-    autoEnable = false;  # automatically theme every supported application
+  # stylix = {
+  #   enable     = false;
+  #   autoEnable = false;  # automatically theme every supported application
 
-   # ── Wallpaper ─────────────────────────────────────────────────────────
-    # Stylix reads this image and derives the full palette from it.
-    # Change the path to any image; the palette updates on the next rebuild.
-    image = ./assets/fuji.png;
-    # imageScalingMode = "fill"; # fill | fit | stretch | center | tile
+  #  # ── Wallpaper ─────────────────────────────────────────────────────────
+  #   # Stylix reads this image and derives the full palette from it.
+  #   # Change the path to any image; the palette updates on the next rebuild.
+  #   image = ./assets/fuji.png;
+  #   # imageScalingMode = "fill"; # fill | fit | stretch | center | tile
 
-    # ── Colour overrides ──────────────────────────────────────────────────
-    # Uncomment `base16Scheme` to use a pre-made scheme instead of
-    # extracting from the wallpaper (useful as a quick fallback):
-    # base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-hard.yaml";
-    #
-    # Or tweak individual slots:
-    # override = {
-    #   base00 = "1a1b26"; # background
-    #   base01 = "24283a"; # lighter background
-    #   base02 = "2f3549"; # selection background
-    #   base03 = "565f89"; # comments / disabled
-    #   base04 = "a9b1d6"; # dark foreground
-    #   base05 = "c0caf5"; # default foreground
-    #   base06 = "cdd6f4"; # light foreground
-    #   base07 = "ffffff"; # lightest foreground / white
-    #   base08 = "f7768e"; # red
-    #   base09 = "ff9e64"; # orange
-    #   base0A = "e0af68"; # yellow
-    #   base0B = "9ece6a"; # green
-    #   base0C = "73daca"; # cyan
-    #   base0D = "7aa2f7"; # blue / functions
-    #   base0E = "bb9af7"; # magenta / keywords
-    #   base0F = "db4b4b"; # embedded / deprecated
-    # };
+  #   # ── Colour overrides ──────────────────────────────────────────────────
+  #   # Uncomment `base16Scheme` to use a pre-made scheme instead of
+  #   # extracting from the wallpaper (useful as a quick fallback):
+  #   # base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-hard.yaml";
+  #   #
+  #   # Or tweak individual slots:
+  #   # override = {
+  #   #   base00 = "1a1b26"; # background
+  #   #   base01 = "24283a"; # lighter background
+  #   #   base02 = "2f3549"; # selection background
+  #   #   base03 = "565f89"; # comments / disabled
+  #   #   base04 = "a9b1d6"; # dark foreground
+  #   #   base05 = "c0caf5"; # default foreground
+  #   #   base06 = "cdd6f4"; # light foreground
+  #   #   base07 = "ffffff"; # lightest foreground / white
+  #   #   base08 = "f7768e"; # red
+  #   #   base09 = "ff9e64"; # orange
+  #   #   base0A = "e0af68"; # yellow
+  #   #   base0B = "9ece6a"; # green
+  #   #   base0C = "73daca"; # cyan
+  #   #   base0D = "7aa2f7"; # blue / functions
+  #   #   base0E = "bb9af7"; # magenta / keywords
+  #   #   base0F = "db4b4b"; # embedded / deprecated
+  #   # };
 
-    # ── Fonts ─────────────────────────────────────────────────────────────
-    fonts = {
-      monospace = {
-        package = pkgs.nerd-fonts.jetbrains-mono;
-        name    = "JetBrainsMono Nerd Font Mono";
-      };
-      sansSerif = {
-        package = pkgs.noto-fonts;
-        name    = "Noto Sans";
-      };
-      serif = {
-        package = pkgs.noto-fonts;
-        name    = "Noto Serif";
-      };
-      emoji = {
-        package = pkgs.noto-fonts-color-emoji;
-        name    = "Noto Color Emoji";
-      };
-      sizes = {
-        applications = 11;
-        terminal     = 13;
-        desktop      = 11;
-        popups       = 11;
-      };
-    };
+  #   # ── Fonts ─────────────────────────────────────────────────────────────
+  #   fonts = {
+  #     monospace = {
+  #       package = pkgs.nerd-fonts.jetbrains-mono;
+  #       name    = "JetBrainsMono Nerd Font Mono";
+  #     };
+  #     sansSerif = {
+  #       package = pkgs.noto-fonts;
+  #       name    = "Noto Sans";
+  #     };
+  #     serif = {
+  #       package = pkgs.noto-fonts;
+  #       name    = "Noto Serif";
+  #     };
+  #     emoji = {
+  #       package = pkgs.noto-fonts-color-emoji;
+  #       name    = "Noto Color Emoji";
+  #     };
+  #     sizes = {
+  #       applications = 11;
+  #       terminal     = 13;
+  #       desktop      = 11;
+  #       popups       = 11;
+  #     };
+  #   };
 
-    # ── Cursor ────────────────────────────────────────────────────────────
-    cursor = {
-      package = pkgs.bibata-cursors;
-      name    = "Bibata-Modern-Classic";
-      size    = 24;
-    };
+  #   # ── Cursor ────────────────────────────────────────────────────────────
+  #   cursor = {
+  #     package = pkgs.bibata-cursors;
+  #     name    = "Bibata-Modern-Classic";
+  #     size    = 24;
+  #   };
 
-    # ── Opacity ───────────────────────────────────────────────────────────
-    opacity = {
-      terminal     = 0.90;
-      applications = 1.0;
-      popups       = 0.90;
-      desktop      = 1.0;
-    };
+  #   # ── Opacity ───────────────────────────────────────────────────────────
+  #   opacity = {
+  #     terminal     = 0.90;
+  #     applications = 1.0;
+  #     popups       = 0.90;
+  #     desktop      = 1.0;
+  #   };
 
 
-  };
+  # };
 
   # ─────────────────────────────────────────────────────────────────────────
   # NIX SETTINGS
@@ -175,7 +175,7 @@
       gst_all_1.gst-vaapi
 
       # ── Intel iGPU (uncomment your generation) ──────────────────────────
-      # intel-media-driver   # Broadwell (2014) and newer — recommended
+      intel-media-driver   # Broadwell (2014) and newer — recommended
       # intel-vaapi-driver   # Haswell and older, or if media-driver misbehaves
       # vpl-gpu-rt           # Intel Arc / 12th-gen+ for hardware AV1/HEVC encode
       # ── AMD dGPU ────────────────────────────────────────────────────────
@@ -260,11 +260,11 @@
   # ─────────────────────────────────────────────────────────────────────────
   # BLUETOOTH
   # ─────────────────────────────────────────────────────────────────────────
-  hardware.bluetooth = {
-    enable      = true;
-    powerOnBoot = true;
-  };
-  services.blueman.enable = true;
+  # hardware.bluetooth = {
+  #   enable      = true;
+  #   powerOnBoot = true;
+  # };
+  # services.blueman.enable = true;
 
   # ─────────────────────────────────────────────────────────────────────────
   # DISPLAY / DESKTOP
@@ -362,18 +362,18 @@
     extraGroups  = [ "networkmanager" "wheel" "video" "render" "audio" "gamemode" ];
   };
 
-  users.users.lab = {
-    isNormalUser = true;
-    extraGroups  = [ "networkmanager" "video" "render" "audio" ];
-  };
+  # users.users.lab = {
+  #   isNormalUser = true;
+  #   extraGroups  = [ "networkmanager" "video" "render" "audio" ];
+  # };
 
-  users.users.gaming = {
-    isNormalUser = true;
-    extraGroups  = [ "networkmanager" "video" "render" "audio" "gamemode" "input" ];
-    # "input" group allows reading raw input devices (controllers, wheels etc.)
-  };
+  # users.users.gaming = {
+  #   isNormalUser = true;
+  #   extraGroups  = [ "networkmanager" "video" "render" "audio" "gamemode" "input" ];
+  #   # "input" group allows reading raw input devices (controllers, wheels etc.)
+  # };
 
   nixpkgs.config.allowUnfree = true;
-
+  zramSwap.enable = true;
   system.stateVersion = "25.11";
 }

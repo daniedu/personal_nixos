@@ -382,34 +382,6 @@
   programs.vscode = {
     enable  = true;
     package = pkgs.vscode-fhs;  # FHS wrapper — best extension compatibility
-
-    userSettings = {
-      "editor.lineHeight"           = 1.6;
-      "editor.tabSize"              = 2;
-      "editor.renderWhitespace"     = "boundary";
-      "editor.minimap.enabled"      = false;
-      "editor.formatOnSave"         = true;
-      "editor.suggestSelection"     = "first";
-      "workbench.startupEditor"     = "none";
-      "workbench.iconTheme"         = "material-icon-theme";
-      "terminal.integrated.fontFamily" = "'JetBrainsMono Nerd Font Mono'";
-      "files.autoSave"              = "onFocusChange";
-      # Colour theme is written by Stylix — do not set "workbench.colorTheme" here
-    };
-
-    extensions = with pkgs.vscode-extensions; [
-      vscodevim.vim
-      pkief.material-icon-theme
-      ms-python.python
-      ms-python.vscode-pylance
-      rust-lang.rust-analyzer
-      bradlc.vscode-tailwindcss
-      esbenp.prettier-vscode
-      dbaeumer.vscode-eslint
-      eamodio.gitlens
-      ms-vscode.cpptools
-      jnoortheen.nix-ide
-    ];
   };
 
   # ─────────────────────────────────────────────────────────────────────────

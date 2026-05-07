@@ -162,16 +162,16 @@
         "ignorealpha 0.5, logout_dialog"
       ];
 
-      windowrulev2 = [
-        "float, class:^(pavucontrol)$"
-        "float, class:^(nm-connection-editor)$"
-        "float, class:^(blueman-manager)$"
-        "float, class:^(system-config-printer)$"
-        "float, title:^(Open File)$"
-        "float, title:^(Save As)$"
-        "float, title:^(Picture-in-Picture)$"
-        "pin,   title:^(Picture-in-Picture)$"
-      ];
+      # windowrulev2 = [
+      #   "float, class:^(pavucontrol)$"
+      #   "float, class:^(nm-connection-editor)$"
+      #   "float, class:^(blueman-manager)$"
+      #   "float, class:^(system-config-printer)$"
+      #   "float, title:^(Open File)$"
+      #   "float, title:^(Save As)$"
+      #   "float, title:^(Picture-in-Picture)$"
+      #   "pin,   title:^(Picture-in-Picture)$"
+      # ];
     };
   };
 

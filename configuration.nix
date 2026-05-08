@@ -282,7 +282,7 @@
   programs.hyprland.enable = true;
   programs.firefox.enable  = true;
   
-  services.displayManager.sddm.settings.Theme.CursorTheme = "Bibata-Modern-Ice"
+  services.displayManager.sddm.settings.Theme.CursorTheme = "Bibata-Modern-Ice";
   # ─────────────────────────────────────────────────────────────────────────
   # AUDIO
   # ─────────────────────────────────────────────────────────────────────────

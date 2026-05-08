@@ -408,6 +408,7 @@
     candy-icons
 
     # ── Screenshot tools ─────────────────────────────────────────────────
+    flameshot
     grim
     slurp
     wl-clipboard
@@ -439,9 +440,7 @@
     wlr-which-key
     
     # ── Screenshot ──────────────────────────────────────────────────────────────
-    flameshot
-    grim
-    slurp
+    
   ];
 
 home.file.".config/wlr-which-key/config.yaml".text = ''

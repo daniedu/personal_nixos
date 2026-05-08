@@ -130,10 +130,8 @@
         "$mod SHIFT, 7, movetoworkspace, 7"
         "$mod SHIFT, 8, movetoworkspace, 8"
         "$mod SHIFT, 9, movetoworkspace, 9"
-        
-        # Screenshot (requires grim + slurp)
-        ", Print,       exec, grim ~/Pictures/Screenshots/$(date +%F_%T).png"
-        "SHIFT, Print,  exec, grim -g \"$(slurp)\" ~/Pictures/Screenshots/$(date +%F_%T).png"
+
+        "$mainMod, P, exec, wlr-which-key"
       ];
 
       general = {
@@ -439,7 +437,44 @@
     nil
     lazygit
     wlr-which-key
+    
+    # ── Screenshot ──────────────────────────────────────────────────────────────
+    flameshot
+    grim
+    slurp
   ];
+
+home.file.".config/wlr-which-key/config.yaml".text = ''
+  # Theming to match your setup
+  font: "JetBrainsMono Nerd Font 12"
+  background: "#191724d0" # Rose Pine dark background with transparency
+  color: "#e0def4"
+  border: "#ebbcba"
+  separator: " ➜ "
+  
+  menu:
+    - key: "s"
+      desc: "Screenshot"
+      submenu:
+        - key: "f"
+          desc: "Full Screen"
+          cmd: "hyprshot -m output"
+        - key: "w"
+          desc: "Window"
+          cmd: "hyprshot -m window"
+        - key: "r"
+          desc: "Region"
+          cmd: "hyprshot -m region"
+    - key: "p"
+      desc: "Power"
+      submenu:
+        - key: "r"
+          desc: "Reboot"
+          cmd: "reboot"
+        - key: "o"
+          desc: "Power Off"
+          cmd: "poweroff"
+'';
 
   fonts.fontconfig.enable = true;
 

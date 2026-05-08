@@ -12,7 +12,13 @@
   home.stateVersion  = "25.11";
 #   stylix.targets.kde.enable = false;
 #   stylix.targets.vscode.enable = true;
-
+# Configuration for user-level (Home Manager)
+  home.pointerCursor = {
+    gtk.enable = true;
+    package = pkgs.bibata-cursors;
+    name = "Bibata-Modern-Ice";
+    size = 24; # Optional
+  };
   # ─────────────────────────────────────────────────────────────────────────
   # NOCTALIA — sidebar (left bar) mode
   # ─────────────────────────────────────────────────────────────────────────

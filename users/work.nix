@@ -411,6 +411,7 @@
     flameshot
     grim
     slurp
+    swappy
     wl-clipboard
 
     # ── Work / productivity ───────────────────────────────────────────────

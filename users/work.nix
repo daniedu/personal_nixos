@@ -61,7 +61,7 @@
       launcher.enable = true;
 
       # Disable Noctalia's wallpaper setter — Stylix handles the wallpaper
-      wallpaper.enabled = false;
+      wallpaper.enabled = true;
 
       colorSchemes = {
         darkMode         = true;

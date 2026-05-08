@@ -454,17 +454,18 @@ home.file.".config/wlr-which-key/config.yaml".text = ''
   
   menu:
     - key: "s"
-      desc: "Screenshot"
+      desc: "Screenshot (Flameshot)"
       submenu:
+        - key: "s"
+          desc: "Select Region"
+          # The 'sway' variable is a trick to make Flameshot play nice with Hyprland
+          cmd: "XDG_CURRENT_DESKTOP=sway flameshot gui"
         - key: "f"
           desc: "Full Screen"
-          cmd: "hyprshot -m output"
-        - key: "w"
-          desc: "Window"
-          cmd: "hyprshot -m window"
-        - key: "r"
-          desc: "Region"
-          cmd: "hyprshot -m region"
+          cmd: "XDG_CURRENT_DESKTOP=sway flameshot full"
+        - key: "c"
+          desc: "Capture and Copy to Clipboard"
+          cmd: "XDG_CURRENT_DESKTOP=sway flameshot gui --raw | wl-copy"
     - key: "p"
       desc: "Power"
       submenu:

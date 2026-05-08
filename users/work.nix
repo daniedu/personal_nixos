@@ -131,7 +131,7 @@
         "$mod SHIFT, 8, movetoworkspace, 8"
         "$mod SHIFT, 9, movetoworkspace, 9"
 
-        "$mainMod, P, exec, wlr-which-key"
+        "$mod, P, exec, wlr-which-key"
       ];
 
       general = {

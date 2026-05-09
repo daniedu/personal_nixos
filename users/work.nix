@@ -444,7 +444,7 @@
     
   ];
 
-sservices.flameshot = {
+  services.flameshot = {
   enable = true;
   settings = {
     General = {

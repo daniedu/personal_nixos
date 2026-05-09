@@ -216,13 +216,6 @@
     active_tab_font_style = "bold";
     inactive_tab_font_style = "normal";
     
-    # --- Rose Pine Colors (Manual if Stylix isn't active yet) ---
-    # These match your wlr-which-key colors
-    foreground = "#e0def4";
-    background = "#191724";
-    selection_foreground = "#e0def4";
-    selection_background = "#403d52";
-    
     # --- Terminal Bell ---
     enable_audio_bell = "no"; # Silence is gold
     };

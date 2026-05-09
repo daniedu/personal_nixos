@@ -353,7 +353,7 @@
     ];
     config = {
       common = {
-        default = [ "gtk" ];
+        default = [ "hyprland"  "gtk" ];
       };
       hyprland = {
         default = [ "hyprland" "gtk" ];

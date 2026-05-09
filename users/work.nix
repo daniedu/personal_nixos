@@ -408,8 +408,12 @@
     candy-icons
 
     # ── Screenshot tools ─────────────────────────────────────────────────
-    hyprshot
-    
+    flameshot
+    grim
+    slurp
+    swappy
+    wl-clipboard
+
     # ── Work / productivity ───────────────────────────────────────────────
     onlyoffice-desktopeditors        # Microsoft-compatible office suite (docx/xlsx/pptx)
     hunspell              # spell checking backend

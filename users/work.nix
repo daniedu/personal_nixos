@@ -409,6 +409,9 @@
 
     # ── Screenshot tools ─────────────────────────────────────────────────
     hyprshot
+    grim
+    slurp
+    wl-clipboard
 
     # ── Work / productivity ───────────────────────────────────────────────
     onlyoffice-desktopeditors        # Microsoft-compatible office suite (docx/xlsx/pptx)
@@ -438,6 +441,9 @@
     wlr-which-key
   ];
 
+environment.sessionVariables = {
+  HYPRSHOT_DIR = "/home/work/Screenshots";
+};
 
 home.file.".config/wlr-which-key/config.yaml".text = ''
   # Theming to match your setup
@@ -449,18 +455,24 @@ home.file.".config/wlr-which-key/config.yaml".text = ''
   
   menu:
     - key: "s"
-      desc: "Screenshot (Flameshot)"
+      desc: "Screenshot (Hyprshot)"
       submenu:
         - key: "s"
           desc: "Select Region"
-          # The 'sway' variable is a trick to make Flameshot play nice with Hyprland
-          cmd: "XDG_CURRENT_DESKTOP=sway flameshot gui"
+          # -m region: allows mouse selection
+          cmd: "hyprshot -m region"
         - key: "f"
-          desc: "Full Screen"
-          cmd: "XDG_CURRENT_DESKTOP=sway flameshot full"
+          desc: "Full Screen (Monitor)"
+          # -m output: captures the current monitor
+          cmd: "hyprshot -m output"
+        - key: "w"
+          desc: "Active Window"
+          # -m window: captures the active window
+          cmd: "hyprshot -m window"
         - key: "c"
-          desc: "Capture and Copy to Clipboard"
-          cmd: "XDG_CURRENT_DESKTOP=sway flameshot gui --raw | wl-copy"
+          desc: "Region to Clipboard Only"
+          # --clipboard-only: skips saving a file to disk
+          cmd: "hyprshot -m region --clipboard-only"
     - key: "p"
       desc: "Power"
       submenu:

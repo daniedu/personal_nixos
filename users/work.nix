@@ -195,6 +195,7 @@
   programs.kitty = {
     enable = true;
     settings = {
+      shell = "fish";
       # --- Visuals ---
     window_padding_width = 8; # More breathing room looks more modern
     confirm_os_window_close = 0;
@@ -220,22 +221,19 @@
     enable_audio_bell = "no"; # Silence is gold
     };
   };
-  programs.fish = {
-  enable = true;
-  interactiveShellInit = ''
-    set fish_greeting # Clear the welcome text
-  '';
-  # Only the essential project navigation
-  shellAliases = {
-    cdp = "cd ~/projects"; 
-  };
-};
 
-# This makes cd "smart" (optional but highly recommended for devs)
-programs.zoxide = {
-  enable = true;
-  enableFishIntegration = true;
-};
+  programs.fish = {
+    enable = true;
+    # This is the magic line that connects Starship to Fish automatically
+    interactiveShellInit = ''
+      starship init fish | source
+    '';
+  };
+
+  programs.zoxide = {
+    enable = true;
+    enableFishIntegration = true;
+  };
 
 programs.starship = {
   enable = true;

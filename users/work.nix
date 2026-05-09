@@ -232,9 +232,12 @@
 };
 
 # This makes cd "smart" (optional but highly recommended for devs)
-services.zoxide.enable = true;
-programs.zoxide.enableFishIntegration = true;
-  programs.starship = {
+programs.zoxide = {
+  enable = true;
+  enableFishIntegration = true;
+};
+
+programs.starship = {
   enable = true;
   settings = {
     # Inserts a blank line between commands for readability
@@ -267,6 +270,7 @@ programs.zoxide.enableFishIntegration = true;
     lua.disabled = true;
   };
 };
+
   # ─────────────────────────────────────────────────────────────────────────
   # NEOVIM — configured via programs.neovim (best Stylix integration path)
   # ─────────────────────────────────────────────────────────────────────────

@@ -448,7 +448,7 @@
   enable = true;
   settings = {
     General = {
-      savePath = "/home/work/Screenshots"; # Make sure this matches your $USER
+      # savePath = "/home/work/Screenshots"; # Make sure this matches your $USER
       showStartupLaunchMessage = false;
       uiColor = "#740096";
       contrastUiColor = "#270032";

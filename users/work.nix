@@ -447,7 +447,6 @@ services.flameshot = {
   enable = true;
   settings = {
     General = {
-      useGrimAdapter = true;      # This is the "secret sauce" for Wayland
       disabledGrimWarning = true;
       showDesktopNotification = false; # Speeds it up on low-end CPUs
     };

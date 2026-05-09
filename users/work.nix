@@ -447,7 +447,7 @@ services.flameshot = {
   enable = true;
   settings = {
     General = {
-      disabledGrimWarning = true;
+      # disabledGrimWarning = true;
       showDesktopNotification = false; # Speeds it up on low-end CPUs
     };
   };

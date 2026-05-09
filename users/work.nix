@@ -408,11 +408,7 @@
     candy-icons
 
     # ── Screenshot tools ─────────────────────────────────────────────────
-    flameshot
-    grim
-    slurp
-    swappy
-    wl-clipboard
+    hyprshot
 
     # ── Work / productivity ───────────────────────────────────────────────
     onlyoffice-desktopeditors        # Microsoft-compatible office suite (docx/xlsx/pptx)
@@ -442,20 +438,6 @@
     wlr-which-key
   ];
 
-  services.flameshot = {
-  enable = true;
-  settings = {
-    General = {
-      # savePath = "/home/work/Screenshots"; # Make sure this matches your $USER
-      showStartupLaunchMessage = false;
-      uiColor = "#740096";
-      contrastUiColor = "#270032";
-      disabledTrayIcon = true;
-      drawColor = "#ff0000";
-      saveAsFileExtension = ".png";
-    };
-  };
-};
 
 home.file.".config/wlr-which-key/config.yaml".text = ''
   # Theming to match your setup

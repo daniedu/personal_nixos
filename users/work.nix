@@ -220,7 +220,53 @@
     enable_audio_bell = "no"; # Silence is gold
     };
   };
-  programs.starship.enable = true;
+  programs.fish = {
+  enable = true;
+  interactiveShellInit = ''
+    set fish_greeting # Clear the welcome text
+  '';
+  # Only the essential project navigation
+  shellAliases = {
+    cdp = "cd ~/projects"; 
+  };
+};
+
+# This makes cd "smart" (optional but highly recommended for devs)
+services.zoxide.enable = true;
+programs.zoxide.enableFishIntegration = true;
+  programs.starship = {
+  enable = true;
+  settings = {
+    # Inserts a blank line between commands for readability
+    add_newline = true;
+
+    # Clean, minimal prompt character
+    character = {
+      success_symbol = "[➜](bold #ebbcba)"; # Rose Pine 'Gold/Rose'
+      error_symbol = "[➜](bold #eb6f92)";   # Rose Pine 'Love'
+    };
+
+    # Directory style
+    directory = {
+      style = "bold #9ccfd8"; # Rose Pine 'Foam'
+      truncate_to_repo = true;
+      truncation_length = 3;
+    };
+
+    # Minimal Git status
+    git_branch = {
+      symbol = " ";
+      style = "bold #f6c177";
+    };
+
+    # Disable most language modules to keep it fast, 
+    # only keep what you use for work
+    php.disabled = false;
+    nodejs.disabled = false;
+    python.disabled = true;
+    lua.disabled = true;
+  };
+};
   # ─────────────────────────────────────────────────────────────────────────
   # NEOVIM — configured via programs.neovim (best Stylix integration path)
   # ─────────────────────────────────────────────────────────────────────────

@@ -375,8 +375,11 @@
   users.users.work = {
     isNormalUser = true;
     extraGroups  = [ "networkmanager" "wheel" "video" "render" "audio" "gamemode" ];
+    shell = pkgs.fish;
   };
 
+  # System-wide enable
+  programs.fish.enable = true;
   # users.users.lab = {
   #   isNormalUser = true;
   #   extraGroups  = [ "networkmanager" "video" "render" "audio" ];

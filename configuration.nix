@@ -346,10 +346,19 @@
   # xdg-desktop-portal is needed for screen sharing, file pickers, etc.
   xdg.portal = {
     enable = true;
+    xdgOpenUsePortal = true;
     extraPortals = with pkgs; [
-      xdg-desktop-portal-hyprland  # Hyprland-specific portal (screen share etc.)
-      xdg-desktop-portal-gtk       # fallback for GTK file pickers
+      xdg-desktop-portal-hyprland
+      xdg-desktop-portal-gtk
     ];
+    config = {
+      common = {
+        default = [ "gtk" ];
+      };
+      hyprland = {
+        default = [ "hyprland" "gtk" ];
+      };
+    };
   };
 
   # ─────────────────────────────────────────────────────────────────────────

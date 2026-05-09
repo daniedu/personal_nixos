@@ -408,12 +408,8 @@
     candy-icons
 
     # ── Screenshot tools ─────────────────────────────────────────────────
-    flameshot
-    grim
-    slurp
-    swappy
-    wl-clipboard
-
+    hyprshot
+    
     # ── Work / productivity ───────────────────────────────────────────────
     onlyoffice-desktopeditors        # Microsoft-compatible office suite (docx/xlsx/pptx)
     hunspell              # spell checking backend
@@ -438,10 +434,8 @@
 
     nil
     lazygit
+    
     wlr-which-key
-    
-    # ── Screenshot ──────────────────────────────────────────────────────────────
-    
   ];
 
   services.flameshot = {

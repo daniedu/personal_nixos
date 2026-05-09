@@ -441,9 +441,6 @@
     wlr-which-key
   ];
 
-environment.sessionVariables = {
-  HYPRSHOT_DIR = "/home/work/Screenshots";
-};
 
 home.file.".config/wlr-which-key/config.yaml".text = ''
   # Theming to match your setup

@@ -192,21 +192,42 @@
   # ─────────────────────────────────────────────────────────────────────────
   # KITTY — terminal
   # ─────────────────────────────────────────────────────────────────────────
-  # Stylix automatically injects the Base16 palette and font.
-  # Only behaviour/layout is configured here.
   programs.kitty = {
     enable = true;
     settings = {
-      window_padding_width    = 8;
-      confirm_os_window_close = 0;
-      tab_bar_style           = "powerline";
-      tab_bar_edge            = "bottom";
-      # Transparency is set by stylix.opacity.terminal (0.90).
-      # Uncomment to override:
-      background_opacity = "0.90";
+      # --- Visuals ---
+    window_padding_width = 8; # More breathing room looks more modern
+    confirm_os_window_close = 0;
+    background_opacity = "0.85";
+    dynamic_background_opacity = "yes"; # Allows changing on the fly
+    
+    # --- Text Rendering ---
+    # Makes the font look "thicker" and clearer on high-res monitors
+    text_composition_strategy = "platform"; 
+    
+    # --- Cursor ---
+    cursor_shape = "beam"; # Vertical line like an IDE
+    cursor_beam_thickness = 1.5;
+    cursor_blink_interval = 0; # Static cursor is often less distracting
+    
+    # --- Tab Bar (The "Nice" Look) ---
+    tab_bar_edge = "top"; # Moving it to the top feels more "browser-like"
+    tab_bar_style = "slant"; # Powerline is classic, but slant is more unique
+    active_tab_font_style = "bold";
+    inactive_tab_font_style = "normal";
+    
+    # --- Rose Pine Colors (Manual if Stylix isn't active yet) ---
+    # These match your wlr-which-key colors
+    foreground = "#e0def4";
+    background = "#191724";
+    selection_foreground = "#e0def4";
+    selection_background = "#403d52";
+    
+    # --- Terminal Bell ---
+    enable_audio_bell = "no"; # Silence is gold
     };
   };
-
+  programs.starship.enable = true;
   # ─────────────────────────────────────────────────────────────────────────
   # NEOVIM — configured via programs.neovim (best Stylix integration path)
   # ─────────────────────────────────────────────────────────────────────────

@@ -280,7 +280,6 @@
   services.xserver.xkb = { layout = "us"; variant = ""; };
 
   programs.hyprland.enable = true;
-  programs.firefox.enable  = true;
   
   services.displayManager.sddm.settings.Theme.CursorTheme = "Bibata-Modern-Ice";
   # ─────────────────────────────────────────────────────────────────────────

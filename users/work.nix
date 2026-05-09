@@ -220,7 +220,6 @@
     enable_audio_bell = "no"; # Silence is gold
     };
   };
-  programs.starship.enable = true;
   # ─────────────────────────────────────────────────────────────────────────
   # NEOVIM — configured via programs.neovim (best Stylix integration path)
   # ─────────────────────────────────────────────────────────────────────────

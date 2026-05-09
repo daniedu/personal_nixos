@@ -245,8 +245,8 @@
     vim
     git
     wget
-    htop
-#     libnotify    # notify-send
+    btop
+    # libnotify
     xdg-utils    # xdg-open etc.
     gnome-disk-utility
 
@@ -258,6 +258,9 @@
     
     # ── Cursors ──────────────────────────────────────────────────────
     bibata-cursors
+
+    # ── shell ──────────────────────────────────────────────────────
+    starship
   ];
 
   # ─────────────────────────────────────────────────────────────────────────

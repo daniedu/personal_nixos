@@ -29,7 +29,6 @@
         stylix.nixosModules.stylix
         ./configuration.nix
         home-manager.nixosModules.home-manager
-        stylix.homeManagerModules.default
         {
           home-manager = {
             useGlobalPkgs    = true;

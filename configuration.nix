@@ -28,6 +28,9 @@
   stylix = {
     enable     = true;
     autoEnable = true;
+    targets = {
+      gnome.enable = false;
+    };
 
     image = ./assets/fuji.png;
 

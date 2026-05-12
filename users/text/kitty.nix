@@ -1,11 +1,11 @@
-{ pkgs, ... }: {
+{ pkgs, lib, ... }: {
   programs.kitty = {
     enable = true;
     settings = {
       shell = "fish";
       window_padding_width = 8;
       confirm_os_window_close = 0;
-      background_opacity = "0.85";
+      background_opacity = lib.mkForce "0.85";
       dynamic_background_opacity = "yes";
       text_composition_strategy = "platform";
       cursor_shape = "beam";

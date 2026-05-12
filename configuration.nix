@@ -25,95 +25,49 @@
   # and set it to a 6-digit hex value (no leading #).
 #   xdg.userDirs.setSessionVariables = false;
 
-  # stylix = {
-  #   enable     = false;
-  #   autoEnable = false;  # automatically theme every supported application
+  stylix = {
+    enable     = true;
+    autoEnable = true;
 
-  #  # ── Wallpaper ─────────────────────────────────────────────────────────
-  #   # Stylix reads this image and derives the full palette from it.
-  #   # Change the path to any image; the palette updates on the next rebuild.
-  #   image = ./assets/fuji.png;
-  #   # imageScalingMode = "fill"; # fill | fit | stretch | center | tile
+    image = ./assets/fuji.png;
 
-  #   # ── Colour overrides ──────────────────────────────────────────────────
-  #   # Uncomment `base16Scheme` to use a pre-made scheme instead of
-  #   # extracting from the wallpaper (useful as a quick fallback):
-  #   # base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-hard.yaml";
-  #   #
-  #   # Or tweak individual slots:
-  #   # override = {
-  #   #   base00 = "1a1b26"; # background
-  #   #   base01 = "24283a"; # lighter background
-  #   #   base02 = "2f3549"; # selection background
-  #   #   base03 = "565f89"; # comments / disabled
-  #   #   base04 = "a9b1d6"; # dark foreground
-  #   #   base05 = "c0caf5"; # default foreground
-  #   #   base06 = "cdd6f4"; # light foreground
-  #   #   base07 = "ffffff"; # lightest foreground / white
-  #   #   base08 = "f7768e"; # red
-  #   #   base09 = "ff9e64"; # orange
-  #   #   base0A = "e0af68"; # yellow
-  #   #   base0B = "9ece6a"; # green
-  #   #   base0C = "73daca"; # cyan
-  #   #   base0D = "7aa2f7"; # blue / functions
-  #   #   base0E = "bb9af7"; # magenta / keywords
-  #   #   base0F = "db4b4b"; # embedded / deprecated
-  #   # };
+    fonts = {
+      monospace = {
+        package = pkgs.nerd-fonts.jetbrains-mono;
+        name    = "JetBrainsMono Nerd Font Mono";
+      };
+      sansSerif = {
+        package = pkgs.noto-fonts;
+        name    = "Noto Sans";
+      };
+      serif = {
+        package = pkgs.noto-fonts;
+        name    = "Noto Serif";
+      };
+      emoji = {
+        package = pkgs.noto-fonts-color-emoji;
+        name    = "Noto Color Emoji";
+      };
+      sizes = {
+        applications = 11;
+        terminal     = 13;
+        desktop      = 11;
+        popups       = 11;
+      };
+    };
 
-  #   # ── Fonts ─────────────────────────────────────────────────────────────
-  #   fonts = {
-  #     monospace = {
-  #       package = pkgs.nerd-fonts.jetbrains-mono;
-  #       name    = "JetBrainsMono Nerd Font Mono";
-  #     };
-  #     sansSerif = {
-  #       package = pkgs.noto-fonts;
-  #       name    = "Noto Sans";
-  #     };
-  #     serif = {
-  #       package = pkgs.noto-fonts;
-  #       name    = "Noto Serif";
-  #     };
-  #     emoji = {
-  #       package = pkgs.noto-fonts-color-emoji;
-  #       name    = "Noto Color Emoji";
-  #     };
-  #     sizes = {
-  #       applications = 11;
-  #       terminal     = 13;
-  #       desktop      = 11;
-  #       popups       = 11;
-  #     };
-  #   };
+    cursor = {
+      package = pkgs.bibata-cursors;
+      name    = "Bibata-Modern-Classic";
+      size    = 24;
+    };
 
-  #   # ── Cursor ────────────────────────────────────────────────────────────
-  #   cursor = {
-  #     package = pkgs.bibata-cursors;
-  #     name    = "Bibata-Modern-Classic";
-  #     size    = 24;
-  #   };
-
-  #   # ── Opacity ───────────────────────────────────────────────────────────
-  #   opacity = {
-  #     terminal     = 0.90;
-  #     applications = 1.0;
-  #     popups       = 0.90;
-  #     desktop      = 1.0;
-  #   };
-
-
-  # };
-
-  # ─────────────────────────────────────────────────────────────────────────
-  # NIX SETTINGS
-  # ─────────────────────────────────────────────────────────────────────────
-  nix.settings = {
-    experimental-features = [ "nix-command" "flakes" ];
-    # Noctalia binary cache — skip building quickshell/noctalia from source
-    substituters      = [ "https://noctalia.cachix.org" ];
-    trusted-public-keys = [
-      "noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4="
-    ];
+    opacity = {
+      terminal     = 0.90;
+      applications = 1.0;
+      popups       = 0.90;
+      desktop      = 1.0;
+    };
   };
 
   # ─────────────────────────────────────────────────────────────────────────

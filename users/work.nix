@@ -13,9 +13,7 @@ let
   '';s
 in {
   imports = [
-    inputs.noctalia.homeModules.default
-    ./wm/noctalia.nix
-    # ./wm/waybar.nix
+    ./wm/waybar.nix
     ./wm/hyprland.nix
     ./text/kitty.nix
     ./text/nixvim.nix
@@ -69,6 +67,8 @@ in {
     };
   };
 
+  programs.waybar.enable = true;
+
   programs.vscode = {
     enable  = true;
     package = pkgs.vscode-fhs;
@@ -98,6 +98,7 @@ in {
     nil
     lazygit
 
+    wofi
     wlr-which-key
     steam-run
   ];

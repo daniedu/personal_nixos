@@ -9,7 +9,7 @@
       animations.enabled = false;
 
       "exec-once" = [
-        "noctalia-shell"
+        "waybar"
         "nm-applet --indicator"
         "blueman-applet"
       ];
@@ -29,7 +29,7 @@
       };
 
       bind = [
-        "$mod, SPACE,  exec, noctalia-shell ipc call launcher toggle"
+        "$mod, SPACE,  exec, wofi --show drun"
         "$mod, RETURN, exec, kitty"
         "$mod, Q,      killactive,"
         "$mod, M,      exit,"

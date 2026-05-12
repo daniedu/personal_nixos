@@ -1,4 +1,6 @@
-{ pkgs, lib, ... }: {
+{ pkgs, lib, config, ... }:
+let c = config.lib.stylix.colors;
+in {
   programs.kitty = {
     enable = true;
     settings = {
@@ -18,4 +20,6 @@
       enable_audio_bell = "no";
     };
   };
+
+  stylix.targets.kitty.enable = true;
 }

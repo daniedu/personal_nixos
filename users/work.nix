@@ -10,7 +10,7 @@ let
     mkdir -p $out/bin
     tar -xzf ${opencode-src} -C $out/bin opencode
     chmod +x $out/bin/opencode
-  '';s
+  '';
 in {
   imports = [
     ./wm/waybar.nix

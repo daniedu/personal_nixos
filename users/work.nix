@@ -243,10 +243,10 @@ in {
         submenu:
           - key: "r"
             desc: "Reboot"
-            cmd: "reboot"
+            cmd: "systemctl reboot"
           - key: "o"
             desc: "Power Off"
-            cmd: "poweroff"
+            cmd: "systemctl poweroff"
   '';
 
   fonts.fontconfig.enable = true;

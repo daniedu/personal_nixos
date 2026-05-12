@@ -10,12 +10,12 @@ let
     mkdir -p $out/bin
     tar -xzf ${opencode-src} -C $out/bin opencode
     chmod +x $out/bin/opencode
-  '';
+  '';s
 in {
   imports = [
     inputs.noctalia.homeModules.default
     ./wm/noctalia.nix
-    ./wm/waybar.nix
+    # ./wm/waybar.nix
     ./wm/hyprland.nix
     ./text/kitty.nix
     ./text/nixvim.nix

@@ -10,7 +10,9 @@ let
       url = "https://github.com/anomalyco/opencode/releases/download/v1.14.48/opencode-linux-x64.tar.gz";
       sha256 = "10mggfk9pncvdw4b0c41cv3p9dsrxwmpw4s9wrxw3yaa0zg2aqfh"; 
     };
-
+    
+    sourceRoot = ".";
+    
     nativeBuildInputs = [ pkgs.autoPatchelfHook ];
     buildInputs = [ pkgs.stdenv.cc.cc.lib pkgs.zlib pkgs.glibc ];
 

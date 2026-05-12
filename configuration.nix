@@ -31,6 +31,26 @@
 
     image = ./assets/fuji.png;
 
+    # Gruvbox dark palette — less colourful, darker tones
+    override = {
+      base00 = "1b1b1b";   # darkest background
+      base01 = "292828";   # lighter background
+      base02 = "3c3836";   # selection background  ← user provided
+      base03 = "4d443b";   # comments / invisibles
+      base04 = "7d6e5d";   # dark foreground
+      base05 = "a89984";   # default foreground
+      base06 = "cbb89e";   # light foreground
+      base07 = "e0ceb6";   # lightest foreground
+      base08 = "cc241d";   # red                    ← user provided
+      base09 = "b5520c";   # orange (desaturated)
+      base0A = "d79921";   # yellow                 ← user provided
+      base0B = "8ec07c";   # green                  ← user provided
+      base0C = "689d6a";   # cyan / aqua (muted)
+      base0D = "458588";   # blue                   ← user provided
+      base0E = "8a5070";   # magenta / purple (desaturated)
+      base0F = "7c6f5e";   # brown / deprecated
+    };
+
     fonts = {
       monospace = {
         package = pkgs.nerd-fonts.jetbrains-mono;

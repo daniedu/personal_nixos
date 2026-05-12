@@ -1,31 +1,31 @@
 # Home-Manager configuration for the "work" user
 { pkgs, inputs, lib, config, ... }:
-let
-  # This is the lightweight standalone binary (~37MB)
-  opencode-working = pkgs.stdenv.mkDerivation {
-    pname = "opencode";
-    version = "1.14.48";
+# let
+#   # This is the lightweight standalone binary (~37MB)
+#   opencode-working = pkgs.stdenv.mkDerivation {
+#     pname = "opencode";
+#     version = "1.14.48";
     
-    src = pkgs.fetchurl {
-      url = "https://github.com/anomalyco/opencode/releases/download/v1.14.48/opencode-linux-x64.tar.gz";
-      sha256 = "10mggfk9pncvdw4b0c41cv3p9dsrxwmpw4s9wrxw3yaa0zg2aqfh"; 
-    };
+#     src = pkgs.fetchurl {
+#       url = "https://github.com/anomalyco/opencode/releases/download/v1.14.48/opencode-linux-x64.tar.gz";
+#       sha256 = "10mggfk9pncvdw4b0c41cv3p9dsrxwmpw4s9wrxw3yaa0zg2aqfh"; 
+#     };
     
-    sourceRoot = ".";
+#     sourceRoot = ".";
     
-    nativeBuildInputs = [ pkgs.autoPatchelfHook ];
-    buildInputs = [ pkgs.stdenv.cc.cc.lib pkgs.zlib pkgs.glibc ];
+#     nativeBuildInputs = [ pkgs.autoPatchelfHook ];
+#     buildInputs = [ pkgs.stdenv.cc.cc.lib pkgs.zlib pkgs.glibc ];
 
-    # Since it's a tar.gz, Nix will automatically unpack it. 
-    # We just need to make sure we copy the right file in installPhase.
-    installPhase = ''
-      mkdir -p $out/bin
-      # The binary inside is usually named 'opencode'
-      cp opencode $out/bin/opencode
-      chmod +x $out/bin/opencode
-    '';
-  };
-in
+#     # Since it's a tar.gz, Nix will automatically unpack it. 
+#     # We just need to make sure we copy the right file in installPhase.
+#     installPhase = ''
+#       mkdir -p $out/bin
+#       # The binary inside is usually named 'opencode'
+#       cp opencode $out/bin/opencode
+#       chmod +x $out/bin/opencode
+#     '';
+#   };
+# in
 {
   imports = [
     inputs.noctalia.homeModules.default
@@ -308,7 +308,7 @@ in
   # PACKAGES
   # ─────────────────────────────────────────────────────────────────────────
   home.packages = with pkgs; [
-    opencode-working
+    # opencode-working
     # ── Fonts (beyond what Stylix sets system-wide) ───────────────────────
     nerd-fonts.jetbrains-mono
     nerd-fonts.caskaydia-cove

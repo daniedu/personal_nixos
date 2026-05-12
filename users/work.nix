@@ -15,6 +15,7 @@ in {
   imports = [
     inputs.noctalia.homeModules.default
     ./wm/noctalia.nix
+    ./wm/waybar.nix
     ./wm/hyprland.nix
     ./text/kitty.nix
     ./text/nixvim.nix
@@ -23,10 +24,6 @@ in {
   home.username    = "work";
   home.homeDirectory = "/home/work";
   home.stateVersion  = "25.11";
-
-  home.sessionVariables = {
-    PATH = "$HOME/.local/bin:$PATH";
-  };
 
   home.pointerCursor = {
     gtk.enable = true;
@@ -38,6 +35,7 @@ in {
   programs.fish = {
     enable = true;
     interactiveShellInit = ''
+      fish_add_path ~/.local/bin
       starship init fish | source
     '';
   };

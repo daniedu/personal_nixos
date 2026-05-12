@@ -31,6 +31,8 @@
 
     image = ./assets/fuji.png;
 
+    targets.starship.enable = false;
+
     # Gruvbox dark hard palette — replaces wallpaper colour extraction entirely
     base16Scheme = {
       base00 = "1d2021";

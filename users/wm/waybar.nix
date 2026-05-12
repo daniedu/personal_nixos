@@ -9,11 +9,7 @@
         position = "top";
         height = 30;
         spacing = 8;
-        margin = {
-          top = 5;
-          left = 8;
-          right = 8;
-        };
+        margin = "5 8 0 8";
 
         modules-left = [ "hyprland/workspaces" ];
         modules-center = [ "hyprland/window" ];

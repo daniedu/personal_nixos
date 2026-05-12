@@ -1,4 +1,7 @@
-{ pkgs, lib, ... }: {
+{ pkgs, lib, config, ... }:
+let
+  c = config.lib.stylix.colors;
+in {
   programs.waybar = {
     enable = lib.mkDefault false;
     package = pkgs.waybar.override { wireplumberSupport = true; };
@@ -67,7 +70,7 @@
       };
     };
 
-    style = ''
+    style = with c; ''
       * {
         font-family: "JetBrainsMono Nerd Font";
         font-size: 13px;
@@ -75,33 +78,33 @@
       }
 
       window#waybar {
-        background: rgba(25, 23, 36, 0.85);
+        background: #${base00};
         border-radius: 10px;
       }
 
       #workspaces button {
-        color: #6e6a86;
+        color: #${base04};
         padding: 0 6px;
         border-radius: 6px;
         transition: none;
       }
 
       #workspaces button.active {
-        color: #ebbcba;
+        color: #${base0D};
       }
 
       #workspaces button.urgent {
-        color: #eb6f92;
+        color: #${base08};
       }
 
       #workspaces button:hover {
-        background: rgba(235, 188, 186, 0.1);
+        background: #${base02};
         box-shadow: none;
         text-shadow: none;
       }
 
       #window {
-        color: #e0def4;
+        color: #${base05};
       }
 
       #tray {
@@ -109,7 +112,7 @@
       }
 
       #clock {
-        color: #9ccfd8;
+        color: #${base0C};
         padding: 0 8px;
       }
     '';

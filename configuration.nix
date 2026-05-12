@@ -29,7 +29,7 @@
     enable     = true;
     autoEnable = true;
 
-    image = null;
+    image = ./assets/fuji.png;
 
     # Gruvbox dark hard palette — replaces wallpaper colour extraction entirely
     base16Scheme = {

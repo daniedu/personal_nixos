@@ -3,7 +3,7 @@ let
   c = config.lib.stylix.colors;
 in {
   programs.waybar = {
-    enable = lib.mkDefault false;
+    enable = lib.mkDefault true;
     package = pkgs.waybar.override { wireplumberSupport = true; };
 
     settings = {
@@ -12,11 +12,16 @@ in {
         position = "top";
         height = 30;
         spacing = 8;
-        margin = "5 8 0 8";
-
         modules-left = [ "hyprland/workspaces" ];
-        modules-center = [ "hyprland/window" ];
-        modules-right = [ "tray" "clock" ];
+        modules-center = [ "idle_inhibitor" ];
+        modules-right = [
+          "pulseaudio"
+          "network"
+          "bluetooth"
+          "clock"
+          "custom/tray-arrow"
+          "tray"
+        ];
 
         "hyprland/workspaces" = {
           disable-scroll = true;
@@ -41,24 +46,59 @@ in {
           };
         };
 
-        "hyprland/window" = {
-          separate-outputs = true;
-          rewrite = {
-            "(.*kitty.*)" = "";
-            "(.*firefox.*)" = "";
-            "(.*brave.*)" = "";
-            "(.*chrome.*)" = "";
-            "(.*Code.*)" = "";
-            "(.*nautilus.*)" = "";
-            "(.*discord.*)" = "ﭮ";
-            "(.*spotify.*)" = "";
-            "(.*obsidian.*)" = "";
-            "" = "";
+        "idle_inhibitor" = {
+          format = "{icon}";
+          format-icons = {
+            activated = "󰛨";
+            deactivated = "󰛩";
           };
+          tooltip-format-activated = "System Focused";
+          tooltip-format-deactivated = "Normal Mode";
         };
 
-        "tray" = {
-          spacing = 10;
+        "pulseaudio" = {
+          format = "{icon}";
+          format-muted = "󰝟";
+          format-icons = {
+            headphone = "󰋋";
+            headset = "󰋋";
+            hands-free = "󰋋";
+            default = [ "󰈐" "󰈑" "󰈒" ];
+          };
+          on-click = "pavucontrol";
+          tooltip-format = "Output: {volume}%";
+        };
+
+        "pulseaudio#microphone" = {
+          format = "{format_source}";
+          format-source = "󰍬";
+          format-source-muted = "󰍭";
+        };
+
+        "network" = {
+          format-wifi = "{icon}";
+          format-ethernet = "󰈀";
+          format-linked = "󱘖";
+          format-disconnected = "󰤮";
+          format-disabled = "󰤮";
+          format-icons = [ "󰤯" "󰤟" "󰤢" "󰤥" "󰤨" ];
+          tooltip-format-disconnected = "No Connection";
+          tooltip-format-disabled = "Wi-Fi is OFF";
+          tooltip-format-wifi = "󰤱  {essid} ({signalStrength}%)";
+          tooltip-format-ethernet = "󰈀  {ifname} (Connected)";
+          on-click = "nm-applet --indicator";
+          on-click-right = "pkill nm-applet";
+          on-scroll-up = "nmcli radio wifi on";
+          on-scroll-down = "nmcli radio wifi off";
+        };
+
+        "bluetooth" = {
+          format = "󰂯";
+          format-connected = "󰂱";
+          format-disabled = "󰂲";
+          tooltip-format = "{controller_alias} {status}";
+          on-click = "blueman-manager";
+          on-click-right = "rfkill toggle bluetooth";
         };
 
         "clock" = {
@@ -66,6 +106,31 @@ in {
           format-alt = "{:%a %d %b  %H:%M}";
           format = "{:%H:%M}";
           interval = 60;
+        };
+
+        "custom/tray-arrow" = {
+          format = "{icon}";
+          tooltip = false;
+          format-icons = {
+            notification = "ackbar";
+            none = "󰏖";
+            "dnd-notification" = "󰂠";
+            "dnd-none" = "󰪓";
+            "inhibited-notification" = "󰂛";
+            "inhibited-none" = "󰪑";
+          };
+          return-type = "json";
+          exec-if = "which swaync-client";
+          exec = "swaync-client -swb";
+          on-click = "swaync-client -t -sw";
+          on-click-right = "swaync-client -d -sw";
+          escape = true;
+        };
+
+        "tray" = {
+          icon-size = 16;
+          spacing = 10;
+          show-passive-items = true;
         };
       };
     };
@@ -78,15 +143,20 @@ in {
       }
 
       window#waybar {
-        background: #${base00};
+        background: transparent;
+      }
+
+      #workspaces {
+        margin: 4px 8px;
+        padding: 0 6px;
         border-radius: 10px;
+        background: #${base00};
       }
 
       #workspaces button {
         color: #${base04};
         padding: 0 6px;
         border-radius: 6px;
-        transition: none;
       }
 
       #workspaces button.active {
@@ -103,17 +173,62 @@ in {
         text-shadow: none;
       }
 
-      #window {
+      #idle_inhibitor {
+        margin: 4px 5px;
+        padding: 6px 12px;
+        border-radius: 20px;
+        background: #${base00};
         color: #${base05};
       }
 
-      #tray {
-        padding: 0 8px;
+      #pulseaudio,
+      #network,
+      #bluetooth {
+        margin: 4px 5px;
+        padding: 6px 10px;
+        border-radius: 20px;
+        background: #${base00};
+      }
+
+      #pulseaudio {
+        color: #${base0E};
+      }
+
+      #network {
+        color: #${base0B};
+      }
+
+      #bluetooth {
+        color: #${base0C};
       }
 
       #clock {
+        margin: 4px 5px;
+        padding: 6px 12px;
+        border-radius: 20px;
+        background: #${base00};
         color: #${base0C};
-        padding: 0 8px;
+      }
+
+      #custom-tray-arrow {
+        margin: 4px 5px;
+        padding: 6px 10px;
+        border-radius: 20px;
+        background: #${base00};
+        color: #${base0D};
+      }
+
+      #tray {
+        margin: 4px 5px;
+        padding: 6px 8px;
+        border-radius: 20px;
+        background: #${base00};
+      }
+
+      #tray > .passive,
+      #tray > .active,
+      #tray > .needs-attention {
+        -gtk-icon-effect: none;
       }
     '';
   };

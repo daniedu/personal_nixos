@@ -198,6 +198,9 @@ in {
     fd
     tree
 
+    swaynotificationcenter
+    playerctl
+
     nil
     lazygit
 

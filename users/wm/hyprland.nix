@@ -10,6 +10,7 @@
 
       "exec-once" = [
         "waybar"
+        "swaynotificationcenter"
         "nm-applet --indicator"
         "blueman-applet"
       ];

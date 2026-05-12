@@ -1,6 +1,29 @@
 # Home-Manager configuration for the "work" user
 { pkgs, inputs, lib, config, ... }:
+let
+  # This is the lightweight standalone binary (~37MB)
+  opencode-working = pkgs.stdenv.mkDerivation {
+    pname = "opencode";
+    version = "1.14.48";
+    
+    src = pkgs.fetchurl {
+      url = "https://github.com/anomalyco/opencode/releases/download/v1.14.48/opencode-linux-x64.tar.gz";
+      sha256 = "10mggfk9pncvdw4b0c41cv3p9dsrxwmpw4s9wrxw3yaa0zg2aqfh"; 
+    };
 
+    nativeBuildInputs = [ pkgs.autoPatchelfHook ];
+    buildInputs = [ pkgs.stdenv.cc.cc.lib pkgs.zlib pkgs.glibc ];
+
+    # Since it's a tar.gz, Nix will automatically unpack it. 
+    # We just need to make sure we copy the right file in installPhase.
+    installPhase = ''
+      mkdir -p $out/bin
+      # The binary inside is usually named 'opencode'
+      cp opencode $out/bin/opencode
+      chmod +x $out/bin/opencode
+    '';
+  };
+in
 {
   imports = [
     inputs.noctalia.homeModules.default
@@ -235,220 +258,39 @@
     enableFishIntegration = true;
   };
 
-programs.starship = {
-  enable = true;
-  settings = {
-    # Inserts a blank line between commands for readability
-    add_newline = true;
+  programs.starship = {
+    enable = true;
+    settings = {
+      # Inserts a blank line between commands for readability
+      add_newline = true;
 
-    # Clean, minimal prompt character
-    character = {
-      success_symbol = "[➜](bold #ebbcba)"; # Rose Pine 'Gold/Rose'
-      error_symbol = "[➜](bold #eb6f92)";   # Rose Pine 'Love'
+      # Clean, minimal prompt character
+      character = {
+        success_symbol = "[➜](bold #ebbcba)"; # Rose Pine 'Gold/Rose'
+        error_symbol = "[➜](bold #eb6f92)";   # Rose Pine 'Love'
+      };
+
+      # Directory style
+      directory = {
+        style = "bold #9ccfd8"; # Rose Pine 'Foam'
+        truncate_to_repo = true;
+        truncation_length = 3;
+      };
+
+      # Minimal Git status
+      git_branch = {
+        symbol = " ";
+        style = "bold #f6c177";
+      };
+
+      # Disable most language modules to keep it fast, 
+      # only keep what you use for work
+      php.disabled = false;
+      nodejs.disabled = false;
+      python.disabled = true;
+      lua.disabled = true;
     };
-
-    # Directory style
-    directory = {
-      style = "bold #9ccfd8"; # Rose Pine 'Foam'
-      truncate_to_repo = true;
-      truncation_length = 3;
-    };
-
-    # Minimal Git status
-    git_branch = {
-      symbol = " ";
-      style = "bold #f6c177";
-    };
-
-    # Disable most language modules to keep it fast, 
-    # only keep what you use for work
-    php.disabled = false;
-    nodejs.disabled = false;
-    python.disabled = true;
-    lua.disabled = true;
   };
-};
-
-  # ─────────────────────────────────────────────────────────────────────────
-  # NEOVIM — configured via programs.neovim (best Stylix integration path)
-  # ─────────────────────────────────────────────────────────────────────────
-  # Stylix targets.neovim.enable injects a base16 colourscheme directly into
-  # Neovim's init — no LazyVim/NixVim conflict.  Plugins are managed by Nix
-  # so they are always reproducible and available offline after build.
-  programs.neovim = {
-    enable        = true;
-    defaultEditor = true;
-    viAlias       = true;
-    vimAlias      = true;
-    withRuby      = false;
-    withPython3    = false;
-    # Extra CLI tools available inside Neovim's PATH
-    extraPackages = with pkgs; [
-      # LSP servers
-      lua-language-server
-      nil               # Nix LSP
-      typescript-language-server
-      pyright           # Python LSP
-      rust-analyzer
-      # Formatters / linters
-      stylua            # Lua formatter
-      nixfmt-rfc-style  # Nix formatter
-      ripgrep           # used by telescope live_grep
-      fd                # used by telescope find_files
-    ];
-
-    plugins = with pkgs.vimPlugins; [
-      # ── Treesitter — syntax highlighting ─────────────────────────────
-      { plugin = nvim-treesitter.withAllGrammars;
-        type   = "lua";
-        config = ''
-          require("nvim-treesitter.configs").setup({
-            highlight = { enable = true },
-            indent    = { enable = true },
-          })
-        '';
-      }
-
-      # ── LSP ───────────────────────────────────────────────────────────
-      nvim-lspconfig
-      { plugin = nvim-lspconfig;
-        type   = "lua";
-        config = ''
-          local lsp = require("lspconfig")
-          lsp.lua_ls.setup({})
-          lsp.nil_ls.setup({})
-          lsp.ts_ls.setup({})
-          lsp.pyright.setup({})
-          lsp.rust_analyzer.setup({})
-        '';
-      }
-
-      # ── Autocompletion ────────────────────────────────────────────────
-      nvim-cmp
-      cmp-nvim-lsp
-      cmp-buffer
-      cmp-path
-      luasnip
-      { plugin = nvim-cmp;
-        type   = "lua";
-        config = ''
-          local cmp = require("cmp")
-          cmp.setup({
-            snippet = {
-              expand = function(args)
-                require("luasnip").lsp_expand(args.body)
-              end,
-            },
-            mapping = cmp.mapping.preset.insert({
-              ["<Tab>"]   = cmp.mapping.select_next_item(),
-              ["<S-Tab>"] = cmp.mapping.select_prev_item(),
-              ["<CR>"]    = cmp.mapping.confirm({ select = true }),
-              ["<C-Space>"] = cmp.mapping.complete(),
-            }),
-            sources = cmp.config.sources({
-              { name = "nvim_lsp" },
-              { name = "luasnip" },
-              { name = "buffer" },
-              { name = "path" },
-            }),
-          })
-        '';
-      }
-
-      # ── Telescope — fuzzy finder ──────────────────────────────────────
-      telescope-nvim
-      plenary-nvim
-      { plugin = telescope-nvim;
-        type   = "lua";
-        config = ''
-          local tb = require("telescope.builtin")
-          vim.keymap.set("n", "<leader>ff", tb.find_files,  { desc = "Find files" })
-          vim.keymap.set("n", "<leader>fg", tb.live_grep,   { desc = "Live grep"  })
-          vim.keymap.set("n", "<leader>fb", tb.buffers,     { desc = "Buffers"    })
-          vim.keymap.set("n", "<leader>fh", tb.help_tags,   { desc = "Help tags"  })
-        '';
-      }
-
-      # ── File tree ─────────────────────────────────────────────────────
-      nvim-tree-lua
-      nvim-web-devicons
-      { plugin = nvim-tree-lua;
-        type   = "lua";
-        config = ''
-          require("nvim-tree").setup({})
-          vim.keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>", { desc = "File tree" })
-        '';
-      }
-
-      # ── Status line ───────────────────────────────────────────────────
-      { plugin = lualine-nvim;
-        type   = "lua";
-        config = ''
-          require("lualine").setup({ options = { theme = "base16" } })
-        '';
-      }
-
-      # ── Git signs in gutter ───────────────────────────────────────────
-      { plugin = gitsigns-nvim;
-        type   = "lua";
-        config = ''require("gitsigns").setup({})'';
-      }
-
-      # ── Comment toggling ──────────────────────────────────────────────
-      { plugin = comment-nvim;
-        type   = "lua";
-        config = ''require("Comment").setup({})'';
-      }
-
-      # ── Auto pairs ────────────────────────────────────────────────────
-      { plugin = nvim-autopairs;
-        type   = "lua";
-        config = ''require("nvim-autopairs").setup({})'';
-      }
-
-      # ── Which-key — shows keybind hints ──────────────────────────────
-      { plugin = which-key-nvim;
-        type   = "lua";
-        config = ''require("which-key").setup({})'';
-      }
-    ];
-
-    extraLuaConfig = ''
-      -- ── General options ───────────────────────────────────────────────
-      vim.g.mapleader = " "
-      vim.opt.number         = true
-      vim.opt.relativenumber = true
-      vim.opt.expandtab      = true
-      vim.opt.tabstop        = 2
-      vim.opt.shiftwidth     = 2
-      vim.opt.smartindent    = true
-      vim.opt.wrap           = false
-      vim.opt.swapfile       = false
-      vim.opt.backup         = false
-      vim.opt.undofile       = true
-      vim.opt.hlsearch       = false
-      vim.opt.incsearch      = true
-      vim.opt.termguicolors  = true   -- required for base16 colours from Stylix
-      vim.opt.scrolloff      = 8
-      vim.opt.signcolumn     = "yes"
-      vim.opt.updatetime     = 50
-      vim.opt.splitright     = true
-      vim.opt.splitbelow     = true
-
-      -- ── Keymaps ───────────────────────────────────────────────────────
-      vim.keymap.set("n", "<C-h>", "<C-w>h")
-      vim.keymap.set("n", "<C-l>", "<C-w>l")
-      vim.keymap.set("n", "<C-j>", "<C-w>j")
-      vim.keymap.set("n", "<C-k>", "<C-w>k")
-      vim.keymap.set("n", "<leader>w", ":w<CR>",  { desc = "Save" })
-      vim.keymap.set("n", "<leader>q", ":q<CR>",  { desc = "Quit" })
-      vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")  -- move selection down
-      vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")  -- move selection up
-    '';
-  };
-
-  # Let Stylix theme Neovim with the wallpaper-extracted base16 palette
-#   stylix.targets.neovim.enable = true;
 
 
   # ─────────────────────────────────────────────────────────────────────────
@@ -464,6 +306,7 @@ programs.starship = {
   # PACKAGES
   # ─────────────────────────────────────────────────────────────────────────
   home.packages = with pkgs; [
+    opencode-working
     # ── Fonts (beyond what Stylix sets system-wide) ───────────────────────
     nerd-fonts.jetbrains-mono
     nerd-fonts.caskaydia-cove

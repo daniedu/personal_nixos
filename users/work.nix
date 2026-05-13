@@ -266,7 +266,7 @@ in {
         };
       };
       launcher_window = {
-        opacity = 0.95;
+        opacity = lib.mkDefault 0.95;
       };
     };
     extensions = with inputs.vicinae-extensions.packages.${pkgs.stdenv.hostPlatform.system}; [

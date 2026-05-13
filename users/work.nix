@@ -13,7 +13,7 @@ let
   '';
 in {
   imports = [
-    ./wm/waybar.nix
+    inputs.vicinae.homeManagerModules.default
     ./wm/hyprland.nix
     ./text/kitty.nix
     ./text/nixvim.nix
@@ -170,8 +170,6 @@ in {
       };
   };
 
-  programs.waybar.enable = true;
-
   programs.vscode = {
     enable  = true;
     package = pkgs.vscode-fhs;
@@ -204,7 +202,6 @@ in {
     nil
     lazygit
 
-    wofi
     wlr-which-key
     steam-run
     fastfetch
@@ -251,6 +248,31 @@ in {
             desc: "Power Off"
             cmd: "systemctl poweroff"
   '';
+
+  services.vicinae = {
+    enable = true;
+    systemd = {
+      enable = true;
+      autoStart = true;
+    };
+    settings = {
+      close_on_focus_loss = true;
+      consider_preedit = true;
+      pop_to_root_on_close = true;
+      font = {
+        normal = {
+          size = 12;
+          family = "JetBrainsMono Nerd Font";
+        };
+      };
+      launcher_window = {
+        opacity = 0.95;
+      };
+    };
+    extensions = with inputs.vicinae-extensions.packages.${pkgs.stdenv.hostPlatform.system}; [
+      nix
+    ];
+  };
 
   fonts.fontconfig.enable = true;
 

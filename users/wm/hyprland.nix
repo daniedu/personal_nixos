@@ -9,7 +9,6 @@
       animations.enabled = false;
 
       "exec-once" = [
-        "waybar"
         "swaynotificationcenter"
         "nm-applet --indicator"
         "blueman-applet"
@@ -34,7 +33,7 @@
       };
 
       bind = [
-        "$mod, SPACE,  exec, wofi --show drun"
+        "$mod, SPACE,  exec, vicinae"
         "$mod, RETURN, exec, kitty"
         "$mod, Q,      killactive,"
         "$mod, M,      exit,"

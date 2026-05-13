@@ -218,9 +218,6 @@
     # ── Cursors ──────────────────────────────────────────────────────
     bibata-cursors
 
-    # ── Launcher ────────────────────────────────────────────────────
-    wofi
-
     # ── shell ──────────────────────────────────────────────────────
     starship
   ];
@@ -352,6 +349,11 @@
   #   extraGroups  = [ "networkmanager" "video" "render" "audio" "gamemode" "input" ];
   #   # "input" group allows reading raw input devices (controllers, wheels etc.)
   # };
+
+  nix.settings = {
+    extra-substituters = [ "https://vicinae.cachix.org" ];
+    extra-trusted-public-keys = [ "vicinae.cachix.org-1:1kDrfienkGHPYbkpNj1mWTr7Fm1+zcenzgTizIcI3oc=" ];
+  };
 
   nixpkgs.config.allowUnfree = true;
   zramSwap.enable = true;

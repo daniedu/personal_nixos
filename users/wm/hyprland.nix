@@ -14,22 +14,23 @@
         "blueman-applet"
       ];
 
-      gestures = {
-        workspace_swipe = false;
-      };
+      # DOESNT EXISTS
+      # gestures = {
+      #   workspace_swipe = false;
+      # };
 
       input = {
         kb_layout = "us";
         follow_mouse = 1;
 
-        # touchpad = {
-        #   natural_scroll = true;
-        #   disable_while_typing = true;
-        #   clickfinger_behavior = true;
-        #   tap-to-click = true;
-        #   drag_lock = true;
-        #   scroll_factor = 0.5;
-        # };
+        touchpad = {
+          natural_scroll = true;
+          disable_while_typing = true;
+          clickfinger_behavior = true;
+          tap-to-click = true;
+          drag_lock = true;
+          scroll_factor = 0.5;
+        };
       };
 
       bind = [

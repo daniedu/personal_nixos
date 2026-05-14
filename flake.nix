@@ -46,7 +46,7 @@
             useGlobalPkgs    = true;
             useUserPackages  = true;
             extraSpecialArgs = { inherit inputs; };
-            users.work = import ./users/work.nix;
+            users.dan = import ./users/dan.nix;
           };
         }
         # Overlay for openldap to skip tests and save time

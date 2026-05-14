@@ -12,6 +12,7 @@
         "swaynotificationcenter"
         "nm-applet --indicator"
         "blueman-applet"
+        "awww-daemon"
       ];
 
       # DOESNT EXISTS

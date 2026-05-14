@@ -205,6 +205,7 @@ in {
     wlr-which-key
     steam-run
     fastfetch
+    awww
   ];
 
   home.file.".local/bin/opencode" = {
@@ -269,15 +270,26 @@ in {
         opacity = lib.mkForce 1.0;
       };
     };
-    extensions = with inputs.vicinae-extensions.packages.${pkgs.stdenv.hostPlatform.system}; [
-      nix
-      fuzzy-files
-      awww-switcher
-      pulseaudio
-      protondb-search
-      zoxide-recent-directories
-    ];
+    extensions = [];
   };
+
+  # Vicinae module symlinks extensions with the full derivation name
+  # (e.g. "vicinae-extension-nix-0") but vicinae expects the short name.
+  # Workaround: create xdg.dataFile entries with correct directory names.
+  xdg.dataFile = let
+    vx = inputs.vicinae-extensions.packages.${pkgs.stdenv.hostPlatform.system};
+    ext = name: pkg: {
+      name = "vicinae/extensions/${name}";
+      value.source = pkg;
+    };
+  in builtins.listToAttrs [
+    (ext "nix"                      vx.nix)
+    (ext "fuzzy-files"              vx.fuzzy-files)
+    (ext "awww-switcher"            vx.awww-switcher)
+    (ext "pulseaudio"               vx.pulseaudio)
+    (ext "protondb-search"          vx.protondb-search)
+    (ext "zoxide-recent-directories" vx.zoxide-recent-directories)
+  ];
 
   fonts.fontconfig.enable = true;
 

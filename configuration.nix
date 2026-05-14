@@ -32,8 +32,6 @@
       gnome.enable = false;
     };
 
-    image = ./assets/fuji.png;
-
     base16Scheme = ./assets/gruvbox-dark-hard.yaml;
 
     fonts = {

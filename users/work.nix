@@ -27,8 +27,9 @@ in {
     enable = true;
     interactiveShellInit = ''
       fish_add_path ~/.local/bin
+      set -g fish_greeting ""
       starship init fish | source
-      fastfetch
+      fastfetch --structure-disabled shell,cursor,locale
     '';
   };
 

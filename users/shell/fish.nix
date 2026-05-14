@@ -5,7 +5,7 @@
       fish_add_path ~/.local/bin
       set -g fish_greeting ""
       starship init fish | source
-      fastfetch --file-raw ~/.config/fastfetch/art2.txt --logo-padding-left 30 --structure-disabled shell,cursor,locale
+      fastfetch --file-raw ~/.config/fastfetch/art2.txt --structure-disabled shell,cursor,locale
     '';
   };
 

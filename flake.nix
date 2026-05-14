@@ -33,9 +33,21 @@
     extra-trusted-public-keys = [ "vicinae.cachix.org-1:1kDrfienkGHPYbkpNj1mWTr7Fm1+zcenzgTizIcI3oc=" ];
   };
 
-  outputs = { self, nixpkgs, home-manager, stylix, ... }@inputs: {
-    nixosConfigurations.dan = nixpkgs.lib.nixosSystem {
+  outputs = { self, nixpkgs, home-manager, stylix, ... }@inputs:
+    let
       system = "x86_64-linux";
+      pkgs = import nixpkgs { inherit system; };
+    in {
+    devShells.${system}.default = pkgs.mkShell {
+      packages = with pkgs; [
+        nixpkgs-fmt
+        statix
+        deadnix
+      ];
+    };
+
+    nixosConfigurations.dan = nixpkgs.lib.nixosSystem {
+      inherit system;
       specialArgs = { inherit inputs; };
       modules = [
         stylix.nixosModules.stylix

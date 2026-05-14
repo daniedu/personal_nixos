@@ -283,7 +283,7 @@
     remotePlay.openFirewall    = true;   # Steam Remote Play LAN ports
     dedicatedServer.openFirewall = true; # Source dedicated server ports
     gamescopeSession.enable    = true;   # gamescope compositor session
-    # extraCompatPackages = with pkgs; [ proton-ge-bin ]; # community Proton GE
+    extraCompatPackages = with pkgs; [ proton-ge-bin ]; # community Proton GE
   };
 
   programs.gamescope = {

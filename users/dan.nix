@@ -1,5 +1,6 @@
 { pkgs, inputs, lib, config, ... }: {
   imports = [
+    inputs.vicinae.homeManagerModules.default
     ./shell/fish.nix
     ./shell/starship.nix
     ./shell/zoxide.nix

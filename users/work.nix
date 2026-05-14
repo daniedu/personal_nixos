@@ -29,7 +29,7 @@ in {
       fish_add_path ~/.local/bin
       set -g fish_greeting ""
       starship init fish | source
-      fastfetch --file-raw ~/.config/fastfetch/padoru.txt --logo-width 20
+      fastfetch --file-raw ~/.config/fastfetch/padoru.txt --logo-width 20 --structure-disabled shell,cursor,locale
     '';
   };
 

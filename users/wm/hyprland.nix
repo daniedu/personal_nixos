@@ -71,9 +71,9 @@
         "$mod, P, exec, wlr-which-key"
       ];
 
-      windowrulev2 = [
-        "blur, class:(kitty)"
-      ];
+      # windowrulev2 = [
+      #   "blur, class:(kitty)"
+      # ];
 
       bindm = [
         "$mod, mouse:272, movewindow"

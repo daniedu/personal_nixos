@@ -34,8 +34,9 @@
     };
 
     icons = {
-      package = pkgs.adwaita-icon-theme;
-      name    = "Adwaita";
+      enable = true;
+      dark   = "Adwaita";
+      light  = "Adwaita";
     };
 
     cursor = {

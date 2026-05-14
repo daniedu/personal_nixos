@@ -9,5 +9,5 @@
     '';
   };
 
-  home.file.".config/fastfetch/cat.txt".source = ../../assets/ascii/cat.txt;
+  home.file.".config/fastfetch/art2.txt".source = ../../assets/ascii/art2.txt;
 }

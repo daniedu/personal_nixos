@@ -15,7 +15,6 @@
     gnome-disk-utility
     inputs.helium.packages.${pkgs.system}.default
     nautilus
-    tela-circle-icon-theme
     bibata-cursors
     starship
   ];

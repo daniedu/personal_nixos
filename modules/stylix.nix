@@ -33,6 +33,11 @@
       };
     };
 
+    icons = {
+      package = pkgs.tela-icon-theme;
+      name    = "Tela";
+    };
+
     cursor = {
       package = pkgs.bibata-cursors;
       name    = "Bibata-Modern-Classic";

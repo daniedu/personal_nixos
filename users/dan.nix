@@ -23,14 +23,6 @@
   home.homeDirectory = "/home/dan";
   home.stateVersion  = "25.11";
 
-  gtk = {
-    enable = true;
-    iconTheme = {
-      package = pkgs.tela-circle-icon-theme;
-      name = "Tela-circle";
-    };
-  };
-
   fonts.fontconfig.enable = true;
 
   xdg.userDirs = {

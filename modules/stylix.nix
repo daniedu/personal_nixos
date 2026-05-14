@@ -34,8 +34,8 @@
     };
 
     icons = {
-      package = pkgs.tela-icon-theme;
-      name    = "Tela";
+      package = pkgs.adwaita-icon-theme;
+      name    = "Adwaita";
     };
 
     cursor = {

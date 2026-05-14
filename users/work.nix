@@ -271,6 +271,11 @@ in {
     };
     extensions = with inputs.vicinae-extensions.packages.${pkgs.stdenv.hostPlatform.system}; [
       nix
+      fuzzy-files
+      awww-switcher
+      pulseaudio
+      protondb-search
+      zoxide-recent-directories
     ];
   };
 

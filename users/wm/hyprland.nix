@@ -22,20 +22,20 @@
         kb_layout = "us";
         follow_mouse = 1;
 
-        touchpad = {
-          natural_scroll = true;
-          disable_while_typing = true;
-          clickfinger_behavior = true;
-          tap-to-click = true;
-          drag_lock = true;
-          scroll_factor = 0.5;
-        };
+        # touchpad = {
+        #   natural_scroll = true;
+        #   disable_while_typing = true;
+        #   clickfinger_behavior = true;
+        #   tap-to-click = true;
+        #   drag_lock = true;
+        #   scroll_factor = 0.5;
+        # };
       };
 
       bind = [
-        "$mod, SPACE,  exec, vicinae"
+        "$mod, SPACE,  exec, vicinae open"
         "$mod, RETURN, exec, kitty"
-        "$mod, Q,      killactive,"
+        "$mod, W,      killactive,"
         "$mod, M,      exit,"
         "$mod, F,      fullscreen,"
         "$mod, E,      exec, nautilus"

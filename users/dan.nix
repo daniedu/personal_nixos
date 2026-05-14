@@ -3,15 +3,19 @@
     ./shell/fish.nix
     ./shell/starship.nix
     ./shell/zoxide.nix
+
     ./text/kitty.nix
     ./text/nixvim.nix
     ./text/vscode.nix
+    
     ./wm/hyprland.nix
-    ./wm/waybar.nix
-    ./wm/noctalia.nix
+    # ./wm/waybar.nix
+    # ./wm/noctalia.nix
     ./services/vicinae.nix
     ./services/wlr-which-key.nix
+    
     ./launchers/opencode.nix
+    
     ./packages.nix
   ];
 

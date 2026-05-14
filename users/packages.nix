@@ -2,7 +2,7 @@
   home.packages = with pkgs; [
     nerd-fonts.jetbrains-mono
     nerd-fonts.caskaydia-cove
-    tela-circle-icon-theme
+   
 
     hyprshot
     grim

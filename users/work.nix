@@ -206,6 +206,7 @@ in {
     steam-run
     fastfetch
     awww
+    gcalcli
   ];
 
   home.file.".local/bin/opencode" = {

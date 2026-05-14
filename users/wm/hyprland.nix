@@ -67,7 +67,12 @@
         "$mod SHIFT, 8, movetoworkspace, 8"
         "$mod SHIFT, 9, movetoworkspace, 9"
 
+        "$mod, C, exec, kitty -e gcalcli agenda"
         "$mod, P, exec, wlr-which-key"
+      ];
+
+      windowrulev2 = [
+        "blur, class:(kitty)"
       ];
 
       bindm = [
@@ -89,7 +94,7 @@
       };
 
       decoration = {
-        rounding = 10;
+        rounding = 0;
         blur = {
           enabled = true;
           size    = 3;

@@ -6,7 +6,7 @@
     stdlib = ''
       use_devenv() {
         watch_file devenv.lock
-        eval "$(devenv print-dev-env --profile "$(direnv_layout_dir)")"
+        eval "$(devenv print-dev-env)"
       }
     '';
   };

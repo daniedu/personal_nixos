@@ -6,7 +6,7 @@
       gnome.enable = false;
     };
 
-    base16Scheme = ../assets/gruvbox-dark-hard.yaml;
+    base16Scheme = ../assets/themes/gruvbox-dark-hard.yaml;
 
     fonts = {
       monospace = {

@@ -4,6 +4,7 @@
     ./shell/fish.nix
     ./shell/starship.nix
     ./shell/zoxide.nix
+    ./shell/tmux.nix
 
     ./text/kitty.nix
     ./text/nixvim.nix

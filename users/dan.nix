@@ -18,6 +18,8 @@
     
     ./launchers/opencode.nix
     
+    ./programs/direnv.nix
+
     ./packages.nix
   ];
 

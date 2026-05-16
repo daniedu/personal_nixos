@@ -22,7 +22,7 @@
   ];
 
   home.username    = "dan";
-  home.homeDirectory = "/home/dan";
+  home.homeDirectory = "/home/work";
   home.stateVersion  = "25.11";
 
   fonts.fontconfig.enable = true;

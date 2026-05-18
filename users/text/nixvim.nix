@@ -132,7 +132,7 @@
 
     extraPackages = with pkgs; [
       prettierd
-      php-cs-fixer
+      phpPackages.php-cs-fixer
       clang-tools
       stylua
       nixpkgs-fmt

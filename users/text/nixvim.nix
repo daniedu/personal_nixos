@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ pkgs, inputs, ... }: {
   programs.nixvim = {
     enable = true;
 
@@ -58,13 +58,13 @@
               {
                 type = "button";
                 val = "    Find files";
-                on_press.__raw = "function() require('fzf-lua').files() end";
+                on_press.__raw = "function() require('fff').find_files() end";
                 opts.shortcut = "f";
               }
               {
                 type = "button";
                 val = "    Recent files";
-                on_press.__raw = "function() require('fzf-lua').oldfiles() end";
+                on_press.__raw = "function() require('fff').find_files() end";
                 opts.shortcut = "r";
               }
               {
@@ -77,11 +77,6 @@
             opts.position = "center";
           }
         ];
-      };
-
-      fzf-lua = {
-        enable = true;
-        profile = "fzf-native";
       };
 
       luasnip.enable = true;
@@ -259,28 +254,23 @@
       # Find
       {
         key = "<leader>ff";
-        action.__raw = "function() require('fzf-lua').files() end";
+        action.__raw = "function() require('fff').find_files() end";
         options.desc = "Find files";
       }
       {
         key = "<leader>fg";
-        action.__raw = "function() require('fzf-lua').live_grep() end";
+        action.__raw = "function() require('fff').live_grep() end";
         options.desc = "Live grep";
       }
       {
-        key = "<leader>fb";
-        action.__raw = "function() require('fzf-lua').buffers() end";
-        options.desc = "Find buffers";
+        key = "<leader>fz";
+        action.__raw = "function() require('fff').live_grep({ grep = { modes = { 'fuzzy', 'plain' } } }) end";
+        options.desc = "Fuzzy grep";
       }
       {
-        key = "<leader>fh";
-        action.__raw = "function() require('fzf-lua').help_tags() end";
-        options.desc = "Help tags";
-      }
-      {
-        key = "<leader>fr";
-        action.__raw = "function() require('fzf-lua').oldfiles() end";
-        options.desc = "Recent files";
+        key = "<leader>fc";
+        action.__raw = "function() require('fff').live_grep({ query = vim.fn.expand('<cword>') }) end";
+        options.desc = "Search word";
       }
 
       # Diagnostics
@@ -300,6 +290,23 @@
         options.desc = "Next TODO";
       }
     ];
+
+    extraPlugins = [
+      inputs.fff-nvim.packages.${pkgs.system}.fff-nvim
+    ];
+
+    extraConfigLua = ''
+      require("fff").setup({
+        layout = {
+          height = 0.8,
+          width = 0.8,
+          prompt_position = "bottom",
+        },
+        preview = { enabled = true },
+        grep = { modes = { "plain", "regex", "fuzzy" } },
+        frecency = { enabled = true },
+      })
+    '';
 
     extraPackages = with pkgs; [
       prettierd

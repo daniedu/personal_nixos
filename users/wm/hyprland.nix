@@ -81,7 +81,7 @@
         gaps_in  = 5;
         gaps_out = 10;
         "col.active_border"   = lib.mkForce "rgba(00000000)";
-        border_size = 2;
+        border_size = 1;
         layout      = "dwindle";
         resize_on_border = true;
         extend_border_grab_area = 15;

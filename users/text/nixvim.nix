@@ -185,6 +185,10 @@
       indent-blankline.enable = true;
       todo-comments.enable = true;
       trouble.enable = true;
+
+      tmux-navigator.enable = true;
+
+      lazygit.enable = true;
     };
 
     keymaps = [
@@ -230,26 +234,6 @@
         action = "<C-w>=";
         options.desc = "Balance windows";
       }
-      {
-        key = "<C-h>";
-        action = "<C-w>h";
-        options.desc = "Go left";
-      }
-      {
-        key = "<C-j>";
-        action = "<C-w>j";
-        options.desc = "Go down";
-      }
-      {
-        key = "<C-k>";
-        action = "<C-w>k";
-        options.desc = "Go up";
-      }
-      {
-        key = "<C-l>";
-        action = "<C-w>l";
-        options.desc = "Go right";
-      }
 
       # Find
       {
@@ -271,6 +255,13 @@
         key = "<leader>fc";
         action.__raw = "function() require('fff').live_grep({ query = vim.fn.expand('<cword>') }) end";
         options.desc = "Search word";
+      }
+
+      # Git
+      {
+        key = "<leader>gg";
+        action = "<cmd>LazyGit<CR>";
+        options.desc = "Toggle lazygit";
       }
 
       # Diagnostics

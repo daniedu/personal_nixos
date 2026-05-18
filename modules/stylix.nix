@@ -37,6 +37,7 @@
       enable = true;
       dark   = "Adwaita";
       light  = "Adwaita";
+      package = pkgs.adwaita-icon-theme;
     };
 
     cursor = {

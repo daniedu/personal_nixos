@@ -39,7 +39,6 @@
       blur_params_num_passes = 1;
 
       # Misc
-      swallow = 1;
       focus_on_activate = 1;
       animations = 0;
 

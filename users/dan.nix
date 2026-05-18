@@ -1,7 +1,7 @@
 { pkgs, inputs, lib, config, ... }: {
   imports = [
     inputs.mangowm.hmModules.mango
-    inputs.nixvim.homeManagerModules.nixvim
+    inputs.nixvim.homeModules.nixvim
     inputs.vicinae.homeManagerModules.default
     ./shell/fish.nix
     ./shell/starship.nix

@@ -70,7 +70,7 @@
           c = [ "clang-format" ];
           nix = [ "nixpkgs-fmt" ];
           lua = [ "stylua" ];
-          ["_"] = [ "trim_whitespace" ];
+          "_" = [ "trim_whitespace" ];
         };
         event = "BufWritePre";
       };

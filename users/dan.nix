@@ -27,6 +27,14 @@
   home.homeDirectory = "/home/work";
   home.stateVersion  = "25.11";
 
+  gtk = {
+    enable = true;
+    iconTheme = {
+      name = "Adwaita";
+      package = pkgs.adwaita-icon-theme;
+    };
+  };
+
   fonts.fontconfig.enable = true;
 
   xdg.userDirs = {

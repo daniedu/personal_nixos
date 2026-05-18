@@ -54,44 +54,24 @@
                 val = "    New file";
                 on_press.__raw = "function() vim.cmd[[ene]] end";
                 opts.shortcut = "n";
-                opts.keymap = {
-                  n = "n";
-                  noremap = true;
-                  nowait = true;
-                };
               }
               {
                 type = "button";
                 val = "    Find files";
                 on_press.__raw = "function() require('fzf-lua').files() end";
                 opts.shortcut = "f";
-                opts.keymap = {
-                  n = "f";
-                  noremap = true;
-                  nowait = true;
-                };
               }
               {
                 type = "button";
                 val = "    Recent files";
                 on_press.__raw = "function() require('fzf-lua').oldfiles() end";
                 opts.shortcut = "r";
-                opts.keymap = {
-                  n = "r";
-                  noremap = true;
-                  nowait = true;
-                };
               }
               {
                 type = "button";
                 val = "    Quit";
                 on_press.__raw = "function() vim.cmd[[qa]] end";
                 opts.shortcut = "q";
-                opts.keymap = {
-                  n = "q";
-                  noremap = true;
-                  nowait = true;
-                };
               }
             ];
             opts.position = "center";
@@ -213,6 +193,53 @@
         key = "<leader>xx";
         action = "<cmd>Trouble diagnostics toggle<CR>";
         options.desc = "Toggle trouble";
+      }
+
+      # Windows
+      {
+        key = "<leader>wv";
+        action = "<cmd>vsplit<CR>";
+        options.desc = "Vertical split";
+      }
+      {
+        key = "<leader>ws";
+        action = "<cmd>split<CR>";
+        options.desc = "Horizontal split";
+      }
+      {
+        key = "<leader>wc";
+        action = "<cmd>close<CR>";
+        options.desc = "Close window";
+      }
+      {
+        key = "<leader>wo";
+        action = "<cmd>only<CR>";
+        options.desc = "Close others";
+      }
+      {
+        key = "<leader>w=";
+        action = "<C-w>=";
+        options.desc = "Balance windows";
+      }
+      {
+        key = "<C-h>";
+        action = "<C-w>h";
+        options.desc = "Go left";
+      }
+      {
+        key = "<C-j>";
+        action = "<C-w>j";
+        options.desc = "Go down";
+      }
+      {
+        key = "<C-k>";
+        action = "<C-w>k";
+        options.desc = "Go up";
+      }
+      {
+        key = "<C-l>";
+        action = "<C-w>l";
+        options.desc = "Go right";
       }
     ];
 

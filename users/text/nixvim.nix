@@ -5,10 +5,14 @@
     colorschemes.stylix.enable = true;
 
     plugins = {
+      web-devicons.enable = true;
+
       neo-tree = {
         enable = true;
-        window.position = "float";
-        enableGitStatus = true;
+        settings = {
+          window.position = "float";
+          enable_git_status = true;
+        };
         event = "VeryLazy";
       };
 
@@ -88,7 +92,10 @@
         servers = {
           ts_ls.enable = true;
           tailwindcss.enable = true;
-          intelephense.enable = true;
+          intelephense = {
+            enable = true;
+            package = null;
+          };
           clangd.enable = true;
         };
       };
@@ -137,6 +144,7 @@
       stylua
       nixpkgs-fmt
       fff
+      intelephense
     ];
   };
 }

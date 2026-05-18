@@ -20,7 +20,84 @@
 
       lualine.enable = true;
 
-      alpha.enable = true;
+      alpha = {
+        enable = true;
+        settings.layout = [
+          {
+            type = "padding";
+            val = 4;
+          }
+          {
+            type = "text";
+            val = [
+              "  ███╗   ██╗██╗██╗  ██╗██╗   ██╗██╗███╗   ███╗"
+              "  ████╗  ██║██║╚██╗██╔╝██║   ██║██║████╗ ████║"
+              "  ██╔██╗ ██║██║ ╚███╔╝ ██║   ██║██║██╔████╔██║"
+              "  ██║╚██╗██║██║ ██╔██╗ ╚██╗ ██╔╝██║██║╚██╔╝██║"
+              "  ██║ ╚████║██║██╔╝ ██╗ ╚████╔╝ ██║██║ ╚═╝ ██║"
+              "  ╚═╝  ╚═══╝╚═╝╚═╝  ╚═╝  ╚═══╝  ╚═╝╚═╝     ╚═╝"
+            ];
+            opts = {
+              position = "center";
+              hl = "Type";
+            };
+          }
+          {
+            type = "padding";
+            val = 2;
+          }
+          {
+            type = "group";
+            val = [
+              {
+                type = "button";
+                val = "    New file";
+                on_press.__raw = "function() vim.cmd[[ene]] end";
+                opts.shortcut = "n";
+                opts.keymap = {
+                  n = "n";
+                  noremap = true;
+                  nowait = true;
+                };
+              }
+              {
+                type = "button";
+                val = "    Find files";
+                on_press.__raw = "function() require('fzf-lua').files() end";
+                opts.shortcut = "f";
+                opts.keymap = {
+                  n = "f";
+                  noremap = true;
+                  nowait = true;
+                };
+              }
+              {
+                type = "button";
+                val = "    Recent files";
+                on_press.__raw = "function() require('fzf-lua').oldfiles() end";
+                opts.shortcut = "r";
+                opts.keymap = {
+                  n = "r";
+                  noremap = true;
+                  nowait = true;
+                };
+              }
+              {
+                type = "button";
+                val = "    Quit";
+                on_press.__raw = "function() vim.cmd[[qa]] end";
+                opts.shortcut = "q";
+                opts.keymap = {
+                  n = "q";
+                  noremap = true;
+                  nowait = true;
+                };
+              }
+            ];
+            opts.position = "center";
+          }
+        ];
+      };
 
       fzf-lua = {
         enable = true;

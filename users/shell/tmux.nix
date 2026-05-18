@@ -49,7 +49,7 @@ in {
       set -g status-left-length 100
       set -g status-right-length 100
       set -g status-left "#[fg=${c.base00},bg=${c.base0D}] #S "
-      set -g status-right "#[fg=${c.base00},bg=${c.base0D}] %H:%M #[fg=${c.base0D},bg=${c.base01}] %d-%b-%y "
+      set -g status-right ""
 
       set -g window-status-format "#[fg=${c.base07},bg=${c.base01}] #I:#W "
       set -g window-status-current-format "#[fg=${c.base00},bg=${c.base0D}] #I:#W "

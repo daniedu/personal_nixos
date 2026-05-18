@@ -17,5 +17,6 @@
     ./modules/security.nix
     ./modules/users.nix
     ./modules/misc.nix
+    ./modules/mangowm.nix
   ];
 }

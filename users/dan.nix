@@ -1,5 +1,6 @@
 { pkgs, inputs, lib, config, ... }: {
   imports = [
+    inputs.mangowm.hmModules.mango
     inputs.vicinae.homeManagerModules.default
     ./shell/fish.nix
     ./shell/starship.nix
@@ -11,6 +12,7 @@
     ./text/vscode.nix
     
     ./wm/hyprland.nix
+    ./wm/mangowm.nix
     # ./wm/waybar.nix
     # ./wm/noctalia.nix
     ./services/vicinae.nix

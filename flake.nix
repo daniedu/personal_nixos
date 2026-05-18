@@ -20,6 +20,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    mangowm = {
+      url = "github:mangowm/mango";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     vicinae.url = "github:vicinaehq/vicinae";
 
     vicinae-extensions = {
@@ -50,6 +55,7 @@
       inherit system;
       specialArgs = { inherit inputs; };
       modules = [
+        inputs.mangowm.nixosModules.mango
         stylix.nixosModules.stylix
         ./configuration.nix
         home-manager.nixosModules.home-manager

@@ -82,13 +82,13 @@
       fzf-lua = {
         enable = true;
         profile = "fzf-native";
-        keymaps = {
-          "<leader>ff" = "files";
-          "<leader>fg" = "live_grep";
-          "<leader>fb" = "buffers";
-          "<leader>fh" = "help_tags";
-        };
       };
+
+      luasnip.enable = true;
+
+      cmp-luasnip.enable = true;
+
+      cmp-nvim-lsp-signature-help.enable = true;
 
       cmp = {
         enable = true;
@@ -105,6 +105,19 @@
             __raw = ''
               cmp.mapping(function(fallback)
                 if cmp.visible() then cmp.select_next_item()
+                elseif require("luasnip").expand_or_jumpable() then
+                  require("luasnip").expand_or_jump()
+                else fallback()
+                end
+              end, { "i", "s" })
+            '';
+          };
+          "<S-Tab>" = {
+            __raw = ''
+              cmp.mapping(function(fallback)
+                if cmp.visible() then cmp.select_prev_item()
+                elseif require("luasnip").jumpable(-1) then
+                  require("luasnip").jump(-1)
                 else fallback()
                 end
               end, { "i", "s" })
@@ -113,6 +126,7 @@
         };
         settings.sources = [
           { name = "nvim_lsp"; }
+          { name = "luasnip"; }
           { name = "path"; }
           { name = "buffer"; }
         ];
@@ -240,6 +254,50 @@
         key = "<C-l>";
         action = "<C-w>l";
         options.desc = "Go right";
+      }
+
+      # Find
+      {
+        key = "<leader>ff";
+        action.__raw = "function() require('fzf-lua').files() end";
+        options.desc = "Find files";
+      }
+      {
+        key = "<leader>fg";
+        action.__raw = "function() require('fzf-lua').live_grep() end";
+        options.desc = "Live grep";
+      }
+      {
+        key = "<leader>fb";
+        action.__raw = "function() require('fzf-lua').buffers() end";
+        options.desc = "Find buffers";
+      }
+      {
+        key = "<leader>fh";
+        action.__raw = "function() require('fzf-lua').help_tags() end";
+        options.desc = "Help tags";
+      }
+      {
+        key = "<leader>fr";
+        action.__raw = "function() require('fzf-lua').oldfiles() end";
+        options.desc = "Recent files";
+      }
+
+      # Diagnostics
+      {
+        key = "]d";
+        action.__raw = "function() vim.diagnostic.goto_next() end";
+        options.desc = "Next diagnostic";
+      }
+      {
+        key = "[d";
+        action.__raw = "function() vim.diagnostic.goto_prev() end";
+        options.desc = "Previous diagnostic";
+      }
+      {
+        key = "<leader>td";
+        action.__raw = "function() require('todo-comments').jump_next() end";
+        options.desc = "Next TODO";
       }
     ];
 

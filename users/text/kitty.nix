@@ -5,7 +5,7 @@ in {
     enable = true;
     settings = {
       shell = "fish";
-      window_padding_width = 8;
+      window_padding_width = 2;
       confirm_os_window_close = 0;
       background_opacity = lib.mkForce "0.85";
       dynamic_background_opacity = "yes";

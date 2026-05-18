@@ -2,6 +2,8 @@
   programs.nixvim = {
     enable = true;
 
+    globals.mapleader = " ";
+
     colorschemes.stylix.enable = true;
 
     plugins = {

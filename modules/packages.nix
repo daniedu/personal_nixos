@@ -11,6 +11,7 @@
     git
     wget
     btop
+    glib
     xdg-utils
     gnome-disk-utility
     inputs.helium.packages.${pkgs.system}.default

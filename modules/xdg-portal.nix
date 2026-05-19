@@ -8,14 +8,14 @@
     ];
     config = {
       common = {
-        default = [ "hyprland" "gtk" ];
-      };
-      hyprland = {
-        default = [ "hyprland" "gtk" ];
+        default = [ "gtk" ];
+        "org.freedesktop.impl.portal.Screenshot" = [ "hyprland" ];
+        "org.freedesktop.impl.portal.ScreenCast" = [ "hyprland" ]; 
       };
     };
   };
-
+  services.dbus.enable = true;
+  
   xdg.mime.defaultApplications = {
     # Web
     "x-scheme-handler/http" = "helium.desktop";
@@ -80,8 +80,8 @@
     "inode/directory" = "org.gnome.Nautilus.desktop";
 
     # Archives
-    "application/zip" = "org.gnome.FileRoller.desktop";
-    "application/x-tar" = "org.gnome.FileRoller.desktop";
+    "application/zip" = "org.gnome.Nautilus.desktop";
+    "application/x-tar" = "org.gnome.Nautilus.desktop";
     "application/gzip" = "org.gnome.FileRoller.desktop";
     "application/x-bzip2" = "org.gnome.FileRoller.desktop";
     "application/x-7z-compressed" = "org.gnome.FileRoller.desktop";

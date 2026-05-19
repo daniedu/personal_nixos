@@ -3,7 +3,9 @@
     nerd-fonts.jetbrains-mono
     nerd-fonts.caskaydia-cove
    
-
+    gvfs 
+    gvfs-mtp
+    
     hyprshot
     grim
     slurp

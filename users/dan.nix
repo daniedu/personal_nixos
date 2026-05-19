@@ -39,7 +39,7 @@
     };
   };
   
-  environment.sessionVariables = {
+  home.sessionVariables = {
     GTK_USE_PORTAL = "1";
   };
 

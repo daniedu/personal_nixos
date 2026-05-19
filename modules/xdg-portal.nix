@@ -15,7 +15,7 @@
     };
   };
   services.dbus.enable = true;
-  servicer.gvfs.enable = true;
+  services.gvfs.enable = true;
   xdg.mime.defaultApplications = {
     # Web
     "x-scheme-handler/http" = "helium.desktop";

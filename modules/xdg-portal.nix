@@ -9,6 +9,7 @@
     config = {
       common = {
         default = [ "gtk" ];
+	"org.freedesktop.portal.OpenURI" = [ "gtk" ];
         "org.freedesktop.impl.portal.Screenshot" = [ "hyprland" ];
         "org.freedesktop.impl.portal.ScreenCast" = [ "hyprland" ]; 
       };

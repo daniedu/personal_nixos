@@ -19,7 +19,7 @@
   
   services.displayManager.sessionPackages = [
     (pkgs.writeTextFile {
-      name = "team-direct-x11";
+      name = "steam-direct-x11";
       destination = "/share/xsessions/steam-direct.desktop"; # Using X11 session for older Intel drivers
       text = ''
         [Desktop Entry]

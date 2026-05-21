@@ -57,10 +57,10 @@
         "SUPER,j,focusdir,up"
         "SUPER,k,focusdir,down"
 
-        "SUPER+SHIFT,h,movewin,left"
-        "SUPER+SHIFT,l,movewin,right"
-        "SUPER+SHIFT,j,movewin,up"
-        "SUPER+SHIFT,k,movewin,down"
+        "SUPER+SHIFT,h,exchange_client,left"
+        "SUPER+SHIFT,l,exchange_client,right"
+        "SUPER+SHIFT,j,exchange_client,up"
+        "SUPER+SHIFT,k,exchange_client,down"
         
         "SUPER,1,view,1"
         "SUPER,2,view,2"

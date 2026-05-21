@@ -57,6 +57,11 @@
         "SUPER,j,focusdir,up"
         "SUPER,k,focusdir,down"
 
+        "SUPER+SHIFT,h,movewin,left"
+        "SUPER+SHIFT,l,movewin,right"
+        "SUPER+SHIFT,j,movewin,up"
+        "SUPER+SHIFT,k,movewin,down"
+        
         "SUPER,1,view,1"
         "SUPER,2,view,2"
         "SUPER,3,view,3"

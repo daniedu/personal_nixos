@@ -17,17 +17,25 @@
   
   hardware.xone.enable = true;
   
-  services.displayManager.sessionPackages = [
-    (pkgs.writeTextFile {
-      name = "steam-direct-x11";
-      destination = "/share/xsessions/steam-direct.desktop"; # Using X11 session for older Intel drivers
+  services.displayManager.sessionPackages = let
+    # 1. Create the actual desktop definition file
+    steamDesktopFile = pkgs.writeTextFile {
+      name = "steam-direct-x11-file";
+      destination = "/share/xsessions/steam-direct.desktop";
       text = ''
         [Desktop Entry]
-        Name=Steam Big Picture Mode
-        Comment=Boot directly into Steam without a heavy desktop environment
-        Exec=unclutter -idle 1 & steam -bigpicture
+        Name=Steam Big Picture
+        Comment=Launch Steam directly using native hardware OpenGL acceleration
+        Exec=steam -bigpicture
         Type=Application
       '';
+    };
+  in [
+    # 2. Wrap it with the metadata NixOS requires to pass validation
+    (pkgs.symlinkJoin {
+      name = "steam-direct-x11";
+      paths = [ steamDesktopFile ];
+      passthru.providedSessions = [ "steam-direct" ];
     })
   ];
 }

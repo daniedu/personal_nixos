@@ -15,7 +15,7 @@
       # Input
       xkb_rules_layout = "us";
       sloppyfocus = 1;
-
+      float_on_drag = 0;
       # Touchpad
       trackpad_natural_scrolling = 1;
       disable_while_typing = 1;

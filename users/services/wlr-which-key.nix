@@ -6,8 +6,9 @@ in {
     font: "JetBrainsMono Nerd Font 12"
     # background: "#191724d0"
     background: "${c.base01}"
-    color: "#e0def4"
-    border: "${c.base07}"
+    color: "#ffffff"
+    border: "${c.base09}"
+    padding: 8
     corner_r: 0
     separator: " - "
 

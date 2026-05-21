@@ -4,6 +4,7 @@
     systemd.enable = true;
 
     autostart_sh = ''
+      dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY XDG_CURRENT_DESKTOP NIXOS_OZONE_WL
       swaynotificationcenter &
       nm-applet --indicator &
       blueman-applet &
@@ -36,7 +37,7 @@
       blur = 1;
       blur_optimized = 1;
       blur_params_radius = 5;
-      blur_params_num_passes = 1;
+      blur_params_num_passes = 3;
 
       # Misc
       focus_on_activate = 1;

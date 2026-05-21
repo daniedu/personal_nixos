@@ -8,14 +8,14 @@
 
   };
 
-  programs.gamescope = {
-    enable      = false;
-    capSysNice  = true;
-  };
+  # programs.gamescope = {
+  #   enable      = false;
+  #   capSysNice  = true;
+  # };
 
-  programs.gamemode.enable = true;
+  # programs.gamemode.enable = true;
   
-  hardware.xone.enable = true;
+  # hardware.xone.enable = true;
   
   services.displayManager.sessionPackages = let
     # 1. Create the actual desktop definition file

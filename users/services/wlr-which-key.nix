@@ -4,11 +4,11 @@ let
 in {
   home.file.".config/wlr-which-key/config.yaml".text = ''
     font: "JetBrainsMono Nerd Font 12"
-    # background: "#191724d0"
     background: "${c.base01}"
     color: "#ffffff"
+    border_width: 0
     border: "${c.base09}"
-    padding: 8
+    padding: 16
     corner_r: 0
     separator: " - "
 

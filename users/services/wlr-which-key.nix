@@ -7,6 +7,24 @@
     separator: " ➜ "
 
     menu:
+      - key: "l"
+        desc: "Layout / Window State"
+        submenu:
+          - key: "t"
+            desc: "Set Tile Layout"
+            cmd: "if [ \"$XDG_CURRENT_DESKTOP\" = \"Hyprland\" ]; then hyprctl dispatch layoutmsg preimage; else mango-msg layout tile; fi"
+          - key: "g"
+            desc: "Set Grid Layout (Mango) / Toggle Floating (Hypr)"
+            cmd: "if [ \"$XDG_CURRENT_DESKTOP\" = \"Hyprland\" ]; then hyprctl dispatch togglefloating; else mango-msg layout grid; fi"
+          - key: "s"
+            desc: "Set Scrollable Ribbon Layout (Mango)"
+            cmd: "if [ \"$XDG_CURRENT_DESKTOP\" = \"Hyprland\" ]; then :; else mango-msg layout scroller; fi"
+          - key: "f"
+            desc: "Toggle Fullscreen"
+            cmd: "if [ \"$XDG_CURRENT_DESKTOP\" = \"Hyprland\" ]; then hyprctl dispatch fullscreen; else mango-msg fullscreen; fi"
+          - key: "v"
+            desc: "Toggle Floating"
+            cmd: "if [ \"$XDG_CURRENT_DESKTOP\" = \"Hyprland\" ]; then hyprctl dispatch togglefloating; else mango-msg layout floating; fi"
       - key: "s"
         desc: "Screenshot (Hyprshot)"
         submenu:

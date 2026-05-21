@@ -15,7 +15,6 @@
       # Input
       xkb_rules_layout = "us";
       sloppyfocus = 1;
-      clear_drag_on_release = 1;
 
       # Touchpad
       trackpad_natural_scrolling = 1;
@@ -78,12 +77,7 @@
         "SUPER+SHIFT,8,tag,8"
         "SUPER+SHIFT,9,tag,9"
 
-        "SUPER,c,spawn,kitty -e gcalcli agenda"
         "SUPER,p,spawn,wlr-which-key"
-
-        "SUPER,o,setlayout,dwindle"
-        "SUPER,i,setlayout,scroller"
-        "SUPER,u,setlayout,monocle"
       ];
 
       mousebind = [

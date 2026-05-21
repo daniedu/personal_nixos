@@ -4,7 +4,7 @@
     systemd.enable = true;
 
     autostart_sh = ''
-      dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY XDG_CURRENT_DESKTOP NIXOS_OZONE_WL
+      dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY XDG_CURRENT_DESKTOP NIXOS_OZONE_WL GTK_USE_PORTAL 
       swaynotificationcenter &
       nm-applet --indicator &
       blueman-applet &

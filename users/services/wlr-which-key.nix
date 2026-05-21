@@ -1,10 +1,15 @@
-{ ... }: {
+{ config, lib, ... }:
+let
+  c = config.lib.stylix.colors.withHashtag;
+in {
   home.file.".config/wlr-which-key/config.yaml".text = ''
     font: "JetBrainsMono Nerd Font 12"
-    background: "#191724d0"
+    # background: "#191724d0"
+    background: ${c.base01}
     color: "#e0def4"
-    border: "#ebbcba"
-    separator: " ➜ "
+    border: ${c.base07}
+    corner_r: 0
+    separator: " - "
 
     menu:
       - key: "l"

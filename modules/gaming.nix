@@ -3,18 +3,13 @@
     enable                     = true;
     remotePlay.openFirewall    = true;
     dedicatedServer.openFirewall = true;
-    gamescopeSession.enable    = true;
+    gamescopeSession.enable    = false;
     extraCompatPackages = with pkgs; [ proton-ge-bin ];
 
-    gamescopeSession.args = [
-        "-W 3460"
-        "-H 2160"
-        "-f" # Force Fullscreen immediately
-      ];
   };
 
   programs.gamescope = {
-    enable      = true;
+    enable      = false;
     capSysNice  = true;
   };
 
@@ -24,7 +19,7 @@
   
   services.displayManager.sessionPackages = [
     (pkgs.writeTextFile {
-      name = "steam-direct-session";
+      name = "team-direct-x11";
       destination = "/share/xsessions/steam-direct.desktop"; # Using X11 session for older Intel drivers
       text = ''
         [Desktop Entry]

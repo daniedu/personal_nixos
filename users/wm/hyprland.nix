@@ -13,7 +13,6 @@
         "nm-applet --indicator"
         "blueman-applet"
         "awww-daemon"
-	"dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=Hyprland"
       ];
 
       # DOESNT EXISTS

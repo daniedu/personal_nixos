@@ -9,38 +9,33 @@ let
     sha256 = "sha256-B8s6H6Qmx5O+GrpFr3dHHujcDc0fwWFwRJkX6PXRYfU=";
   };
 
-  appimageContents = pkgs.appimageTools.extractType2 {
+  contents = pkgs.appimageTools.extractType2 {
     inherit pname version src;
   };
 
-in
-pkgs.appimageTools.wrapType2 {
-  inherit pname version src;
+  opencode-desktop = pkgs.appimageTools.wrapType2 {
+    inherit pname version src;
 
-  extraInstallCommands = ''
-    # Rename executable to a cleaner name
-    mv $out/bin/${pname}-${version} $out/bin/${pname}
+    extraInstallCommands = ''
+      # desktop file
+      install -Dm444 \
+        ${contents}/opencode-desktop.desktop \
+        $out/share/applications/opencode-desktop.desktop
 
-    # Desktop entry
-    install -Dm444 \
-      ${appimageContents}/${pname}.desktop \
-      $out/share/applications/${pname}.desktop
+      # icon
+      install -Dm444 \
+        ${contents}/opencode-desktop.png \
+        $out/share/icons/hicolor/512x512/apps/opencode-desktop.png
 
-    # Icon
-    install -Dm444 \
-      ${appimageContents}/${pname}.png \
-      $out/share/icons/hicolor/512x512/apps/${pname}.png
-
-    # Fix Exec line
-    substituteInPlace $out/share/applications/${pname}.desktop \
-      --replace-fail 'Exec=AppRun %U' 'Exec=${pname} %U'
-  '';
-
-  meta = with lib; {
-    description = "Opencode desktop app";
-    homepage = "https://github.com/anomalyco/opencode";
-    license = licenses.mit; # adjust if different
-    platforms = [ "x86_64-linux" ];
-    sourceProvenance = with sourceTypes; [ binaryNativeCode ];
+      # fix launcher
+      substituteInPlace \
+        $out/share/applications/opencode-desktop.desktop \
+        --replace-fail 'Exec=AppRun %U' 'Exec=opencode-desktop %U'
+    '';
   };
+
+in {
+  home.packages = [
+    opencode-desktop
+  ];
 }

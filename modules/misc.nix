@@ -7,6 +7,5 @@
 
   nixpkgs.config.allowUnfree = true;
   zramSwap.enable = true;
-  services.flatpak.enable = true;
   system.stateVersion = "25.11";
 }

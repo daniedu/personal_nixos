@@ -17,21 +17,18 @@ let
     inherit pname version src;
 
     extraInstallCommands = ''
-      # desktop file
-      install -Dm444 \
-        ${contents}/opencode-desktop.desktop \
-        $out/share/applications/opencode-desktop.desktop
+  install -Dm444 ${pkgs.writeText "opencode.desktop" ''
+    [Desktop Entry]
+    Name=Opencode Desktop
+    Exec=opencode-desktop %U
+    Icon=opencode-desktop
+    Type=Application
+    Categories=Development;
+  ''} $out/share/applications/opencode.desktop
 
-      # icon
-      install -Dm444 \
-        ${contents}/opencode-desktop.png \
-        $out/share/icons/hicolor/512x512/apps/opencode-desktop.png
-
-      # fix launcher
-      substituteInPlace \
-        $out/share/applications/opencode-desktop.desktop \
-        --replace-fail 'Exec=AppRun %U' 'Exec=opencode-desktop %U'
-    '';
+  install -Dm444 ${contents}/opencode.png \
+    $out/share/icons/hicolor/512x512/apps/opencode-desktop.png
+'';
   };
 
 in {

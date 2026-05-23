@@ -6,7 +6,7 @@ let
 
   src = pkgs.fetchurl {
     url = "https://github.com/anomalyco/opencode/releases/download/v${version}/opencode-desktop-linux-x86_64.AppImage";
-    sha256 = "sha256-B8s6H6Qmx5O+GrpFr3dHHujcDc0fwWFwRJkX6PXRYfU=";
+    sha256 = "sha256-CmBtCgCd5tGDF2BTEdigNAmyTnC3KZp8pypartsaH68=";s
   };
 
   contents = pkgs.appimageTools.extractType2 {

@@ -20,6 +20,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    antigravity-nix = {
+      url = "github:jacopone/antigravity-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     mangowm = {
       url = "github:mangowm/mango";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -29,7 +34,7 @@
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
+    
     fff-nvim = {
       url = "github:dmtrKovalenko/fff.nvim";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -48,7 +53,7 @@
     extra-trusted-public-keys = [ "vicinae.cachix.org-1:1kDrfienkGHPYbkpNj1mWTr7Fm1+zcenzgTizIcI3oc=" ];
   };
 
-  outputs = { self, nixpkgs, home-manager, stylix, mangowm, nixvim, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, stylix, mangowm, nixvim, antigravity-nix, ... }@inputs:
     let
       system = "x86_64-linux";
       pkgs = import nixpkgs { inherit system; };

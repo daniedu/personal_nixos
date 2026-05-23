@@ -15,6 +15,7 @@
     xdg-utils
     gnome-disk-utility
     inputs.helium.packages.${pkgs.system}.default
+    inputs.antigravity-nix.packages.${pkgs.system}.default
     nautilus
     bibata-cursors
     starship

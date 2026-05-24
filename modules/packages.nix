@@ -18,5 +18,7 @@
     nautilus
     bibata-cursors
     starship
+    qt6.qtdeclarative
+
   ];
 }

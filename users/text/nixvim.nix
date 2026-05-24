@@ -307,6 +307,7 @@
       nixpkgs-fmt
       fff
       intelephense
+      qt6.qtdeclarative
     ];
   };
 }

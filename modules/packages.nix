@@ -18,7 +18,9 @@
     nautilus
     bibata-cursors
     starship
+    # Extras
     qt6.qtdeclarative
     aseprite
+    lustris
   ];
 }

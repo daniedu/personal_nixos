@@ -21,6 +21,6 @@
     # Extras
     qt6.qtdeclarative
     aseprite
-    lustris
+    lutris
   ];
 }

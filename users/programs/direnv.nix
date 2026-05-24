@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   programs.direnv = {
     enable = true;
     enableFishIntegration = true;
@@ -12,7 +13,7 @@
 
     stdlib = ''
       export DIRENV_WARN_TIMEOUT=0 # Fallback option to guarantee silence
-      
+
       use_devenv() {
         watch_file devenv.lock
         eval "$(devenv print-dev-env)"

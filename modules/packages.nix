@@ -23,5 +23,6 @@
     aseprite
     lutris
     heroic
+    protonup-qt
   ];
 }

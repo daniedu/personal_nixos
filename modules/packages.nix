@@ -22,5 +22,6 @@
     qt6.qtdeclarative
     aseprite
     lutris
+    heroic
   ];
 }

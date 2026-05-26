@@ -297,11 +297,17 @@
         options.desc = "Next TODO";
       }
 
-      # Undo in insert mode
+      # Undo/redo in insert mode
       {
         key = "<C-z>";
         action = "<cmd>undo<CR>";
         options.desc = "Undo";
+        mode = "i";
+      }
+      {
+        key = "<C-y>";
+        action = "<cmd>redo<CR>";
+        options.desc = "Redo";
         mode = "i";
       }
 

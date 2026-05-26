@@ -18,6 +18,9 @@ in {
       active_tab_font_style = "bold";
       inactive_tab_font_style = "normal";
       enable_audio_bell = "no";
+
+      allow_remote_control = "yes";
+      listen_on = "unix:/tmp/mykitty";
     };
   };
 

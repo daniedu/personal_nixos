@@ -1,29 +1,45 @@
 { pkgs, inputs, ... }: {
   environment.systemPackages = with pkgs; [
+    # Archive Tools
     file-roller
     unzip
     p7zip
     unrar
+
+    # Hardware & System
     blueman
     system-config-printer
     networkmanagerapplet
+    gnome-disk-utility
+
+    # Core CLI
     vim
     git
     wget
     btop
     glib
     xdg-utils
-    gnome-disk-utility
-    inputs.helium.packages.${pkgs.system}.default
+
+    # File Manager
     nautilus
+
+    # Theming
     bibata-cursors
+
+    # Shell
     starship
-    # Extras
-    qt6.qtdeclarative
+
+    # Creative
     aseprite
+    lmms
+
+    # Gaming
     lutris
     heroic
     protonup-qt
-    lmms
+
+    # Extras
+    qt6.qtdeclarative
+    inputs.helium.packages.${pkgs.system}.default
   ];
 }

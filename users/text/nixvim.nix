@@ -8,6 +8,14 @@
       number = true;
     };
 
+    diagnostics = {
+      virtual_text = true;
+      signs = true;
+      underline = true;
+      update_in_insert = true;
+      severity_sort = true;
+    };
+
     colorschemes.stylix.enable = true;
 
     plugins = {
@@ -270,6 +278,13 @@
         options.desc = "Toggle lazygit";
       }
 
+      # LSP info
+      {
+        key = "<leader>li";
+        action = "<cmd>LspInfo<CR>";
+        options.desc = "LSP Info";
+      }
+
       # Diagnostics
       {
         key = "]d";
@@ -299,6 +314,13 @@
         action = "<cmd>redo<CR>";
         options.desc = "Redo";
         mode = "i";
+      }
+
+      # Run qmllint on current QML file
+      {
+        key = "<leader>lq";
+        action = "<cmd>!qmllint %<CR>";
+        options.desc = "Run qmllint";
       }
 
       # Save

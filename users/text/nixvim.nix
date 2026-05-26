@@ -184,6 +184,8 @@
           "typescript" "tsx" "javascript" "html" "css" "json"
           "php" "php_only" "blade"
           "c" "cpp" "cmake" "make"
+          "go" "gomod" "gosum"
+          "qmljs"
           "lua" "nix" "yaml" "toml" "bash" "regex"
         ];
       };

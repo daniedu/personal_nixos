@@ -12,8 +12,6 @@
         groupbar = {
           title_font_size = 14;
           height = 24;
-          text_color = "rgba(ccccccff)";
-          active_text_color = "rgba(ffffffff)";
         };
         insert_strategy = "priority";
         drag_into_group = true;

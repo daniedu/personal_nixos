@@ -13,7 +13,6 @@
           font_size = 12;
           height = 28;
         };
-        insert_strategy = "priority";
         drag_into_group = true;
       };
 

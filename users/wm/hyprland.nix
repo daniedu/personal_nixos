@@ -8,6 +8,35 @@
 
       animations.enabled = false;
 
+      group = {
+        groupbar = {
+          title_font_size = 14;
+          height = 24;
+          text_color = "rgba(ccccccff)";
+          active_text_color = "rgba(ffffffff)";
+        };
+        insert_strategy = "priority";
+        drag_into_group = true;
+      };
+
+      windowrulev2 = [
+        "set title, class:(kitty), title:  kitty"
+        "set title, class:(firefox|firefox-esr), title:  firefox"
+        "set title, class:(Code|code-oss), title:  code"
+        "set title, class:(nautilus|org.gnome.Nautilus), title:  files"
+        "set title, class:(Alacritty|foot|wezterm), title:  terminal"
+        "set title, class:(discord|vesktop), title:ﭮ  discord"
+        "set title, class:(slack|Signal|telegram-desktop), title:  chat"
+        "set title, class:(Spotify|spotify), title:  spotify"
+        "set title, class:(thunderbird|Evolution), title:  mail"
+        "set title, class:(vlc|mpv), title:  media"
+        "set title, class:(steam|steamwebhelper), title:  steam"
+        "set title, class:(gimp|inkscape), title:  design"
+        "set title, class:(libreoffice|libreoffice-*), title:  office"
+        "set title, class:(virt-manager|qemu), title:  vm"
+        "set title, class:(obs), title:  obs"
+      ];
+
       "exec-once" = [
         "swaynotificationcenter"
         "nm-applet --indicator"
@@ -69,6 +98,10 @@
 
         "$mod, C, exec, kitty -e gcalcli agenda"
         "$mod, P, exec, wlr-which-key"
+
+        "$mod, G, togglegroup"
+        "$mod, TAB, changegroupactive, f"
+        "$mod SHIFT, TAB, changegroupactive, b"
       ];
 
       bindm = [

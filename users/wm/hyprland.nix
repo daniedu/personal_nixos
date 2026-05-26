@@ -10,8 +10,8 @@
 
       group = {
         groupbar = {
-          title_font_size = 14;
-          height = 24;
+          font_size = 12;
+          height = 28;
         };
         insert_strategy = "priority";
         drag_into_group = true;

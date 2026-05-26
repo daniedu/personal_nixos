@@ -4,6 +4,10 @@
 
     globals.mapleader = " ";
 
+    opts = {
+      number = true;
+    };
+
     colorschemes.stylix.enable = true;
 
     plugins = {
@@ -140,6 +144,8 @@
           php = [ "php-cs-fixer" ];
           cpp = [ "clang-format" ];
           c = [ "clang-format" ];
+          go = [ "gofumpt" ];
+          qml = [ "qmlformat" ];
           nix = [ "nixpkgs-fmt" ];
           lua = [ "stylua" ];
           "_" = [ "trim_whitespace" ];
@@ -152,6 +158,9 @@
         keymaps = {
           lspBuf = {
             gd = "definition";
+            gr = "references";
+            gi = "implementation";
+            gy = "type_definition";
             K = "hover";
             "<leader>rn" = "rename";
             "<leader>ca" = "code_action";
@@ -165,6 +174,9 @@
             package = null;
           };
           clangd.enable = true;
+          gopls.enable = true;
+          nil_ls.enable = true;
+          qmlls.enable = true;
         };
       };
 
@@ -186,6 +198,15 @@
       todo-comments.enable = true;
       trouble.enable = true;
 
+      gitsigns.enable = true;
+      flash.enable = true;
+      fidget.enable = true;
+      noice.enable = true;
+      visual-multi.enable = true;
+      navic.enable = true;
+      rainbow-delimiters.enable = true;
+      colorizer.enable = true;
+
       tmux-navigator.enable = true;
 
       lazygit.enable = true;
@@ -196,11 +217,6 @@
         key = "<leader>e";
         action = "<cmd>Neotree toggle<CR>";
         options.desc = "Toggle file tree";
-      }
-      {
-        key = "<leader>o";
-        action = "<cmd>terminal fff<CR>";
-        options.desc = "Open fff";
       }
       {
         key = "<leader>xx";
@@ -280,6 +296,119 @@
         action.__raw = "function() require('todo-comments').jump_next() end";
         options.desc = "Next TODO";
       }
+
+      # Save
+      {
+        key = "<C-s>";
+        action = "<cmd>w<CR>";
+        options.desc = "Save file";
+        mode = [ "i" "n" ];
+      }
+
+      # Quit (replaces C-w)
+      {
+        key = "<leader>wq";
+        action = "<cmd>q<CR>";
+        options.desc = "Quit";
+      }
+
+      # Clear search highlights
+      {
+        key = "<leader>h";
+        action = "<cmd>nohlsearch<CR>";
+        options.desc = "Clear search highlights";
+      }
+
+      # Buffer navigation
+      {
+        key = "]b";
+        action.__raw = "function() vim.cmd.bnext() end";
+        options.desc = "Next buffer";
+      }
+      {
+        key = "[b";
+        action.__raw = "function() vim.cmd.bprevious() end";
+        options.desc = "Previous buffer";
+      }
+      {
+        key = "<leader>bd";
+        action.__raw = "function() vim.cmd('bprevious | bdelete #') end";
+        options.desc = "Close buffer";
+      }
+
+      # System clipboard
+      {
+        key = "<leader>y";
+        action.__raw = "function() vim.fn.setreg('+', vim.fn.getreg('\"')) end";
+        options.desc = "Yank to system clipboard";
+      }
+      {
+        key = "<leader>p";
+        action.__raw = "function() vim.cmd('normal! \"+p') end";
+        options.desc = "Paste from system clipboard";
+      }
+
+      # Tab navigation
+      {
+        key = "<leader>t";
+        action = "<cmd>tabnew<CR>";
+        options.desc = "New tab";
+      }
+      {
+        key = "<leader><Tab>";
+        action = "<cmd>tabnext<CR>";
+        options.desc = "Next tab";
+      }
+      {
+        key = "<leader><S-Tab>";
+        action = "<cmd>tabprevious<CR>";
+        options.desc = "Previous tab";
+      }
+      {
+        key = "<leader>1";
+        action = "<cmd>tabnext 1<CR>";
+        options.desc = "Tab 1";
+      }
+      {
+        key = "<leader>2";
+        action = "<cmd>tabnext 2<CR>";
+        options.desc = "Tab 2";
+      }
+      {
+        key = "<leader>3";
+        action = "<cmd>tabnext 3<CR>";
+        options.desc = "Tab 3";
+      }
+      {
+        key = "<leader>4";
+        action = "<cmd>tabnext 4<CR>";
+        options.desc = "Tab 4";
+      }
+      {
+        key = "<leader>5";
+        action = "<cmd>tabnext 5<CR>";
+        options.desc = "Tab 5";
+      }
+      {
+        key = "<leader>6";
+        action = "<cmd>tabnext 6<CR>";
+        options.desc = "Tab 6";
+      }
+      {
+        key = "<leader>7";
+        action = "<cmd>tabnext 7<CR>";
+        options.desc = "Tab 7";
+      }
+      {
+        key = "<leader>8";
+        action = "<cmd>tabnext 8<CR>";
+        options.desc = "Tab 8";
+      }
+      {
+        key = "<leader>9";
+        action = "<cmd>tabnext 9<CR>";
+        options.desc = "Tab 9";
+      }
     ];
 
     extraPlugins = [
@@ -307,6 +436,10 @@
       nixpkgs-fmt
       fff
       intelephense
+      gofumpt
+      gopls
+      nil
+      qt6.qtdeclarative
     ];
   };
 }

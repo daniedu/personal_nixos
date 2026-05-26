@@ -143,6 +143,7 @@
           cpp = [ "clang-format" ];
           c = [ "clang-format" ];
           go = [ "gofumpt" ];
+          rust = [ "rustfmt" ];
           qml = [ "qmlformat" ];
           nix = [ "nixpkgs-fmt" ];
           lua = [ "stylua" ];
@@ -175,6 +176,11 @@
           gopls.enable = true;
           nil_ls.enable = true;
           qmlls.enable = true;
+          rust_analyzer = {
+            enable = true;
+            installCargo = true;
+            installRustc = true;
+          };
         };
       };
 
@@ -185,6 +191,7 @@
           "php" "php_only" "blade"
           "c" "cpp" "cmake" "make"
           "go" "gomod" "gosum"
+          "rust"
           "qmljs"
           "lua" "nix" "yaml" "toml" "bash" "regex"
         ];
@@ -468,6 +475,7 @@
       gopls
       nil
       qt6.qtdeclarative
+      rust-analyzer
     ];
   };
 }

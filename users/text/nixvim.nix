@@ -340,11 +340,16 @@
         mode = [ "i" "n" ];
       }
 
-      # Quit (replaces C-w)
+      # Quit all
       {
-        key = "<leader>wq";
-        action = "<cmd>q<CR>";
-        options.desc = "Quit";
+        key = "<leader><leader>q";
+        action = "<cmd>qa<CR>";
+        options.desc = "Quit all";
+      }
+      {
+        key = "<leader><leader>Q";
+        action = "<cmd>qa!<CR>";
+        options.desc = "Force quit all";
       }
 
       # Clear search highlights

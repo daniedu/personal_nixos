@@ -297,6 +297,14 @@
         options.desc = "Next TODO";
       }
 
+      # Undo in insert mode
+      {
+        key = "<C-z>";
+        action = "<cmd>undo<CR>";
+        options.desc = "Undo";
+        mode = "i";
+      }
+
       # Save
       {
         key = "<C-s>";

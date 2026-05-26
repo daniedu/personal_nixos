@@ -132,13 +132,13 @@
       conform-nvim = {
         enable = true;
         settings.formatters_by_ft = {
-          javascript = [ "prettierd" "prettier" ];
-          typescript = [ "prettierd" "prettier" ];
-          javascriptreact = [ "prettierd" "prettier" ];
-          typescriptreact = [ "prettierd" "prettier" ];
-          html = [ "prettierd" "prettier" ];
-          css = [ "prettierd" "prettier" ];
-          json = [ "prettierd" "prettier" ];
+          javascript = [ "prettierd" ];
+          typescript = [ "prettierd" ];
+          javascriptreact = [ "prettierd" ];
+          typescriptreact = [ "prettierd" ];
+          html = [ "prettierd" ];
+          css = [ "prettierd" ];
+          json = [ "prettierd" ];
           php = [ "php-cs-fixer" ];
           cpp = [ "clang-format" ];
           c = [ "clang-format" ];
@@ -148,6 +148,10 @@
           nix = [ "nixpkgs-fmt" ];
           lua = [ "stylua" ];
           "_" = [ "trim_whitespace" ];
+        };
+        settings.formatters = {
+          nixpkgs-fmt = { command = "nixpkgs-fmt"; };
+          php-cs-fixer = { command = "php-cs-fixer"; };
         };
         event = "BufWritePre";
       };
@@ -290,8 +294,8 @@
       # LSP info
       {
         key = "<leader>li";
-        action = "<cmd>LspInfo<CR>";
-        options.desc = "LSP Info";
+        action = "<cmd>checkhealth vim.lsp<CR>";
+        options.desc = "LSP Health";
       }
 
       # Diagnostics
@@ -481,6 +485,7 @@
       nil
       qt6.qtdeclarative
       rust-analyzer
+      rustfmt
     ];
   };
 }

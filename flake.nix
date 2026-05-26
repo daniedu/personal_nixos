@@ -41,6 +41,8 @@
       url = "github:vicinaehq/extensions";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    vicinae-plugins.url = "path:../vicinae-plugins";
   };
 
   nixConfig = {

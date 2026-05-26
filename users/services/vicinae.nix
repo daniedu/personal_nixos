@@ -24,6 +24,7 @@
 
   xdg.dataFile = let
     vx = inputs.vicinae-extensions.packages.${pkgs.stdenv.hostPlatform.system};
+    vp = inputs.vicinae-plugins.packages.${pkgs.stdenv.hostPlatform.system};
     ext = name: pkg: {
       name = "vicinae/extensions/${name}";
       value.source = pkg;
@@ -35,5 +36,6 @@
     (ext "pulseaudio"               vx.pulseaudio)
     (ext "protondb-search"          vx.protondb-search)
     (ext "zoxide-recent-directories" vx.zoxide-recent-directories)
+    (ext "hyprhelper"               vp.hyprhelper)
   ];
 }

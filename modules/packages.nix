@@ -24,5 +24,6 @@
     lutris
     heroic
     protonup-qt
+    lmms
   ];
 }

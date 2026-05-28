@@ -8,6 +8,7 @@
       nm-applet --indicator &
       blueman-applet &
       awww-daemon &
+      systemctl --user restart vicinae &
     '';
 
     settings = {

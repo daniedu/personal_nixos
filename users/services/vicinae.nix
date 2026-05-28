@@ -1,10 +1,7 @@
 { pkgs, inputs, lib, config, ... }: {
   services.vicinae = {
     enable = true;
-    systemd = {
-      enable = true;
-      autoStart = true;
-    };
+    systemd.enable = false;
     settings = {
       close_on_focus_loss = true;
       consider_preedit = true;

@@ -21,6 +21,7 @@
         "nm-applet --indicator"
         "blueman-applet"
         "awww-daemon"
+        "vicinae"
       ];
 
       # DOESNT EXISTS

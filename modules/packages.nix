@@ -34,7 +34,6 @@
     lmms
 
     # Gaming
-    lutris
     heroic
     protonup-qt
 

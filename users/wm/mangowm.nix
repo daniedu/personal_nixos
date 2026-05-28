@@ -10,6 +10,7 @@
       awww-daemon &
       vicinae server &
       vicinae set theme stylix &
+      export WLR_NO_HARDWARE_CURSORS=1
     '';
 
     settings = {

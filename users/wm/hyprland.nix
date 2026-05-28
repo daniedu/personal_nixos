@@ -21,7 +21,8 @@
         "nm-applet --indicator"
         "blueman-applet"
         "awww-daemon"
-        "vicinae"
+        "vicinae server"
+        "vicinae set theme stylix"
       ];
 
       # DOESNT EXISTS

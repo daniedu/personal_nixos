@@ -5,7 +5,7 @@ in {
   programs.starship = {
     enable = true;
     settings = {
-      format = "[\\($username@$directory\\)](fg:color_accent) $character ";
+      format = "[\\($username@$directory\\)](fg:color_accent) $line_break$character ";
       right_format= "$git_branch$git_status";
 
       palette = lib.mkForce "stylix_palette";
@@ -47,8 +47,8 @@ in {
       };
 
       character = {
-        success_symbol = "[](bold fg:color_accent)";
-        error_symbol = "[](bold fg:color_red)";
+        success_symbol = "[>](bold fg:color_accent)";
+        error_symbol = "[>](bold fg:color_red)";
       };
     };
   };

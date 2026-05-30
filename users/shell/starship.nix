@@ -5,13 +5,7 @@ in {
   programs.starship = {
     enable = true;
     settings = {
-      format = ''
-        $username $directory \
-        $fill \
-        $git_branch$git_status \
-        $line_break \
-        $character
-      '';
+      format = "$username $directory $fill $git_branch$git_status $line_break $character";
       right_format = "";
 
       palette = lib.mkForce "stylix_palette";

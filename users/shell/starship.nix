@@ -5,7 +5,7 @@ in {
   programs.starship = {
     enable = true;
     settings = {
-      format = "$directory $fill $git_branch $git_status $line_break $character";
+      format = "$directory $fill $git_branch $git_status $line_break$character";
       right_format = "";
 
       palette = lib.mkForce "stylix_palette";
@@ -40,7 +40,7 @@ in {
 
       git_branch = {
         symbol = "";
-        format = "[$symbol$branch](fg:color_git) ";
+        format = "[$symbol $branch](fg:color_git) ";
       };
 
       git_status = {

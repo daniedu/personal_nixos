@@ -22,6 +22,13 @@ in {
       allow_remote_control = "yes";
       listen_on = "unix:/tmp/mykitty";
     };
+    keybindings = {
+      "ctrl+shift+h" = "noop";
+      "ctrl+alt+h" = "previous_tab";
+      "ctrl+alt+l" = "next_tab";
+      "ctrl+alt+t" = "new_tab";
+      "ctrl+alt+w" = "close_tab";
+    };
   };
 
   stylix.targets.kitty.enable = true;

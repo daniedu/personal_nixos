@@ -12,8 +12,8 @@ in {
 
       palettes = {
         stylix_palette = {
-          color_accent = "#${c.base1D}";
-          color_git = "${c.base1D}";
+          color_accent = "#${c.base0D}";
+          color_git = "${c.base0B}";
 	  # color_bg1 = "#${c.base01}"
           # color_bg3 = "#${c.base03}";
           # color_blue = "#${c.base0D}";

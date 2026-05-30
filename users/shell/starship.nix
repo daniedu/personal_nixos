@@ -35,6 +35,7 @@ in {
       directory = {
         format = "[$path](fg:color_accent)";
         truncation_length = 999;
+        truncate_to_repo = false;
       };
 
       git_branch = {

@@ -47,8 +47,11 @@ in {
       };
 
       character = {
-        success_symbol = "[$](bold fg:color_accent)";
-        error_symbol = "[$](bold fg:color_red)";
+        format = "[$symbol](bold $style)";
+        success_symbol = "$";
+        error_symbol = "$";
+        style_success = "fg:color_accent";
+        style_failure = "fg:color_red";
       };
     };
   };

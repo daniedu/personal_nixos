@@ -38,11 +38,11 @@ in {
 
       git_branch = {
         symbol = "";
-        format = "[$symbol$branch](fg:color_git)]($style)";
+        format = "[$symbol$branch](fg:color_git)]";
       };
 
       git_status = {
-      format = "[$all_status](fg:color_git)";
+        format = "[$all_status](fg:color_git)";
       };
 
       character = {

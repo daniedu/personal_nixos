@@ -23,11 +23,10 @@ in {
       listen_on = "unix:/tmp/mykitty";
     };
     keybindings = {
-      "ctrl+shift+h" = "noop";
-      "ctrl+alt+h" = "previous_tab";
-      "ctrl+alt+l" = "next_tab";
-      "ctrl+alt+t" = "new_tab";
-      "ctrl+alt+w" = "close_tab";
+      "ctrl+shift+h" = "previous_tab";
+      "ctrl+shift+l" = "next_tab";
+      "ctrl+shift+t" = "new_tab";
+      "ctrl+shift+w" = "close_tab";
     };
   };
 

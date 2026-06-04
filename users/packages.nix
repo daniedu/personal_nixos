@@ -35,6 +35,8 @@
 
     # Gaming
     steam-run
+    retroarch-full
+    osu-lazer
 
     # System Info
     fastfetch
@@ -43,5 +45,7 @@
     wlr-which-key
     awww
     gcalcli
+    pixieditor
+    krita
   ];
 }

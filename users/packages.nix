@@ -35,7 +35,8 @@
 
     # Gaming
     steam-run
-    retroarch-full
+    retroarch
+    libretro.fbneo
     osu-lazer
 
     # System Info
@@ -43,8 +44,7 @@
 
     # Misc
     wlr-which-key
-    awww
-    gcalcli
+    awww 
     pixieditor
     krita
   ];

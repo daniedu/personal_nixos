@@ -11,6 +11,7 @@
     ./text/kitty.nix
     ./text/nixvim.nix
     ./text/vscode.nix
+    ./text/zed.nix
     
     ./wm/hyprland.nix
     ./wm/mangowm.nix

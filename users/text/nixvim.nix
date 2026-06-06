@@ -458,7 +458,7 @@
 
     extraPlugins = [
       inputs.fff-nvim.packages.${pkgs.system}.fff-nvim
-      inputs.tiny-inline-diagnostic.packages.${pkgs.system}.default
+      pkgs.vimPlugins.tiny-inline-diagnostic-nvim
     ];
 
     extraConfigLua = ''

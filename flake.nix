@@ -42,11 +42,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    tiny-inline-diagnostic = {
-      url = "github:rachartier/tiny-inline-diagnostic.nvim";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
   };
 
   nixConfig = {
@@ -54,7 +49,7 @@
     extra-trusted-public-keys = [ "vicinae.cachix.org-1:1kDrfienkGHPYbkpNj1mWTr7Fm1+zcenzgTizIcI3oc=" ];
   };
 
-  outputs = { self, nixpkgs, home-manager, stylix, mangowm, nixvim, tiny-inline-diagnostic, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, stylix, mangowm, nixvim, ... }@inputs:
     let
       system = "x86_64-linux";
       pkgs = import nixpkgs { inherit system; };

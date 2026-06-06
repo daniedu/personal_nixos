@@ -46,6 +46,5 @@
     wlr-which-key
     awww 
     pixieditor
-    krita
   ];
 }

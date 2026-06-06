@@ -9,7 +9,8 @@
     };
 
     diagnostics = {
-      virtual_text = true;
+      virtual_text = false;
+      virtual_lines = false;
       signs = true;
       underline = true;
       update_in_insert = true;
@@ -457,9 +458,14 @@
 
     extraPlugins = [
       inputs.fff-nvim.packages.${pkgs.system}.fff-nvim
+      inputs.tiny-inline-diagnostic.packages.${pkgs.system}.default
     ];
 
     extraConfigLua = ''
+      require("tiny-inline-diagnostic").setup({
+        preset = "modern",
+      })
+
       vim.api.nvim_create_autocmd("VimEnter", {
         callback = function()
           require("neo-tree.command").execute({ toggle = false, dir = vim.uv.cwd() })
@@ -480,6 +486,7 @@
     '';
 
     extraPackages = with pkgs; [
+      tree-sitter
       prettierd
       phpPackages.php-cs-fixer
       clang-tools

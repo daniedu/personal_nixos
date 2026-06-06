@@ -11,7 +11,7 @@
     ./text/kitty.nix
     ./text/nixvim.nix
     ./text/vscode.nix
-    ./text/zed.nix
+    # ./text/zed.nix (disabled — no Vulkan support)
     
     ./wm/hyprland.nix
     ./wm/mangowm.nix

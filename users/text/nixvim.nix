@@ -24,10 +24,10 @@
       neo-tree = {
         enable = true;
         settings = {
-          window.position = "float";
+          window.position = "right";
           enable_git_status = true;
         };
-        event = "VeryLazy";
+        event = "VimEnter";
       };
 
       lualine.enable = true;
@@ -460,6 +460,13 @@
     ];
 
     extraConfigLua = ''
+      vim.api.nvim_create_autocmd("VimEnter", {
+        callback = function()
+          require("neo-tree.command").execute({ toggle = false, dir = vim.uv.cwd() })
+        end,
+        nested = true,
+      })
+
       require("fff").setup({
         layout = {
           height = 0.8,

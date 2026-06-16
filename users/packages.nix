@@ -35,7 +35,6 @@
 
     # Gaming
     steam-run
-    retroarch
     osu-lazer
 
     # System Info

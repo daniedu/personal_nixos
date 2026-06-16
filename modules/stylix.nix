@@ -6,7 +6,7 @@
       gnome.enable = false;
     };
 
-    base16Scheme = ../assets/themes/gruvbox-dark-hard.yaml;
+    base16Scheme = ../assets/themes/green_painting.yaml;
 
     fonts = {
       monospace = {

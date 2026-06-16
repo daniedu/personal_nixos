@@ -31,16 +31,15 @@
   home.username    = "dan";
   home.homeDirectory = "/home/work";
   home.stateVersion  = "25.11";
-
   programs.retroarch = {
     enable = true;
-    cores = [
-      pkgs.libretro.mgba
-      pkgs.libretro.snes9x
-      pkgs.libretro.fbneo
-      pkgs.libretro.fceumm
-      pkgs.libretro.melonds
-    ];
+    cores = {
+      mgba.enable = true;
+      snes9x.enable = true;
+      fbneo.enable = true;
+      fceumm.enable = true;
+      melonds.enable = true;
+    };
   };
 
 

@@ -46,5 +46,6 @@
     wlr-which-key
     awww 
     pixieditor
+    rustdesk-flutter
   ];
 }

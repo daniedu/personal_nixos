@@ -32,6 +32,18 @@
   home.homeDirectory = "/home/work";
   home.stateVersion  = "25.11";
 
+  programs.retroarch = {
+    enable = true;
+    cores = [
+      pkgs.libretro.mgba
+      pkgs.libretro.snes9x
+      pkgs.libretro.fbneo
+      pkgs.libretro.fceumm
+      pkgs.libretro.melonds
+    ];
+  };
+
+
   gtk = {
     enable = true;
     gtk4.theme = null;

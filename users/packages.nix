@@ -36,7 +36,6 @@
     # Gaming
     steam-run
     retroarch
-    libretro.fbneo
     osu-lazer
 
     # System Info

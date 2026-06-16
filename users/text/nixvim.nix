@@ -148,11 +148,13 @@
           qml = [ "qmlformat" ];
           nix = [ "nixpkgs-fmt" ];
           lua = [ "stylua" ];
+          dart = [ "dart_format" ];
           "_" = [ "trim_whitespace" ];
         };
         settings.formatters = {
           nixpkgs-fmt = { command = "nixpkgs-fmt"; };
           php-cs-fixer = { command = "php-cs-fixer"; };
+          dart_format = { command = "dart"; args = [ "format" ]; };
         };
         event = "BufWritePre";
       };
@@ -186,6 +188,7 @@
             installCargo = true;
             installRustc = true;
           };
+          dartls.enable = true;
         };
       };
 
@@ -198,7 +201,7 @@
           "go" "gomod" "gosum"
           "rust"
           "qmljs"
-          "lua" "nix" "yaml" "toml" "bash" "regex"
+          "lua" "nix" "yaml" "toml" "bash" "regex" "dart"
         ];
       };
 
@@ -500,6 +503,7 @@
       qt6.qtdeclarative
       rust-analyzer
       rustfmt
+      dart
     ];
   };
 }

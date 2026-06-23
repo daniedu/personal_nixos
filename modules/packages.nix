@@ -1,18 +1,6 @@
 { pkgs, inputs, ... }: {
   environment.systemPackages = with pkgs; [
-    # Archive Tools
-    file-roller
-    unzip
-    p7zip
-    unrar
-
-    # Hardware & System
-    blueman
-    system-config-printer
-    networkmanagerapplet
-    gnome-disk-utility
-
-    # Core CLI
+    # === Core CLI ===
     vim
     git
     wget
@@ -20,25 +8,33 @@
     glib
     xdg-utils
 
-    # File Manager
+    # === Archive Tools ===
+    file-roller
+    unzip
+    p7zip
+    unrar
+
+    # === Hardware & System ===
+    blueman
+    system-config-printer
+    networkmanagerapplet
+    gnome-disk-utility
+
+    # === File Manager ===
     nautilus
 
-    # Theming
+    # === Theming ===
     bibata-cursors
-
-    # Shell
     starship
 
-    # Creative
-    aseprite
-    lmms
-
-    # Gaming
+    # === Gaming ===
     heroic
     protonup-qt
 
-    # Extras
-    qt6.qtdeclarative
+    # === Window Managers (alternative sessions) ===
+    labwc
+
+    # === Extras ===
     inputs.helium.packages.${pkgs.system}.default
   ];
 }

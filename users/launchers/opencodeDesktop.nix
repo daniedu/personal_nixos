@@ -2,11 +2,11 @@
 
 let
   pname = "opencode-desktop";
-  version = "1.15.10";
+  version = "1.17.9";
 
   src = pkgs.fetchurl {
     url = "https://github.com/anomalyco/opencode/releases/download/v${version}/opencode-desktop-linux-x86_64.AppImage";
-    sha256 = "sha256-CmBtCgCd5tGDF2BTEdigNAmyTnC3KZp8pypartsaH68=";
+    sha256 = "sha256-VIOo5wdHhsG0fK+vOeMAz6vGIGE+DpL6/EvAu6Fa4E0=";
   };
 
   app = pkgs.appimageTools.wrapType2 {

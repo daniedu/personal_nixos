@@ -15,6 +15,8 @@
     
     ./wm/hyprland.nix
     ./wm/mangowm.nix
+    ./wm/labwc.nix
+    ./wm/niri.nix
     # ./wm/waybar.nix
     # ./wm/noctalia.nix
     ./services/vicinae.nix

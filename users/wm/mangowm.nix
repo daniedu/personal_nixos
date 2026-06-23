@@ -45,6 +45,9 @@
       focus_on_activate = 1;
       animations = 0;
 
+      # Layout cycling
+      circle_layout = "tile,grid,scroller,monocle";
+
       # Keybindings
       bind = [
         "SUPER,space,spawn,vicinae open"
@@ -85,6 +88,8 @@
         "SUPER+SHIFT,9,tag,9"
 
         "SUPER,p,spawn,wlr-which-key"
+        "SUPER,Tab,switch_layout"
+        "SUPER+SHIFT,space,togglefloating"
       ];
 
       mousebind = [

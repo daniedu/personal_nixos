@@ -179,7 +179,34 @@
             enable = true;
             package = null;
           };
-          clangd.enable = true;
+          clangd = {
+            enable = true;
+            cmd = [
+              "clangd"
+              "--background-index"
+              "--clang-tidy"
+              "--header-insertion=iwyu"
+              "--completion-style=detailed"
+              "--function-arg-placeholders"
+              "--fallback-style=llvm"
+            ];
+            extraOptions = {
+              capabilities.__raw = ''
+                vim.tbl_deep_extend("force", vim.lsp.protocol.make_client_capabilities(), {
+                  offsetEncoding = { "utf-16" },
+                  textDocument = {
+                    completion = { editsNearCursor = true },
+                  },
+                })
+              '';
+            };
+            root_markers = [
+              ".clangd" ".clang-tidy" ".clang-format"
+              "compile_commands.json" "compile_flags.txt"
+              "configure.ac" "Makefile" ".git"
+            ];
+            filetypes = [ "c" "cpp" "objc" "objcpp" "cuda" ];
+          };
           gopls.enable = true;
           nil_ls.enable = true;
           qmlls.enable = true;
@@ -189,6 +216,7 @@
             installRustc = true;
           };
           dartls.enable = true;
+          cmake.enable = true;
         };
       };
 
@@ -225,6 +253,68 @@
       tmux-navigator.enable = true;
 
       lazygit.enable = true;
+
+      # C++ Development
+      clangd-extensions = {
+        enable = true;
+        enableOffsetEncodingWorkaround = true;
+        settings = {
+          ast = {
+            role_icons = {
+              type = "";
+              declaration = "";
+              expression = "";
+              specifier = "";
+              statement = "";
+              "template argument" = "";
+            };
+          };
+        };
+      };
+
+      dap = {
+        enable = true;
+        adapters = {
+          executables = {
+            codelldb = {
+              command = "${pkgs.vscode-extensions.vadimcn.vscode-lldb}/share/vscode/extensions/vadimcn.vscode-lldb/adapter/codelldb";
+              args = [ "--liblldb" "${pkgs.lldb}/lib/liblldb.so" ];
+            };
+          };
+        };
+        configurations = {
+          c = [
+            {
+              name = "Launch (C)";
+              type = "codelldb";
+              request = "launch";
+              program.__raw = "function() return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file') end";
+              cwd = "\${workspaceFolder}";
+              stopOnEntry = false;
+            }
+          ];
+          cpp = [
+            {
+              name = "Launch (C++)";
+              type = "codelldb";
+              request = "launch";
+              program.__raw = "function() return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file') end";
+              cwd = "\${workspaceFolder}";
+              stopOnEntry = false;
+            }
+          ];
+        };
+      };
+      dap-ui.enable = true;
+      dap-virtual-text = {
+        enable = true;
+        settings = {
+          enabled_commands = true;
+          highlight_changed_variables = true;
+          virt_text_pos = "inline";
+          all_frames = false;
+        };
+      };
     };
 
     keymaps = [
@@ -457,12 +547,66 @@
         action = "<cmd>tabnext 9<CR>";
         options.desc = "Tab 9";
       }
+
+      # Debug (DAP)
+      {
+        key = "<leader>db";
+        action.__raw = "function() require('dap').toggle_breakpoint() end";
+        options.desc = "Toggle breakpoint";
+      }
+      {
+        key = "<leader>dc";
+        action.__raw = "function() require('dap').continue() end";
+        options.desc = "Start/Continue";
+      }
+      {
+        key = "<leader>do";
+        action.__raw = "function() require('dap').step_over() end";
+        options.desc = "Step over";
+      }
+      {
+        key = "<leader>di";
+        action.__raw = "function() require('dap').step_into() end";
+        options.desc = "Step into";
+      }
+      {
+        key = "<leader>dO";
+        action.__raw = "function() require('dap').step_out() end";
+        options.desc = "Step out";
+      }
+      {
+        key = "<leader>du";
+        action.__raw = "function() require('dapui').toggle() end";
+        options.desc = "Toggle DAP UI";
+      }
+      {
+        key = "<leader>dr";
+        action.__raw = "function() require('dap').repl.toggle() end";
+        options.desc = "Toggle REPL";
+      }
+      {
+        key = "<leader>dh";
+        action.__raw = "function() require('dap.ui.widgets').hover() end";
+        options.desc = "Hover evaluation";
+      }
     ];
 
     extraPlugins = [
       inputs.fff-nvim.packages.${pkgs.system}.fff-nvim
       pkgs.vimPlugins.tiny-inline-diagnostic-nvim
     ];
+
+    extraConfigLuaPre = ''
+      -- Add clangd-extensions completion score sorting
+      local cmp = require("cmp")
+      local default_setup = cmp.setup
+      cmp.setup = function(opts)
+        opts.sorting = opts.sorting or {}
+        opts.sorting.comparators = opts.sorting.comparators or {}
+        table.insert(opts.sorting.comparators, 1, require("clangd_extensions.cmp_scores"))
+        default_setup(opts)
+      end
+    '';
 
     extraConfigLua = ''
       require("tiny-inline-diagnostic").setup({
@@ -504,6 +648,15 @@
       rust-analyzer
       rustfmt
       dart
+
+      # C++ Development
+      cmake
+      cmake-language-server
+      lldb
+      cppcheck
+      vscode-extensions.vadimcn.vscode-lldb
+      bear
+      gdb
     ];
   };
 }

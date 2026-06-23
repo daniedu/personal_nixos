@@ -1,49 +1,51 @@
 { pkgs, ... }: {
   home.packages = with pkgs; [
-    # Fonts
+    # === Fonts ===
     nerd-fonts.jetbrains-mono
     nerd-fonts.caskaydia-cove
 
-    # Screenshot & Clipboard
+    # === Screenshot & Clipboard ===
     hyprshot
     grim
     slurp
     wl-clipboard
 
-    # Office
+    # === Productivity ===
     onlyoffice-desktopeditors
     hunspell
     hunspellDicts.en_US
     hunspellDicts.es_CO
 
-    # Audio
+    # === Audio ===
     pavucontrol
 
-    # System Tools
+    # === System Tools ===
     btop
     ripgrep
     fd
     tree
+    fastfetch
 
-    # Notifications & Media
+    # === Notifications & Media ===
     swaynotificationcenter
     playerctl
 
-    # Development
+    # === Development ===
     nil
     lazygit
 
-    # Gaming
+    # === Gaming ===
     steam-run
     osu-lazer
 
-    # System Info
-    fastfetch
-
-    # Misc
-    wlr-which-key
-    awww 
+    # === Art ===
+    aseprite
+    lmms
     pixieditor
+
+    # === Misc ===
+    wlr-which-key
+    awww
     rustdesk-flutter
   ];
 }

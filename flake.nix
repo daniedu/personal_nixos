@@ -42,14 +42,25 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    niri = {
+      url = "github:sodiboo/niri-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
   };
 
   nixConfig = {
-    extra-substituters = [ "https://vicinae.cachix.org" ];
-    extra-trusted-public-keys = [ "vicinae.cachix.org-1:1kDrfienkGHPYbkpNj1mWTr7Fm1+zcenzgTizIcI3oc=" ];
+    extra-substituters = [
+      "https://vicinae.cachix.org"
+      "https://niri.cachix.org"
+    ];
+    extra-trusted-public-keys = [
+      "vicinae.cachix.org-1:1kDrfienkGHPYbkpNj1mWTr7Fm1+zcenzgTizIcI3oc="
+      "niri.cachix.org-1:Wv0OmO7PsuocRKzfDoJ3mulSl7Z6oezYhGhR+3W2964="
+    ];
   };
 
-  outputs = { self, nixpkgs, home-manager, stylix, mangowm, nixvim, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, stylix, mangowm, nixvim, niri, ... }@inputs:
     let
       system = "x86_64-linux";
       pkgs = import nixpkgs { inherit system; };
@@ -67,6 +78,7 @@
       specialArgs = { inherit inputs; };
       modules = [
         inputs.mangowm.nixosModules.mango
+        inputs.niri.nixosModules.niri
         stylix.nixosModules.stylix
         ./configuration.nix
         home-manager.nixosModules.home-manager

@@ -90,12 +90,6 @@
           };
         }
         # Overlay for openldap to skip tests and save time
-        ({ pkgs, ... }: {
-          programs.niri = {
-            enable = true;
-            package = pkgs.niri;
-          };
-        })
         ({ ... }: {
           nixpkgs.overlays = [
             (final: prev: {

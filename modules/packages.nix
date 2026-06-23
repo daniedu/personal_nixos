@@ -33,6 +33,7 @@
 
     # === Window Managers (alternative sessions) ===
     labwc
+    niri
 
     # === Extras ===
     inputs.helium.packages.${pkgs.system}.default

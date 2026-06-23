@@ -78,7 +78,6 @@
       specialArgs = { inherit inputs; };
       modules = [
         inputs.mangowm.nixosModules.mango
-        inputs.niri.nixosModules.niri
         stylix.nixosModules.stylix
         ./configuration.nix
         home-manager.nixosModules.home-manager
@@ -91,6 +90,12 @@
           };
         }
         # Overlay for openldap to skip tests and save time
+        ({ pkgs, ... }: {
+          programs.niri = {
+            enable = true;
+            package = pkgs.niri;
+          };
+        })
         ({ ... }: {
           nixpkgs.overlays = [
             (final: prev: {

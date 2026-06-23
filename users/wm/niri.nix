@@ -23,7 +23,7 @@
       };
 
       layout = {
-        gap = 5;
+        gaps = 5;
         border = {
           enable = false;
         };

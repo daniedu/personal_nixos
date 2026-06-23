@@ -90,6 +90,9 @@
         "SUPER,p,spawn,wlr-which-key"
         "SUPER,Tab,switch_layout"
         "SUPER+SHIFT,space,togglefloating"
+        "SUPER+SHIFT,V,togglefloating"
+        "SUPER+SHIFT,S,setlayout,scroller"
+        "SUPER+SHIFT,T,setlayout,tile"
       ];
 
       mousebind = [

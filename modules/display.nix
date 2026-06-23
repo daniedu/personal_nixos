@@ -1,6 +1,7 @@
 { pkgs, ... }: {
   services.xserver.enable               = true;
   services.displayManager.ly.enable     = true;
+  services.displayManager.sessionPackages = [ pkgs.labwc pkgs.niri ];
   services.flatpak.enable               = true;
   services.xserver.xkb = { layout = "us"; variant = ""; };
   programs.hyprland.enable              = true;

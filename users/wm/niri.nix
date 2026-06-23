@@ -42,7 +42,7 @@
         "Mod+Space".action.spawn = [ "vicinae" "open" ];
         "Mod+Return".action.spawn = [ "kitty" ];
         "Mod+Q".action.close-window = {};
-        "Mod+F".action.toggle-fullscreen = {};
+        "Mod+F".action.fullscreen = {};
 
         "Mod+H".action.focus-column-left = {};
         "Mod+L".action.focus-column-right = {};

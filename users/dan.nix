@@ -3,6 +3,7 @@
     inputs.mangowm.hmModules.mango
     inputs.nixvim.homeModules.nixvim
     inputs.vicinae.homeManagerModules.default
+    inputs.niri.homeModules.niri
     ./shell/fish.nix
     ./shell/starship.nix
     ./shell/zoxide.nix

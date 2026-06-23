@@ -34,7 +34,6 @@
     (ext "zoxide-recent-directories" vx.zoxide-recent-directories)
     (ext "niri"                      vx.niri)
     (ext "process-manager"           vx.process-manager)
-    (ext "dbus"                      vx.dbus)
     (ext "color-converter"           vx.color-converter)
     (ext "nerdfont-search"           vx.nerdfont-search)
   ];

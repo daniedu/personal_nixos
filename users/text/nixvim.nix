@@ -190,16 +190,6 @@
               "--function-arg-placeholders"
               "--fallback-style=llvm"
             ];
-            extraOptions = {
-              capabilities.__raw = ''
-                vim.tbl_deep_extend("force", vim.lsp.protocol.make_client_capabilities(), {
-                  offsetEncoding = { "utf-16" },
-                  textDocument = {
-                    completion = { editsNearCursor = true },
-                  },
-                })
-              '';
-            };
             root_markers = [
               ".clangd" ".clang-tidy" ".clang-format"
               "compile_commands.json" "compile_flags.txt"

@@ -10,7 +10,6 @@
         };
         touchpad = {
           natural-scroll = true;
-          disable-while-typing = true;
           tap = true;
           click-method = "clickfinger";
           scroll-factor = 0.5;

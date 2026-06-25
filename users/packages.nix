@@ -46,5 +46,8 @@
     wlr-which-key
     awww
     rustdesk-flutter
+
+    # === Misc ===
+    nuclear
   ];
 }

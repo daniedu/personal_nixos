@@ -49,7 +49,7 @@
     hyprgraphics
     aquamarine
     libdrm
-    gbm
+    libgbm
     pixman
     pango
     cairo

@@ -36,6 +36,7 @@
 
     # === C++ / hyprtoolkit Development ===
     gcc
+    glibc.dev
     clang-tools
     cmake
     ninja

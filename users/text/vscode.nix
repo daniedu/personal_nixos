@@ -10,6 +10,9 @@
     ];
     profiles.default.userSettings = {
       "clangd.path" = "${pkgs.clang-tools}/bin/clangd";
+      "clangd.arguments" = [
+        "--query-driver=${pkgs.gcc}/bin/gcc,${pkgs.gcc}/bin/g++,${pkgs.clang-tools}/bin/clang,${pkgs.clang-tools}/bin/clang++"
+      ];
       "cmake.configureOnOpen" = true;
     };
   };

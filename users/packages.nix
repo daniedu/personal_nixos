@@ -44,7 +44,8 @@
     # === Art ===
     aseprite
     lmms
-    pixieditor
+    krita
+    inkscape
 
     # === Misc ===
     wlr-which-key

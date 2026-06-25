@@ -48,6 +48,5 @@
     rustdesk-flutter
 
     # === Misc ===
-    nuclear
   ];
 }

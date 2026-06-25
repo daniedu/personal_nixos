@@ -53,7 +53,7 @@
     pixman
     pango
     cairo
-    xkbcommon
+    libxkbcommon
     iniparser
     libglvnd
     gtest

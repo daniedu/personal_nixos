@@ -34,31 +34,6 @@
     nil
     lazygit
 
-    # === C++ / hyprtoolkit Development ===
-    gcc
-    glibc.dev
-    clang-tools
-    cmake
-    ninja
-    pkg-config
-    bear
-    gdb
-    hyprtoolkit
-    wayland
-    hyprutils
-    hyprlang
-    hyprgraphics
-    aquamarine
-    libdrm
-    libgbm
-    pixman
-    pango
-    cairo
-    libxkbcommon
-    iniparser
-    libglvnd
-    gtest
-
     # === Odin Development ===
     odin
 

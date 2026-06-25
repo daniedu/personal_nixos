@@ -34,9 +34,6 @@
     nil
     lazygit
 
-    # === Odin Development ===
-    odin
-
     # === Gaming ===
     steam-run
     osu-lazer
@@ -44,8 +41,6 @@
     # === Art ===
     aseprite
     lmms
-    krita
-    inkscape
 
     # === Misc ===
     wlr-which-key

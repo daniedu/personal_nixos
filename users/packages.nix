@@ -34,6 +34,33 @@
     nil
     lazygit
 
+    # === C++ / hyprtoolkit Development ===
+    gcc
+    clang-tools
+    cmake
+    ninja
+    pkg-config
+    bear
+    gdb
+    hyprtoolkit
+    wayland
+    hyprutils
+    hyprlang
+    hyprgraphics
+    aquamarine
+    libdrm
+    gbm
+    pixman
+    pango
+    cairo
+    xkbcommon
+    iniparser
+    libglvnd
+    gtest
+
+    # === Odin Development ===
+    odin
+
     # === Gaming ===
     steam-run
     osu-lazer

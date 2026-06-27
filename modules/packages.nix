@@ -7,7 +7,7 @@
     btop
     glib
     xdg-utils
-
+    gnome-software
     # === Archive Tools ===
     file-roller
     unzip

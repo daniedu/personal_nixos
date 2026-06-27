@@ -1,18 +1,4 @@
-{ pkgs, ... }:
-
-let
-  es-de-session = pkgs.runCommand "es-de-session" { } ''
-    mkdir -p $out/share/wayland-sessions
-    cat > $out/share/wayland-sessions/emulationstation-de.desktop <<EOF
-    [Desktop Entry]
-    Name=EmulationStation-DE
-    Comment=Gaming Frontend
-    Exec=${pkgs.emulationstation-de}/bin/emulationstation
-    Type=Application
-    EOF
-  '';
-in
-{
+{ pkgs, ... }: {
   programs.steam = {
     enable                     = true;
     remotePlay.openFirewall    = true;
@@ -30,7 +16,6 @@ in
 
   hardware.xone.enable = true;
 
-  environment.systemPackages = with pkgs; [ emulationstation-de ];
-
-  services.displayManager.sessionPackages = [ es-de-session ];
+  # environment.systemPackages = with pkgs; [ es-de ];
+  # services.displayManager.sessionPackages = [ es-de-session ];
 }

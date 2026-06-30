@@ -45,7 +45,6 @@
     # === Misc ===
     wlr-which-key
     awww
-    rustdesk-flutter
 
     # === Misc ===
   ];

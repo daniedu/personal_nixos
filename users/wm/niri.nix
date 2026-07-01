@@ -30,7 +30,7 @@
       };
 
       spawn-at-startup = [
-        { command = [ "systemctl" "--user" "restart" "xdg-desktop-portal" ]; }
+        { command = [ "sh" "-c" "systemctl --user set-environment XDG_CURRENT_DESKTOP=niri && systemctl --user restart xdg-desktop-portal" ]; }
         { command = [ "swaynotificationcenter" ]; }
         { command = [ "nm-applet" "--indicator" ]; }
         { command = [ "blueman-applet" ]; }

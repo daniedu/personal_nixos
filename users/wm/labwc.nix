@@ -208,7 +208,7 @@
     '';
 
     "labwc/autostart".text = ''
-      systemctl --user restart xdg-desktop-portal &
+      systemctl --user set-environment XDG_CURRENT_DESKTOP=labwc && systemctl --user restart xdg-desktop-portal &
       swaynotificationcenter &
       nm-applet --indicator &
       blueman-applet &

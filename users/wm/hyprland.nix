@@ -17,7 +17,7 @@
       };
 
       "exec-once" = [
-        "systemctl --user restart xdg-desktop-portal"
+        "systemctl --user set-environment XDG_CURRENT_DESKTOP=Hyprland && systemctl --user restart xdg-desktop-portal"
         "swaynotificationcenter"
         "nm-applet --indicator"
         "blueman-applet"

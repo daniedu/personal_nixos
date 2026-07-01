@@ -4,7 +4,7 @@
     systemd.enable = true;
 
     autostart_sh = ''
-      systemctl --user restart xdg-desktop-portal &
+      systemctl --user set-environment XDG_CURRENT_DESKTOP=mango && systemctl --user restart xdg-desktop-portal &
       swaynotificationcenter &
       nm-applet --indicator &
       blueman-applet &

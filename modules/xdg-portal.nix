@@ -14,7 +14,7 @@ config = {
     hyprland = {
       default = [ "hyprland" "gtk" ];
     };
-    mangowm = {
+    mango = {
       default = [ "wlr" "gtk" ];
     };
     labwc = {

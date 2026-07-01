@@ -17,6 +17,7 @@
       };
 
       "exec-once" = [
+        "systemctl --user restart xdg-desktop-portal"
         "swaynotificationcenter"
         "nm-applet --indicator"
         "blueman-applet"

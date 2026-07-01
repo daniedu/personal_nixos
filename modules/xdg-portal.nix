@@ -4,6 +4,7 @@
     xdgOpenUsePortal = true;
     extraPortals = with pkgs; [
       xdg-desktop-portal-hyprland
+      xdg-desktop-portal-wlr
       xdg-desktop-portal-gtk
     ];
 config = {
@@ -12,6 +13,15 @@ config = {
     };
     hyprland = {
       default = [ "hyprland" "gtk" ];
+    };
+    mangowm = {
+      default = [ "wlr" "gtk" ];
+    };
+    labwc = {
+      default = [ "wlr" "gtk" ];
+    };
+    niri = {
+      default = [ "wlr" "gtk" ];
     };
   };
   };

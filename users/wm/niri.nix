@@ -30,6 +30,7 @@
       };
 
       spawn-at-startup = [
+        { command = [ "systemctl" "--user" "restart" "xdg-desktop-portal" ]; }
         { command = [ "swaynotificationcenter" ]; }
         { command = [ "nm-applet" "--indicator" ]; }
         { command = [ "blueman-applet" ]; }

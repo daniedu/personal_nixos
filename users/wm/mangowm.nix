@@ -4,6 +4,7 @@
     systemd.enable = true;
 
     autostart_sh = ''
+      systemctl --user restart xdg-desktop-portal &
       swaynotificationcenter &
       nm-applet --indicator &
       blueman-applet &

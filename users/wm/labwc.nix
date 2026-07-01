@@ -208,6 +208,7 @@
     '';
 
     "labwc/autostart".text = ''
+      systemctl --user restart xdg-desktop-portal &
       swaynotificationcenter &
       nm-applet --indicator &
       blueman-applet &

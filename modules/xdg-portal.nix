@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ pkgs, lib, ... }: {
   xdg.portal = {
     enable = true;
     xdgOpenUsePortal = true;
@@ -15,7 +15,7 @@ config = {
       default = [ "hyprland" "gtk" ];
     };
     mango = {
-      default = [ "wlr" "gtk" ];
+      default = lib.mkForce [ "wlr" "gtk" ];
     };
     labwc = {
       default = [ "wlr" "gtk" ];

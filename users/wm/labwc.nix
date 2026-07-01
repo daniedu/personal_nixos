@@ -9,7 +9,13 @@
         </core>
 
         <theme>
-          <cornerRadius>0</cornerRadius>
+          <cornerRadius>8</cornerRadius>
+          <keepBorder>no</keepBorder>
+          <dropShadows>yes</dropShadows>
+          <titlebar>
+            <layout>close,iconify,max:icon</layout>
+            <showTitle>yes</showTitle>
+          </titlebar>
           <font place="ActiveWindow">
             <name>JetBrainsMono Nerd Font</name>
             <size>10</size>
@@ -205,6 +211,31 @@
           </item>
         </menu>
       </openbox_menu>
+    '';
+
+    "labwc/themerc-override".text = ''
+      border.width: 0
+      window.button.width: 14
+      window.button.height: 14
+      window.button.spacing: 8
+      window.button.hover.bg.corner-radius: 7
+
+      window.active.title.bg.color: #e8e8e8
+      window.inactive.title.bg.color: #f0f0f0
+      window.active.label.text.color: #333333
+      window.inactive.label.text.color: #888888
+
+      window.active.button.close.unpressed.image.color: #ff5f57
+      window.active.button.iconify.unpressed.image.color: #febc2e
+      window.active.button.max.unpressed.image.color: #28c840
+      window.inactive.button.close.unpressed.image.color: #dddddd
+      window.inactive.button.iconify.unpressed.image.color: #dddddd
+      window.inactive.button.max.unpressed.image.color: #dddddd
+
+      window.active.shadow.size: 40
+      window.inactive.shadow.size: 25
+      window.active.shadow.color: #00000040
+      window.inactive.shadow.color: #00000020
     '';
 
     "labwc/autostart".text = ''

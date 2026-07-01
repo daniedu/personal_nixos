@@ -2,6 +2,8 @@
   programs.niri = {
     enable = true;
     settings = {
+      "prefer-no-csd" = true;
+
       input = {
         keyboard = {
           xkb = {
@@ -27,6 +29,9 @@
         border = {
           enable = false;
         };
+        focus-ring = {
+          enable = false;
+        };
       };
 
       spawn-at-startup = [
@@ -38,6 +43,14 @@
         { command = [ "vicinae" "server" ]; }
         { command = [ "vicinae" "set" "theme" "stylix" ]; }
       ];
+
+      hotkey-overlay = {
+        skip-at-startup = true;
+      };
+
+      cursor = {
+        hide-when-typing = true;
+      };
 
       binds = {
         "Mod+Space".action.spawn = [ "vicinae" "open" ];

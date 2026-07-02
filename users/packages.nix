@@ -33,6 +33,8 @@
     # === Development ===
     nil
     lazygit
+    shellcheck
+    pandoc
 
     # === Gaming ===
     steam-run

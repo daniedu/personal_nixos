@@ -7,10 +7,6 @@
     ];
   };
 
-  home.packages = with pkgs; [
-    doom-emacs
-  ];
-
   services.emacs = {
     enable = true;
   };

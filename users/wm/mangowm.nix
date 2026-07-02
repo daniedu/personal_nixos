@@ -47,7 +47,7 @@
       animations = 0;
 
       # Layout cycling
-      circle_layout = "tile,grid,scroller,monocle";
+      circle_layout = "scroller,tile,grid,monocle";
 
       # Keybindings
       bind = [
@@ -92,7 +92,7 @@
         "SUPER,Tab,switch_layout"
         "SUPER+SHIFT,space,togglefloating"
         "SUPER+SHIFT,v,togglefloating"
-        "SUPER+SHIFT,s,setlayout,scroller"
+        "SUPER+SHIFT,m,setlayout,monocle"
         "SUPER+SHIFT,t,setlayout,tile"
       ];
 

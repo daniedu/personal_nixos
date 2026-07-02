@@ -47,6 +47,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    emacs-overlay = {
+      url = "github:nix-community/emacs-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
   };
 
   nixConfig = {
@@ -60,7 +65,7 @@
     ];
   };
 
-  outputs = { self, nixpkgs, home-manager, stylix, mangowm, nixvim, niri, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, stylix, mangowm, nixvim, niri, emacs-overlay, ... }@inputs:
     let
       system = "x86_64-linux";
       pkgs = import nixpkgs { inherit system; };
@@ -92,6 +97,7 @@
         # Overlay for openldap to skip tests and save time
         ({ ... }: {
           nixpkgs.overlays = [
+            inputs.emacs-overlay.overlays.default
             (final: prev: {
               openldap = prev.openldap.overrideAttrs (old: {
                 doCheck = false;

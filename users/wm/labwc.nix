@@ -1,4 +1,11 @@
-{ pkgs, ... }: {
+{ config, pkgs, lib, ... }:
+let
+  c = config.lib.stylix.colors;
+  ravenTheme = pkgs.fetchzip {
+    url = "https://github.com/addy-dclxvi/openbox-theme-collections/archive/master.tar.gz";
+    hash = "sha256-aC6AA09S/NE74fFNQXK8R/AVA3w4JWKjhcgEkCtGGdk=";
+  };
+in {
   xdg.configFile = {
     "labwc/rc.xml".text = ''
       <?xml version="1.0"?>
@@ -9,6 +16,7 @@
         </core>
 
         <theme>
+          <name><openbox-uri>${ravenTheme}/Raven-Crimson/openbox-3</openbox-uri></name>
           <cornerRadius>8</cornerRadius>
           <keepBorder>no</keepBorder>
           <dropShadows>yes</dropShadows>
@@ -200,6 +208,26 @@
               <command>nautilus</command>
             </action>
           </item>
+          <item label="Browser">
+            <action name="Execute">
+              <command>helium</command>
+            </action>
+          </item>
+          <item label="Screenshot">
+            <action name="Execute">
+              <command>grim -g "$(slurp)"</command>
+            </action>
+          </item>
+          <item label="Audio Control">
+            <action name="Execute">
+              <command>pavucontrol</command>
+            </action>
+          </item>
+          <item label="Krita">
+            <action name="Execute">
+              <command>krita</command>
+            </action>
+          </item>
           <item label="Vicinae">
             <action name="Execute">
               <command>vicinae open</command>
@@ -213,29 +241,47 @@
       </openbox_menu>
     '';
 
-    "labwc/themerc-override".text = ''
+    "labwc/themerc-override".text = with c; ''
       border.width: 0
       window.button.width: 14
       window.button.height: 14
       window.button.spacing: 8
       window.button.hover.bg.corner-radius: 7
 
-      window.active.title.bg.color: #e8e8e8
-      window.inactive.title.bg.color: #f0f0f0
-      window.active.label.text.color: #333333
-      window.inactive.label.text.color: #888888
+      window.active.border.color: #${base00}
+      window.inactive.border.color: #${base00}
+      window.active.title.bg.color: #${base01}
+      window.inactive.title.bg.color: #${base00}
+      window.active.label.text.color: #${base05}
+      window.inactive.label.text.color: #${base04}
 
-      window.active.button.close.unpressed.image.color: #ff5f57
-      window.active.button.iconify.unpressed.image.color: #febc2e
-      window.active.button.max.unpressed.image.color: #28c840
-      window.inactive.button.close.unpressed.image.color: #dddddd
-      window.inactive.button.iconify.unpressed.image.color: #dddddd
-      window.inactive.button.max.unpressed.image.color: #dddddd
+      window.active.button.unpressed.image.color: #${base05}
+      window.active.button.hover.image.color: #${base0D}
+      window.active.button.pressed.image.color: #${base08}
+      window.inactive.button.unpressed.image.color: #${base03}
+      window.inactive.button.hover.image.color: #${base0D}
+
+      menu.border.color: #${base00}
+      menu.separator.color: #${base02}
+      menu.title.text.color: #${base05}
+      menu.title.bg.color: #${base01}
+      menu.items.text.color: #${base05}
+      menu.items.disabled.text.color: #${base03}
+      menu.items.active.text.color: #${base00}
+      menu.items.active.bg.color: #${base0D}
+      menu.items.bg.color: #${base01}
+
+      osd.border.color: #${base00}
+      osd.bg.color: #${base01}
+      osd.label.text.color: #${base05}
+      osd.label.bg.color: #${base01}
+      osd.hilight.bg.color: #${base0D}
+      osd.unhilight.bg.color: #${base00}
 
       window.active.shadow.size: 40
       window.inactive.shadow.size: 25
-      window.active.shadow.color: #00000040
-      window.inactive.shadow.color: #00000020
+      window.active.shadow.color: #${base00}40
+      window.inactive.shadow.color: #${base00}20
     '';
 
     "labwc/autostart".text = ''

@@ -37,6 +37,8 @@
     lazygit
     shellcheck
     pandoc
+    statix
+    nixpkgs-fmt
 
     # === Gaming ===
     steam-run

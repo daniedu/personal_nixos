@@ -14,7 +14,9 @@ in {
     enable = true;
   };
 
-  home.file.".doom.d/themes/doom-stylix-theme.el".text = ''
+  home.file.".doom.d/themes/doom-stylix-theme.el" = {
+    force = true;
+    text = ''
     ;;; doom-stylix-theme.el --- Auto-generated from Stylix -*- lexical-binding: t; no-byte-compile: t; -*-
 
     (require 'doom-themes)
@@ -90,4 +92,5 @@ in {
         :background modeline-bg-inactive :foreground modeline-fg-alt)
        (mode-line-emphasis :foreground highlight)))
   '';
+  };
 }

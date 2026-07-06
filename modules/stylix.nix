@@ -6,7 +6,7 @@
       gnome.enable = false;
     };
 
-    base16Scheme = ../assets/themes/green_painting.yaml;
+    base16Scheme = ../assets/themes/astronaut_earth_space_art_2.yaml;
 
     fonts = {
       monospace = {

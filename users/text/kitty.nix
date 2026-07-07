@@ -7,7 +7,7 @@ in {
       shell = "fish";
       window_padding_width = 2;
       confirm_os_window_close = 0;
-      background_opacity = lib.mkForce "0.85";
+      background_opacity = lib.mkForce "0.95";
       dynamic_background_opacity = "yes";
       text_composition_strategy = "platform";
       cursor_shape = "beam";

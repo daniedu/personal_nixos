@@ -40,7 +40,7 @@
       blur = 1;
       blur_optimized = 1;
       blur_params_radius = 5;
-      blur_params_num_passes = 2;
+      blur_params_num_passes = 3;
 
       # Misc
       focus_on_activate = 1;

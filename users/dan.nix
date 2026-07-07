@@ -43,6 +43,9 @@
       fbneo.enable = true;
       fceumm.enable = true;
       melonds.enable = true;
+      # Sega Saturn & Dreamcast
+      beetle-saturn.enable = true;
+      flycast.enable = true;
     };
   };
 

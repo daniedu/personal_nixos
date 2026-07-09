@@ -16,12 +16,11 @@ in {
         modules-center = [
           "ext/workspaces"
           "idle_inhibitor"
-          "pulseaudio"
-          "network"
-          "clock"
-          "tray"
+          "group/tools"
         ];
-        modules-right = [ ];
+        modules-right = [
+          "clock"
+        ];
 
         "ext/workspaces" = {
           format = "{icon}";
@@ -80,6 +79,15 @@ in {
           on-click-right = "pkill nm-applet";
           on-scroll-up = "nmcli radio wifi on";
           on-scroll-down = "nmcli radio wifi off";
+        };
+
+        "group/tools" = {
+          orientation = "inherit";
+          modules = [
+            "pulseaudio"
+            "network"
+            "tray"
+          ];
         };
 
         "clock" = {
@@ -143,20 +151,25 @@ in {
         color: #${base05};
       }
 
-      #pulseaudio,
-      #network {
+      #group-tools {
         margin: 4px 5px;
-        padding: 6px 10px;
+        padding: 0 6px;
         border-radius: 20px;
         background: #${base00};
       }
 
       #pulseaudio {
         color: #${base0E};
+        padding: 6px 4px;
       }
 
       #network {
         color: #${base0B};
+        padding: 6px 4px;
+      }
+
+      #tray {
+        padding: 6px 4px;
       }
 
       #clock {
@@ -165,13 +178,6 @@ in {
         border-radius: 20px;
         background: #${base00};
         color: #${base0C};
-      }
-
-      #tray {
-        margin: 4px 5px;
-        padding: 6px 8px;
-        border-radius: 20px;
-        background: #${base00};
       }
 
       #tray > .passive,

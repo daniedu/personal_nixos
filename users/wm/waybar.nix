@@ -1,7 +1,11 @@
 { pkgs, lib, config, ... }:
 let
   c = config.lib.stylix.colors;
+  toggle-waybar = pkgs.writeShellScriptBin "toggle-waybar" ''
+    pkill -x waybar 2>/dev/null || (waybar &)
+  '';
 in {
+  home.packages = [ toggle-waybar ];
   programs.waybar = {
     enable = lib.mkDefault true;
     package = pkgs.waybar.override { wireplumberSupport = true; };
@@ -17,10 +21,9 @@ in {
           "ext/workspaces"
           "idle_inhibitor"
           "group/tools"
-        ];
-        modules-right = [
           "clock"
         ];
+        modules-right = [ ];
 
         "ext/workspaces" = {
           format = "{icon}";
@@ -98,8 +101,8 @@ in {
         };
 
         "tray" = {
-          icon-size = 16;
-          spacing = 10;
+          icon-size = 14;
+          spacing = 8;
           show-passive-items = true;
         };
       };
@@ -174,13 +177,18 @@ in {
 
       #clock {
         margin: 4px 5px;
+        margin-left: auto;
         padding: 6px 12px;
         border-radius: 20px;
         background: #${base00};
         color: #${base0C};
       }
 
-      #tray > .passive,
+      #tray > .passive {
+        -gtk-icon-effect: none;
+        opacity: 0.6;
+      }
+
       #tray > .active,
       #tray > .needs-attention {
         -gtk-icon-effect: none;

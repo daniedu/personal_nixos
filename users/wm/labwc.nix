@@ -188,7 +188,7 @@ in {
           </key>
           <key key="W-b">
             <action name="Execute">
-              <command>sh -c 'pkill -x waybar || (waybar &amp;)'</command>
+              <command>toggle-waybar</command>
             </action>
           </key>
         </keyboard>

@@ -82,7 +82,7 @@
         "$mod, C, exec, kitty -e gcalcli agenda"
         "$mod, P, exec, wlr-which-key"
 
-        "$mod, B, exec, sh -c 'pkill -x waybar || (waybar &)'"
+        "$mod, B, exec, toggle-waybar"
         "$mod, G, togglegroup"
         "$mod, TAB, changegroupactive, f"
         "$mod SHIFT, TAB, changegroupactive, b"

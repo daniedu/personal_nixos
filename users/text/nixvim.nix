@@ -1,4 +1,7 @@
-{ pkgs, inputs, ... }: {
+{ pkgs, inputs, config, lib, ... }:
+let
+  c = config.lib.stylix.colors;
+in {
   programs.nixvim = {
     enable = true;
 
@@ -430,12 +433,14 @@
 
       # Quit all
       {
-        key = "<leader><leader>q";
+        mode = "n";
+        key = "<leader>q";
         action = "<cmd>qa<CR>";
         options.desc = "Quit all";
       }
       {
-        key = "<leader><leader>Q";
+        mode = "n";
+        key = "<leader>Q";
         action = "<cmd>qa!<CR>";
         options.desc = "Force quit all";
       }
@@ -599,6 +604,11 @@
     '';
 
     extraConfigLua = ''
+      -- Solid background (ignore terminal transparency)
+      vim.api.nvim_set_hl(0, "Normal", { bg = "#${c.base00}" })
+      vim.api.nvim_set_hl(0, "NormalFloat", { bg = "#${c.base01}" })
+      vim.api.nvim_set_hl(0, "SignColumn", { bg = "#${c.base00}" })
+
       require("tiny-inline-diagnostic").setup({
         preset = "modern",
       })

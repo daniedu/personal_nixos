@@ -11,6 +11,7 @@
       awww-daemon &
       vicinae server &
       vicinae set theme stylix &
+      waybar &
       export WLR_NO_HARDWARE_CURSORS=1
     '';
 
@@ -89,6 +90,7 @@
         "SUPER+SHIFT,9,tag,9"
 
         "SUPER,p,spawn,wlr-which-key"
+        "SUPER,b,spawn,killall -SIGUSR1 waybar"
         "SUPER,Tab,switch_layout"
         "SUPER+SHIFT,space,togglefloating"
         "SUPER+SHIFT,v,togglefloating"

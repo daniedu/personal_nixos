@@ -12,9 +12,10 @@ in {
         position = "top";
         height = 30;
         spacing = 8;
-        modules-left = [ "hyprland/workspaces" ];
-        modules-center = [ "idle_inhibitor" ];
-        modules-right = [
+        modules-left = [ ];
+        modules-center = [
+          "wlr/workspaces"
+          "idle_inhibitor"
           "pulseaudio"
           "network"
           "bluetooth"
@@ -22,28 +23,24 @@ in {
           "custom/tray-arrow"
           "tray"
         ];
+        modules-right = [ ];
 
-        "hyprland/workspaces" = {
-          disable-scroll = true;
-          all-outputs = false;
-          format = "{name}";
+        "wlr/workspaces" = {
+          format = "{icon}";
           format-icons = {
-            "1" = "1";
-            "2" = "2";
-            "3" = "3";
-            "4" = "4";
-            "5" = "5";
-            "6" = "6";
-            "7" = "7";
-            "8" = "8";
-            "9" = "9";
+            "1" = "I";
+            "2" = "II";
+            "3" = "III";
+            "4" = "IV";
+            "5" = "V";
+            "6" = "VI";
+            "7" = "VII";
+            "8" = "VIII";
+            "9" = "IX";
             urgent = "!";
             default = ".";
-            empty = "·";
           };
-          persistent-workspaces = {
-            "*" = 5;
-          };
+          on-click = "activate";
         };
 
         "idle_inhibitor" = {
@@ -146,28 +143,28 @@ in {
         background: transparent;
       }
 
-      #workspaces {
+      #wlr-workspaces {
         margin: 4px 8px;
         padding: 0 6px;
         border-radius: 10px;
         background: #${base00};
       }
 
-      #workspaces button {
+      #wlr-workspaces button {
         color: #${base04};
         padding: 0 6px;
         border-radius: 6px;
       }
 
-      #workspaces button.active {
+      #wlr-workspaces button.active {
         color: #${base0D};
       }
 
-      #workspaces button.urgent {
+      #wlr-workspaces button.urgent {
         color: #${base08};
       }
 
-      #workspaces button:hover {
+      #wlr-workspaces button:hover {
         background: #${base02};
         box-shadow: none;
         text-shadow: none;

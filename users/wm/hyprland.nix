@@ -24,6 +24,7 @@
         "awww-daemon"
         "vicinae server"
         "vicinae set theme stylix"
+        "waybar"
       ];
 
       # DOESNT EXISTS
@@ -81,6 +82,7 @@
         "$mod, C, exec, kitty -e gcalcli agenda"
         "$mod, P, exec, wlr-which-key"
 
+        "$mod, B, exec, killall -SIGUSR1 waybar"
         "$mod, G, togglegroup"
         "$mod, TAB, changegroupactive, f"
         "$mod SHIFT, TAB, changegroupactive, b"

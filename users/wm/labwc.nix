@@ -186,6 +186,11 @@ in {
               <direction>up</direction>
             </action>
           </key>
+          <key key="W-b">
+            <action name="Execute">
+              <command>killall -SIGUSR1 waybar</command>
+            </action>
+          </key>
         </keyboard>
 
         <mouse>
@@ -292,6 +297,7 @@ in {
       awww-daemon &
       vicinae server &
       vicinae set theme stylix &
+      waybar &
     '';
   };
 

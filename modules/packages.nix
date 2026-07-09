@@ -37,5 +37,11 @@
 
     # === Extras ===
     inputs.helium.packages.${pkgs.system}.default
+    localsend
   ];
+
+  programs.localsend = {
+    enable = true;
+    openFirewall = true;
+  };
 }

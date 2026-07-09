@@ -2,7 +2,7 @@
 let
   c = config.lib.stylix.colors;
   toggle-waybar = pkgs.writeShellScriptBin "toggle-waybar" ''
-    if pkill -x waybar 2>/dev/null; then
+    if pkill -x .waybar-wrapped 2>/dev/null; then
       :
     else
       nohup waybar &>/dev/null &

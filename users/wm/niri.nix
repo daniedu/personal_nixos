@@ -89,7 +89,7 @@
         "Mod+Shift+8".action.move-window-to-workspace = 8;
         "Mod+Shift+9".action.move-window-to-workspace = 9;
 
-        "Mod+B".action.spawn = [ "killall" "-SIGUSR1" "waybar" ];
+        "Mod+B".action.spawn = [ "sh" "-c" "pkill -x waybar || (waybar &)" ];
         "Mod+P".action.spawn = [ "wlr-which-key" ];
       };
     };

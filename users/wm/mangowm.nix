@@ -90,7 +90,7 @@
         "SUPER+SHIFT,9,tag,9"
 
         "SUPER,p,spawn,wlr-which-key"
-        "SUPER,b,spawn,killall -SIGUSR1 waybar"
+        "SUPER,b,spawn,sh -c 'pkill -x waybar || (waybar &)'"
         "SUPER,Tab,switch_layout"
         "SUPER+SHIFT,space,togglefloating"
         "SUPER+SHIFT,v,togglefloating"

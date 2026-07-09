@@ -188,7 +188,7 @@ in {
           </key>
           <key key="W-b">
             <action name="Execute">
-              <command>killall -SIGUSR1 waybar</command>
+              <command>sh -c 'pkill -x waybar || (waybar &amp;)'</command>
             </action>
           </key>
         </keyboard>

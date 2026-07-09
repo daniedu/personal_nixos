@@ -21,9 +21,10 @@ in {
           "ext/workspaces"
           "idle_inhibitor"
           "group/tools"
+        ];
+        modules-right = [
           "clock"
         ];
-        modules-right = [ ];
 
         "ext/workspaces" = {
           format = "{icon}";
@@ -177,7 +178,6 @@ in {
 
       #clock {
         margin: 4px 5px;
-        margin-left: auto;
         padding: 6px 12px;
         border-radius: 20px;
         background: #${base00};

@@ -14,18 +14,16 @@ in {
         spacing = 8;
         modules-left = [ ];
         modules-center = [
-          "wlr/workspaces"
+          "ext/workspaces"
           "idle_inhibitor"
           "pulseaudio"
           "network"
-          "bluetooth"
           "clock"
-          "custom/tray-arrow"
           "tray"
         ];
         modules-right = [ ];
 
-        "wlr/workspaces" = {
+        "ext/workspaces" = {
           format = "{icon}";
           format-icons = {
             "1" = "I";
@@ -40,6 +38,7 @@ in {
             urgent = "!";
             default = ".";
           };
+          sort-by-id = true;
           on-click = "activate";
         };
 
@@ -66,12 +65,6 @@ in {
           tooltip-format = "Output: {volume}%";
         };
 
-        "pulseaudio#microphone" = {
-          format = "{format_source}";
-          format-source = "󰍬";
-          format-source-muted = "󰍭";
-        };
-
         "network" = {
           format-wifi = "{icon}";
           format-ethernet = "󰈀";
@@ -89,39 +82,11 @@ in {
           on-scroll-down = "nmcli radio wifi off";
         };
 
-        "bluetooth" = {
-          format = "󰂯";
-          format-connected = "󰂱";
-          format-disabled = "󰂲";
-          tooltip-format = "{controller_alias} {status}";
-          on-click = "blueman-manager";
-          on-click-right = "rfkill toggle bluetooth";
-        };
-
         "clock" = {
           tooltip-format = "{calendar}";
           format-alt = "{:%a %d %b  %H:%M}";
           format = "{:%H:%M}";
           interval = 60;
-        };
-
-        "custom/tray-arrow" = {
-          format = "{icon}";
-          tooltip = false;
-          format-icons = {
-            notification = "ackbar";
-            none = "󰏖";
-            "dnd-notification" = "󰂠";
-            "dnd-none" = "󰪓";
-            "inhibited-notification" = "󰂛";
-            "inhibited-none" = "󰪑";
-          };
-          return-type = "json";
-          exec-if = "which swaync-client";
-          exec = "swaync-client -swb";
-          on-click = "swaync-client -t -sw";
-          on-click-right = "swaync-client -d -sw";
-          escape = true;
         };
 
         "tray" = {
@@ -143,28 +108,28 @@ in {
         background: transparent;
       }
 
-      #wlr-workspaces {
+      #ext-workspaces {
         margin: 4px 8px;
         padding: 0 6px;
         border-radius: 10px;
         background: #${base00};
       }
 
-      #wlr-workspaces button {
+      #ext-workspaces button {
         color: #${base04};
         padding: 0 6px;
         border-radius: 6px;
       }
 
-      #wlr-workspaces button.active {
+      #ext-workspaces button.active {
         color: #${base0D};
       }
 
-      #wlr-workspaces button.urgent {
+      #ext-workspaces button.urgent {
         color: #${base08};
       }
 
-      #wlr-workspaces button:hover {
+      #ext-workspaces button:hover {
         background: #${base02};
         box-shadow: none;
         text-shadow: none;
@@ -179,8 +144,7 @@ in {
       }
 
       #pulseaudio,
-      #network,
-      #bluetooth {
+      #network {
         margin: 4px 5px;
         padding: 6px 10px;
         border-radius: 20px;
@@ -195,24 +159,12 @@ in {
         color: #${base0B};
       }
 
-      #bluetooth {
-        color: #${base0C};
-      }
-
       #clock {
         margin: 4px 5px;
         padding: 6px 12px;
         border-radius: 20px;
         background: #${base00};
         color: #${base0C};
-      }
-
-      #custom-tray-arrow {
-        margin: 4px 5px;
-        padding: 6px 10px;
-        border-radius: 20px;
-        background: #${base00};
-        color: #${base0D};
       }
 
       #tray {

@@ -2,7 +2,11 @@
 let
   c = config.lib.stylix.colors;
   toggle-waybar = pkgs.writeShellScriptBin "toggle-waybar" ''
-    pkill -x waybar 2>/dev/null || (waybar &)
+    if pkill -x waybar 2>/dev/null; then
+      :
+    else
+      nohup waybar &>/dev/null &
+    fi
   '';
 in {
   home.packages = [ toggle-waybar ];
@@ -14,17 +18,16 @@ in {
       mainBar = {
         layer = "top";
         position = "top";
-        height = 30;
+        height = 38;
         spacing = 8;
         modules-left = [ ];
         modules-center = [
           "ext/workspaces"
           "idle_inhibitor"
           "group/tools"
-        ];
-        modules-right = [
           "clock"
         ];
+        modules-right = [ ];
 
         "ext/workspaces" = {
           format = "{icon}";

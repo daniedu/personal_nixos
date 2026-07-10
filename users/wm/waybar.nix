@@ -9,7 +9,12 @@ let
     fi
   '';
 in {
-  home.packages = [ toggle-waybar ];
+  home.packages = [ toggle-waybar pkgs.papirus-icon-theme ];
+
+  systemd.user.services.waybar = {
+    Service.Environment = "GTK_ICON_THEME_NAME=Papirus-Dark";
+  };
+
   programs.waybar = {
     enable = lib.mkDefault true;
     package = pkgs.waybar.override { wireplumberSupport = true; };

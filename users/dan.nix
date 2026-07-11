@@ -20,7 +20,6 @@
     ./wm/labwc.nix
     ./wm/niri.nix
     ./wm/waybar.nix
-    # ./wm/noctalia.nix
     ./services/vicinae.nix
     ./services/wlr-which-key.nix
     

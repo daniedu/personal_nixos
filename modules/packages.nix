@@ -4,7 +4,6 @@
     vim
     git
     wget
-    btop
     glib
     xdg-utils
     # === Archive Tools ===

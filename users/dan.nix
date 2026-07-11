@@ -56,10 +56,6 @@
       package = pkgs.adwaita-icon-theme;
     };
   };
-  
-  home.sessionVariables = {
-    GTK_USE_PORTAL = "1";
-  };
 
   fonts.fontconfig.enable = true;
 

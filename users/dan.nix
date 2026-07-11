@@ -63,6 +63,7 @@
 
   fonts.fontconfig.enable = true;
 
+  xdg.configFile."mimeapps.list".force = true;
   xdg.mimeApps.enable = true;
   xdg.mimeApps.defaultApplications = {
     "x-scheme-handler/http" = "helium.desktop";

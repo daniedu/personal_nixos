@@ -9,12 +9,7 @@ let
     fi
   '';
 in {
-  home.packages = [ toggle-waybar pkgs.papirus-icon-theme ];
-
-  systemd.user.services.waybar = {
-    Service.Environment = "GTK_ICON_THEME_NAME=Papirus-Dark";
-  };
-
+  home.packages = [ toggle-waybar ];
   programs.waybar = {
     enable = lib.mkDefault true;
     package = pkgs.waybar.override { wireplumberSupport = true; };
@@ -98,7 +93,6 @@ in {
           modules = [
             "pulseaudio"
             "network"
-            "tray"
           ];
         };
 
@@ -109,11 +103,6 @@ in {
           interval = 60;
         };
 
-        "tray" = {
-          icon-size = 14;
-          spacing = 8;
-          show-passive-items = true;
-        };
       };
     };
 
@@ -180,10 +169,6 @@ in {
         padding: 6px 4px;
       }
 
-      #tray {
-        padding: 6px 4px;
-      }
-
       #clock {
         margin: 4px 5px;
         padding: 6px 12px;
@@ -192,15 +177,6 @@ in {
         color: #${base0C};
       }
 
-      #tray > .passive {
-        -gtk-icon-effect: none;
-        opacity: 0.6;
-      }
-
-      #tray > .active,
-      #tray > .needs-attention {
-        -gtk-icon-effect: none;
-      }
     '';
   };
 }

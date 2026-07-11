@@ -16,7 +16,12 @@
         opacity = lib.mkForce 1.0;
       };
     };
-    extensions = [];
+    extensions = [
+      "wifi-commander"
+      "bluetooth"
+      "power-profile"
+      "player-pilot"
+    ];
   };
 
   xdg.dataFile = let
@@ -36,5 +41,9 @@
     (ext "process-manager"           vx.process-manager)
     (ext "color-converter"           vx.color-converter)
     (ext "nerdfont-search"           vx.nerdfont-search)
+    (ext "wifi-commander"            vx.wifi-commander)
+    (ext "bluetooth"                 vx.bluetooth)
+    (ext "power-profile"             vx.power-profile)
+    (ext "player-pilot"              vx.player-pilot)
   ];
 }

@@ -7,5 +7,6 @@
 
   nixpkgs.config.allowUnfree = true;
   zramSwap.enable = true;
+  services.power-profiles-daemon.enable = true;
   system.stateVersion = "25.11";
 }

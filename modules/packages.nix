@@ -19,6 +19,7 @@
     system-config-printer
     networkmanagerapplet
     gnome-disk-utility
+    power-profiles-daemon
 
     # === File Manager ===
     nautilus

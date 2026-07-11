@@ -63,6 +63,46 @@
 
   fonts.fontconfig.enable = true;
 
+  xdg.mimeApps.enable = true;
+  xdg.mimeApps.defaultApplications = {
+    "x-scheme-handler/http" = "helium.desktop";
+    "x-scheme-handler/https" = "helium.desktop";
+    "x-scheme-handler/about" = "helium.desktop";
+    "x-scheme-handler/unknown" = "helium.desktop";
+    "text/html" = "helium.desktop";
+    "application/xhtml+xml" = "helium.desktop";
+
+    "x-scheme-handler/terminal" = "kitty.desktop";
+
+    "application/pdf" = "org.gnome.Evince.desktop";
+
+    "image/bmp" = "org.gnome.eog.desktop";
+    "image/gif" = "org.gnome.eog.desktop";
+    "image/jpeg" = "org.gnome.eog.desktop";
+    "image/png" = "org.gnome.eog.desktop";
+    "image/svg+xml" = "org.gnome.eog.desktop";
+    "image/tiff" = "org.gnome.eog.desktop";
+    "image/webp" = "org.gnome.eog.desktop";
+
+    "video/mp4" = "mpv.desktop";
+    "video/mpeg" = "mpv.desktop";
+    "video/ogg" = "mpv.desktop";
+    "video/webm" = "mpv.desktop";
+    "video/x-matroska" = "mpv.desktop";
+    "video/quicktime" = "mpv.desktop";
+
+    "audio/mpeg" = "mpv.desktop";
+    "audio/ogg" = "mpv.desktop";
+    "audio/flac" = "mpv.desktop";
+    "audio/wav" = "mpv.desktop";
+
+    "text/plain" = "code.desktop";
+    "text/markdown" = "code.desktop";
+    "application/json" = "code.desktop";
+
+    "inode/directory" = "org.gnome.Nautilus.desktop";
+  };
+
   xdg.userDirs = {
     enable     = true;
     createDirectories = true;

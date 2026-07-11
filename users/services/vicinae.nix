@@ -36,7 +36,6 @@ in {
     (ext "nix"                      vx.nix)
     (ext "fuzzy-files"              vx.fuzzy-files)
     (ext "awww-switcher"            vx.awww-switcher)
-    (ext "pulseaudio"               vx.pulseaudio)
     (ext "protondb-search"          vx.protondb-search)
     (ext "zoxide-recent-directories" vx.zoxide-recent-directories)
     (ext "niri"                      vx.niri)

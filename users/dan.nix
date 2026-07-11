@@ -25,8 +25,6 @@
     ./services/wlr-which-key.nix
     
     ./launchers/opencode.nix
-    ./launchers/opencodeDesktop.nix
-    
     ./programs/direnv.nix
 
     ./packages.nix

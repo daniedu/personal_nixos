@@ -1,4 +1,7 @@
-{ pkgs, inputs, lib, config, ... }: {
+{ pkgs, inputs, lib, config, ... }:
+let
+  vx = inputs.vicinae-extensions.packages.${pkgs.stdenv.hostPlatform.system};
+in {
   services.vicinae = {
     enable = true;
     systemd.enable = false;
@@ -17,15 +20,14 @@
       };
     };
     extensions = [
-      "wifi-commander"
-      "bluetooth"
-      "power-profile"
-      "player-pilot"
+      vx.wifi-commander
+      vx.bluetooth
+      vx.power-profile
+      vx.player-pilot
     ];
   };
 
   xdg.dataFile = let
-    vx = inputs.vicinae-extensions.packages.${pkgs.stdenv.hostPlatform.system};
     ext = name: pkg: {
       name = "vicinae/extensions/${name}";
       value.source = pkg;

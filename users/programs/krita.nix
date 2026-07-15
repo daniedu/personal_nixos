@@ -9,7 +9,8 @@ let
     "A" = 10; "B" = 11; "C" = 12; "D" = 13; "E" = 14; "F" = 15;
   };
   toDecimal = d: builtins.getAttr d hexVals;
-  hexToDec = hex: builtins.foldl' (acc: d: acc * 16 + toDecimal d) 0 (builtins.stringToCharacters hex);
+  strToChars = s: builtins.map (i: builtins.substring i 1 s) (builtins.genList (i: i) (builtins.stringLength s));
+  hexToDec = hex: builtins.foldl' (acc: d: acc * 16 + toDecimal d) 0 (strToChars hex);
   color = hex: "${toString (hexToDec (builtins.substring 0 2 hex))},${toString (hexToDec (builtins.substring 2 2 hex))},${toString (hexToDec (builtins.substring 4 2 hex))}";
 
   section = name: bg: alt: fg: inactive: active: link: visited: focus: hover: ''

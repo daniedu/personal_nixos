@@ -25,6 +25,7 @@
     
     ./launchers/opencode.nix
     ./programs/direnv.nix
+    ./programs/krita.nix
 
     ./packages.nix
   ];

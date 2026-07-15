@@ -26,7 +26,7 @@ let
     DecorationHover=${color hover}
   '';
 in {
-  home.file.".local/share/color-schemes/stylix.colors" = {
+  home.file.".var/app/org.kde.krita/data/krita/color-schemes/stylix.colors" = {
     force = true;
     text = ''
       [General]

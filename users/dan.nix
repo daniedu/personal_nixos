@@ -1,7 +1,6 @@
 { pkgs, inputs, lib, config, ... }: {
   imports = [
     inputs.mangowm.hmModules.mango
-    inputs.nixvim.homeModules.nixvim
     inputs.vicinae.homeManagerModules.default
     inputs.niri.homeModules.niri
     ./shell/fish.nix
@@ -10,7 +9,6 @@
     ./shell/tmux.nix
 
     ./text/kitty.nix
-    ./text/nixvim.nix
     ./text/vscode.nix
     ./text/emacs.nix
     # ./text/zed.nix (disabled — no Vulkan support)

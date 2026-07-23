@@ -21,7 +21,7 @@ config = {
       default = [ "wlr" "gtk" ];
     };
     niri = {
-      default = [ "wlr" "gtk" ];
+      default = [ "gtk" ];
     };
   };
   };

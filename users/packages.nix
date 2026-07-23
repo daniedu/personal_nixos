@@ -55,7 +55,6 @@
     yaml-language-server   # yaml
 
     # === Gaming ===
-    steam-run
     osu-lazer
 
     # === Art ===

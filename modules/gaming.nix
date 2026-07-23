@@ -5,6 +5,9 @@
     dedicatedServer.openFirewall = true;
     gamescopeSession.enable    = true;
     extraCompatPackages = with pkgs; [ proton-ge-bin ];
+    extraEnv = {
+      STEAM_FORCE_WAYLAND = "1";
+    };
   };
 
   programs.gamescope = {

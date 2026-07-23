@@ -24,6 +24,7 @@
     ./launchers/opencode.nix
     ./programs/direnv.nix
     ./programs/krita.nix
+    ./programs/nvim.nix
 
     ./packages.nix
   ];

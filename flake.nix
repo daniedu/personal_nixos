@@ -96,6 +96,11 @@
               openldap = prev.openldap.overrideAttrs (old: {
                 doCheck = false;
               });
+              # Silence xorg deprecation aliases from upstream inputs
+              xorg = prev.xorg // {
+                libxcb = prev.libxcb;
+                xcbutilwm = prev."libxcb-wm";
+              };
             })
           ];
         })

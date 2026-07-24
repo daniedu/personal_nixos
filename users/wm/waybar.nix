@@ -31,20 +31,23 @@ in {
           "clock"
         ];
 
-        "hyprland/workspaces" = {
-          on-click = "activate";
+        "ext/workspaces" = {
           format = "{icon}";
           format-icons = {
-            default = "";
-            active = "";
+            "1" = "I";
+            "2" = "II";
+            "3" = "III";
+            "4" = "IV";
+            "5" = "V";
+            "6" = "VI";
+            "7" = "VII";
+            "8" = "VIII";
+            "9" = "IX";
+            urgent = "!";
+            default = ".";
           };
-          persistent-workspaces = {
-            "1" = [];
-            "2" = [];
-            "3" = [];
-            "4" = [];
-            "5" = [];
-          };
+          sort-by-id = true;
+          on-click = "activate";
         };
 
         "mpris" = {
@@ -203,7 +206,7 @@ in {
         opacity: 0;
       }
 
-      #workspaces {
+      #ext-workspaces {
           padding: 0px 5px;
           margin: 3.5 3.5px;
           border-radius: 16px;
@@ -211,7 +214,7 @@ in {
           opacity: 0.95;
       }
 
-      #workspaces button {
+      #ext-workspaces button {
         all: initial;
         padding: 0 6px;
         margin: 0 1.5px;
@@ -219,19 +222,19 @@ in {
         color: #${c.base05};
       }
 
-      #workspaces button.active {
+      #ext-workspaces button.active {
         color: #${c.base0D};
       }
 
-      #workspaces button.empty {
+      #ext-workspaces button.empty {
         opacity: 0.5;
       }
 
-      #workspaces button.urgent {
+      #ext-workspaces button.urgent {
         color: #${c.base08};
       }
 
-      #workspaces button:hover {
+      #ext-workspaces button:hover {
         background: #${c.base02};
         box-shadow: none;
         text-shadow: none;

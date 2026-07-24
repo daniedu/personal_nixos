@@ -216,14 +216,17 @@ in {
 
       #ext-workspaces button {
         all: initial;
-        padding: 0 6px;
+        padding: 0 4px;
         margin: 0 1.5px;
-        min-width: 9px;
+        min-width: 6px;
+        font-size: 12px;
         color: #${c.base05};
       }
 
       #ext-workspaces button.active {
-        color: #${c.base0D};
+        background: #${c.base0D};
+        border-radius: 12px;
+        color: #${c.base00};
       }
 
       #ext-workspaces button.empty {

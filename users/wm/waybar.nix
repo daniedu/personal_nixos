@@ -18,165 +18,289 @@ in {
       mainBar = {
         layer = "top";
         position = "top";
-        height = 38;
-        spacing = 8;
-        modules-left = [ ];
-        modules-center = [
-          "ext/workspaces"
-          "idle_inhibitor"
-          "group/tools"
+        height = 26;
+        spacing = 0;
+        margin-top = 2;
+        margin-right = 10;
+        margin-left = 10;
+        modules-left = [ "hyprland/workspaces" "mpris" ];
+        modules-center = [ "hyprland/window" ];
+        modules-right = [
+          "group/tray-expander"
+          "group/ctl"
           "clock"
         ];
-        modules-right = [ ];
 
-        "ext/workspaces" = {
-          format = "{icon}";
-          format-icons = {
-            "1" = "I";
-            "2" = "II";
-            "3" = "III";
-            "4" = "IV";
-            "5" = "V";
-            "6" = "VI";
-            "7" = "VII";
-            "8" = "VIII";
-            "9" = "IX";
-            urgent = "!";
-            default = ".";
-          };
-          sort-by-id = true;
+        "hyprland/workspaces" = {
           on-click = "activate";
-        };
-
-        "idle_inhibitor" = {
           format = "{icon}";
           format-icons = {
-            activated = "󰛨";
-            deactivated = "󰛩";
+            default = "";
+            active = "";
           };
-          tooltip-format-activated = "System Focused";
-          tooltip-format-deactivated = "Normal Mode";
-        };
-
-        "pulseaudio" = {
-          format = "{icon}";
-          format-muted = "󰝟";
-          format-icons = {
-            headphone = "󰋋";
-            headset = "󰋋";
-            hands-free = "󰋋";
-            default = [ "󰈐" "󰈑" "󰈒" ];
+          persistent-workspaces = {
+            "1" = [];
+            "2" = [];
+            "3" = [];
+            "4" = [];
+            "5" = [];
           };
-          on-click = "pavucontrol";
-          tooltip-format = "Output: {volume}%";
         };
 
-        "network" = {
-          format-wifi = "{icon}";
-          format-ethernet = "󰈀";
-          format-linked = "󱘖";
-          format-disconnected = "󰤮";
-          format-disabled = "󰤮";
-          format-icons = [ "󰤯" "󰤟" "󰤢" "󰤥" "󰤨" ];
-          tooltip-format-disconnected = "No Connection";
-          tooltip-format-disabled = "Wi-Fi is OFF";
-          tooltip-format-wifi = "󰤱  {essid} ({signalStrength}%)";
-          tooltip-format-ethernet = "󰈀  {ifname} (Connected)";
-          on-click = "nm-applet --indicator";
-          on-click-right = "pkill nm-applet";
-          on-scroll-up = "nmcli radio wifi on";
-          on-scroll-down = "nmcli radio wifi off";
+        "mpris" = {
+          interval = 10;
+          format = "{player_icon} {dynamic}";
+          format-paused = "{status_icon} {artist} {title}";
+          on-click-middle = "playerctl play-pause";
+          on-click = "playerctl previous";
+          on-click-right = "playerctl next";
+          tooltip = true;
+          tooltip-format = "{status_icon} {dynamic}\nLeft Click: previous\nMid Click: Pause\nRight Click: Next";
+          player-icons = {
+            chromium = "";
+            default = "";
+            firefox = "";
+            mpv = "󰐹";
+            spotify = "󰎆";
+            vlc = "󰕼";
+          };
+          status-icons = {
+            paused = "";
+            playing = "";
+            stopped = "";
+          };
+          dynamic-order = ["artist" "title"];
+          max-length = 40;
         };
 
-        "group/tools" = {
+        "hyprland/window" = {
+          format = "{title}";
+          max-length = 25;
+          rewrite = {
+            " - " = "";
+            "(.*) - Chromium - chromium" = "   $1 ";
+            "(.*nvim)...(.*)" = "   $2 ";
+            "(.*code) - (.*)" = " 󰨞  $1 ";
+            "^.*btop( .*|$)" = " 󰧨 BTOP $1 ";
+            "(.*) - Spotify" = "  $1 ";
+            "(.*) - kitty" = "   $1 ";
+            "(.*) - fish" = "   [$1] ";
+            "(.*Steam)...(.*)" = "   $1";
+          };
+        };
+
+        "group/tray-expander" = {
+          orientation = "inherit";
+          drawer = {
+            transition-duration = 600;
+            "children-class" = "tray-group-item";
+          };
+          modules = ["custom/expand-icon" "tray"];
+        };
+
+        "custom/expand-icon" = {
+          format = "";
+          tooltip = false;
+        };
+
+        "tray" = {
+          icon-size = 12;
+          spacing = 4;
+        };
+
+        "group/ctl" = {
           orientation = "inherit";
           modules = [
-            "pulseaudio"
+            "bluetooth"
             "network"
+            "pulseaudio"
+            "cpu"
           ];
         };
 
-        "clock" = {
-          tooltip-format = "{calendar}";
-          format-alt = "{:%a %d %b  %H:%M}";
-          format = "{:%H:%M}";
-          interval = 60;
+        "bluetooth" = {
+          format = "";
+          format-disabled = "󰂲";
+          format-connected = "󰂱";
+          format-no-controller = "";
+          tooltip-format = "Devices connected: {num_connections}";
+          on-click = "blueman-applet";
         };
 
+        "network" = {
+          format-icons = ["󰤯" "󰤟" "󰤢" "󰤥" "󰤨"];
+          format = "{icon}";
+          format-wifi = "{icon}";
+          format-ethernet = "󰀂";
+          format-disconnected = "󰤮";
+          tooltip-format-wifi = "{essid} ({frequency} GHz)\n⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}";
+          tooltip-format-ethernet = "⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}";
+          tooltip-format-disconnected = "Disconnected";
+          interval = 3;
+          on-click = "nm-applet --indicator";
+        };
+
+        "pulseaudio" = {
+          format = "{icon} {volume}%";
+          on-click = "pavucontrol";
+          on-click-right = "pamixer -t";
+          tooltip-format = "Playing at {volume}%";
+          scroll-step = 5;
+          format-muted = "";
+          format-icons = {
+            default = ["" " " " "];
+          };
+        };
+
+        "cpu" = {
+          interval = 2;
+          format = "󰍛 {usage}%";
+          on-click = "kitty btop";
+        };
+
+        "clock" = {
+          format = " {:%I:%M %p}";
+          format-alt = "{:%A  %e %B}";
+          tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
+        };
       };
     };
 
     style = with c; ''
       * {
-        font-family: "JetBrainsMono Nerd Font";
-        font-size: 13px;
+        color: #${c.base05};
+        border: none;
+        border-radius: 25;
         min-height: 0;
+        font-family: 'JetBrainsMono Nerd Font';
+        font-size: 12px;
+      }
+
+      .modules-left {
+        margin-left: 8px;
+      }
+
+      .modules-right {
+        margin-right: 8px;
       }
 
       window#waybar {
+        background: #${c.base00};
+        transition-property: background-color;
+        transition-duration: .5s;
+      }
+
+      window#waybar.empty #window {
         background: transparent;
+        background-color: transparent;
+        border: none;
+        border-radius: 0;
+        color: transparent;
+        padding: 0;
+        margin: 0;
+      }
+      #waybar.empty .modules-center {
+        opacity: 0;
       }
 
-      #ext-workspaces {
-        margin: 4px 8px;
+      #workspaces {
+          padding: 0px 5px;
+          margin: 3.5 3.5px;
+          border-radius: 16px;
+          background: #${c.base01};
+          opacity: 0.95;
+      }
+
+      #workspaces button {
+        all: initial;
         padding: 0 6px;
-        border-radius: 10px;
-        background: #${base00};
+        margin: 0 1.5px;
+        min-width: 9px;
+        color: #${c.base05};
       }
 
-      #ext-workspaces button {
-        color: #${base04};
-        padding: 0 6px;
-        border-radius: 6px;
+      #workspaces button.active {
+        color: #${c.base0D};
       }
 
-      #ext-workspaces button.active {
-        color: #${base0D};
+      #workspaces button.empty {
+        opacity: 0.5;
       }
 
-      #ext-workspaces button.urgent {
-        color: #${base08};
+      #workspaces button.urgent {
+        color: #${c.base08};
       }
 
-      #ext-workspaces button:hover {
-        background: #${base02};
+      #workspaces button:hover {
+        background: #${c.base02};
         box-shadow: none;
         text-shadow: none;
       }
 
-      #idle_inhibitor {
-        margin: 4px 5px;
-        padding: 6px 12px;
-        border-radius: 20px;
-        background: #${base00};
-        color: #${base05};
-      }
-
-      #group-tools {
-        margin: 4px 5px;
-        padding: 0 6px;
-        border-radius: 20px;
-        background: #${base00};
-      }
-
+      #cpu,
       #pulseaudio {
-        color: #${base0E};
-        padding: 6px 4px;
+        min-width: 12px;
+        margin: 0 7.5px;
+      }
+
+      #tray {
+        background: transparent;
+        border-radius: 16px;
+        padding: 0px 5px;
+        margin: 3.5 2px;
+        margin-right: 1px;
+      }
+
+      #bluetooth {
+        margin-right: 8px;
       }
 
       #network {
-        color: #${base0B};
-        padding: 6px 4px;
+        margin-right: 9px;
       }
 
-      #clock {
-        margin: 4px 5px;
-        padding: 6px 12px;
-        border-radius: 20px;
-        background: #${base00};
-        color: #${base0C};
+      #custom-expand-icon {
+        margin-right: 10px;
       }
 
+      tooltip {
+        background: #${c.base00};
+        border: 1px solid #${c.base05};
+      }
+      tooltip label {
+        color: #${c.base05};
+      }
+
+      .hidden {
+        opacity: 0;
+      }
+
+      #clock,
+      #mpris {
+          font-weight: 800;
+          background: #${c.base01};
+          border-radius: 16px;
+          padding: 0px 5px;
+          margin: 3.5 3.5px;
+      }
+
+      #window {
+          font-weight: 800;
+          background: #${c.base01};
+          border-radius: 16px;
+          padding: 0px 5px;
+          margin: 3.5 2px;
+      }
+
+      #group-ctl,
+      #group_ctl,
+      #ctl {
+          font-weight: 800;
+          background: #${c.base01};
+          border-radius: 16px;
+          padding: 0px 5px;
+          margin: 3.5 2px;
+      }
     '';
   };
 }

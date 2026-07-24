@@ -23,7 +23,7 @@ in {
         margin-top = 2;
         margin-right = 10;
         margin-left = 10;
-        modules-left = [ "hyprland/workspaces" "mpris" ];
+        modules-left = [ "ext/workspaces" "mpris" ];
         modules-center = [ "hyprland/window" ];
         modules-right = [
           "group/tray-expander"

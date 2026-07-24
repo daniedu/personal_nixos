@@ -213,7 +213,7 @@ in
       }
 
       window#waybar {
-        /* background: #${c.base00}; */
+        background: transparent; 
         transition-property: background-color;
         transition-duration: .5s;
       }

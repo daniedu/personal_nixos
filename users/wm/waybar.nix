@@ -1,4 +1,9 @@
-{ pkgs, lib, config, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
 let
   c = config.lib.stylix.colors;
   toggle-waybar = pkgs.writeShellScriptBin "toggle-waybar" ''
@@ -8,7 +13,8 @@ let
       nohup waybar &>/dev/null &
     fi
   '';
-in {
+in
+{
   home.packages = [ toggle-waybar ];
   programs.waybar = {
     enable = lib.mkDefault true;
@@ -23,7 +29,10 @@ in {
         margin-top = 2;
         margin-right = 10;
         margin-left = 10;
-        modules-left = [ "ext/workspaces" "mpris" ];
+        modules-left = [
+          "ext/workspaces"
+          "mpris"
+        ];
         modules-center = [ "hyprland/window" ];
         modules-right = [
           "group/tray-expander"
@@ -72,7 +81,10 @@ in {
             playing = "";
             stopped = "";
           };
-          dynamic-order = ["artist" "title"];
+          dynamic-order = [
+            "artist"
+            "title"
+          ];
           max-length = 40;
         };
 
@@ -98,7 +110,10 @@ in {
             transition-duration = 600;
             "children-class" = "tray-group-item";
           };
-          modules = ["custom/expand-icon" "tray"];
+          modules = [
+            "custom/expand-icon"
+            "tray"
+          ];
         };
 
         "custom/expand-icon" = {
@@ -131,7 +146,13 @@ in {
         };
 
         "network" = {
-          format-icons = ["󰤯" "󰤟" "󰤢" "󰤥" "󰤨"];
+          format-icons = [
+            "󰤯"
+            "󰤟"
+            "󰤢"
+            "󰤥"
+            "󰤨"
+          ];
           format = "{icon}";
           format-wifi = "{icon}";
           format-ethernet = "󰀂";
@@ -151,7 +172,11 @@ in {
           scroll-step = 5;
           format-muted = "";
           format-icons = {
-            default = ["" " " " "];
+            default = [
+              ""
+              " "
+              " "
+            ];
           };
         };
 
@@ -188,7 +213,7 @@ in {
       }
 
       window#waybar {
-        background: #${c.base00};
+        /* background: #${c.base00}; */
         transition-property: background-color;
         transition-duration: .5s;
       }

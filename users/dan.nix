@@ -13,9 +13,7 @@
     ./text/emacs.nix
     # ./text/zed.nix (disabled — no Vulkan support)
     
-    ./wm/hyprland.nix
     ./wm/mangowm.nix
-    ./wm/labwc.nix
     ./wm/niri.nix
     ./wm/waybar.nix
     ./services/vicinae.nix

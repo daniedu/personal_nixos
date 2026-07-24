@@ -4,9 +4,9 @@
   services.displayManager.ly.settings = {
     xinitrc = null;
   };
-  services.displayManager.sessionPackages = [ pkgs.labwc pkgs.niri ];
+  services.displayManager.sessionPackages = [ pkgs.niri ];
   services.flatpak.enable               = true;
   services.xserver.xkb = { layout = "us"; variant = ""; };
-  programs.hyprland.enable              = true;
+  
   services.displayManager.sddm.settings.Theme.CursorTheme = "Bibata-Modern-Ice";
 }

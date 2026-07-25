@@ -1,4 +1,11 @@
-{ pkgs, inputs, lib, config, ... }: {
+{
+  pkgs,
+  inputs,
+  lib,
+  config,
+  ...
+}:
+{
   imports = [
     inputs.mangowm.hmModules.mango
     inputs.vicinae.homeManagerModules.default
@@ -12,12 +19,12 @@
     ./text/vscode.nix
     ./text/emacs.nix
     # ./text/zed.nix (disabled — no Vulkan support)
-    
+
     ./wm/mangowm.nix
     ./wm/niri.nix
     ./wm/waybar.nix
     ./services/vicinae.nix
-    
+
     ./launchers/opencode.nix
     ./programs/direnv.nix
     ./programs/krita.nix
@@ -25,9 +32,11 @@
     ./packages.nix
   ];
 
-  home.username    = "dan";
+  home.username = "dan";
   home.homeDirectory = "/home/work";
-  home.stateVersion  = "25.11";
+  home.stateVersion = "25.11";
+  stylix.targets.nvf.transparentBackground = false;
+
   programs.retroarch = {
     enable = true;
     cores = {
@@ -41,7 +50,6 @@
       flycast.enable = true;
     };
   };
-
 
   gtk = {
     enable = true;
@@ -96,7 +104,7 @@
   };
 
   xdg.userDirs = {
-    enable     = true;
+    enable = true;
     createDirectories = true;
     setSessionVariables = false;
   };

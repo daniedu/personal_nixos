@@ -258,6 +258,16 @@ in
         color: #${c.base00};
       }
 
+      #ext-workspaces button:focus,
+      #ext-workspaces button:active,
+      #ext-workspaces button:checked {
+        border: none;
+        box-shadow: none;
+        outline: none;
+        background: #${c.base0D};
+        color: #${c.base00};
+      }
+
       #ext-workspaces button.empty {
         opacity: 0.5;
       }

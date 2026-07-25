@@ -198,7 +198,7 @@ in
       * {
         color: #${c.base05};
         border: none;
-        border-radius: 25;
+        border-radius: 25px;
         min-height: 0;
         font-family: 'JetBrainsMono Nerd Font';
         font-size: 12px;
@@ -248,9 +248,6 @@ in
         color: #${c.base05};
         background: #${c.base01};
         border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
       }
 
       #ext-workspaces button.active {
@@ -282,7 +279,7 @@ in
         background: transparent;
         border-radius: 16px;
         padding: 0px 5px;
-        margin: 3.5 2px;
+        margin: 3.5px 2px;
         margin-right: 1px;
       }
 
@@ -316,7 +313,7 @@ in
           background: #${c.base01};
           border-radius: 16px;
           padding: 0px 5px;
-          margin: 3.5 3.5px;
+          margin: 3.5px 3.5px;
       }
 
       #window {
@@ -324,7 +321,7 @@ in
           background: #${c.base01};
           border-radius: 16px;
           padding: 0px 5px;
-          margin: 3.5 2px;
+          margin: 3.5px 2px;
       }
 
       #group-ctl,
@@ -334,7 +331,7 @@ in
           background: #${c.base01};
           border-radius: 16px;
           padding: 0px 5px;
-          margin: 3.5 2px;
+          margin: 3.5px 2px;
       }
     '';
   };

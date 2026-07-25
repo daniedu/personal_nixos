@@ -154,10 +154,10 @@ in
             "󰤥"
             "󰤨"
           ];
-          format = "{icon}";
-          format-wifi = "{icon}";
-          format-ethernet = "󰀂";
-          format-disconnected = "󰤮";
+          format = " {icon} ";
+          format-wifi = " {icon} ";
+          format-ethernet = " 󰀂 ";
+          format-disconnected = " 󰤮 ";
           tooltip-format-wifi = "{essid} ({frequency} GHz)\n⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}";
           tooltip-format-ethernet = "⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}";
           tooltip-format-disconnected = "Disconnected";

@@ -236,7 +236,6 @@ in
           padding: 0;
           margin: 0;
           border-radius: 0;
-          background: transparent;
       }
 
       #ext-workspaces button {

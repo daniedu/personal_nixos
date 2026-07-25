@@ -262,12 +262,16 @@ in
         color: #${c.base0D};
       }
 
-      #workspaces button.empty {
-        opacity: 0.5;
-      }
-
       #workspaces button.urgent {
         color: #${c.base08};
+      }
+
+      #workspaces button:not(.active) {
+        opacity: 0.4;
+      }
+
+      #workspaces button:not(.active):hover {
+        opacity: 1.0;
       }
 
       #workspaces button:hover {

@@ -51,6 +51,9 @@
       animation_duration_tag = 150;
       tag_animation_direction = 1;
 
+      # Scroller
+      edge_scroller_pointer_focus = 0;
+
       # Layout cycling
       circle_layout = "scroller,tile,grid,monocle";
 

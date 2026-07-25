@@ -232,14 +232,14 @@ in
         opacity: 0;
       }
 
-      #ext-workspaces {
+      #workspaces {
           background: #${c.base01};
           border-radius: 16px;
           padding: 0px 5px;
           margin: 3.5px 3.5px;
       }
 
-      #ext-workspaces button {
+      #workspaces button {
         min-width: 26px;
         min-height: 26px;
         margin: 0 2px;
@@ -254,23 +254,23 @@ in
         outline: none;
       }
 
-      #ext-workspaces button.active,
-      #ext-workspaces button:focus,
-      #ext-workspaces button:active,
-      #ext-workspaces button:checked {
+      #workspaces button.active,
+      #workspaces button:focus,
+      #workspaces button:active,
+      #workspaces button:checked {
         background: #${c.base02};
         color: #${c.base00};
       }
 
-      #ext-workspaces button.empty {
+      #workspaces button.empty {
         opacity: 0.5;
       }
 
-      #ext-workspaces button.urgent {
+      #workspaces button.urgent {
         color: #${c.base08};
       }
 
-      #ext-workspaces button:hover {
+      #workspaces button:hover {
         background: #${c.base02};
       }
 

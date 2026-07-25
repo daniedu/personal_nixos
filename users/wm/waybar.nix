@@ -258,8 +258,8 @@ in
       #workspaces button:focus,
       #workspaces button:active,
       #workspaces button:checked {
-        background: #${c.base02};
-        color: #${c.base00};
+        background: transparent;
+        color: #${c.base0D};
       }
 
       #workspaces button.empty {

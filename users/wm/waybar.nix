@@ -16,6 +16,7 @@ let
 in
 {
   home.packages = [ toggle-waybar ];
+  stylix.targets.waybar.enable = false;
   programs.waybar = {
     enable = lib.mkDefault true;
     package = pkgs.waybar.override { wireplumberSupport = true; };

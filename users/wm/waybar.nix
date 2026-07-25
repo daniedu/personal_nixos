@@ -258,7 +258,7 @@ in
       #ext-workspaces button:focus,
       #ext-workspaces button:active,
       #ext-workspaces button:checked {
-        background: #${c.base0D};
+        background: #${c.base0E};
         color: #${c.base00};
       }
 

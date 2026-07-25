@@ -42,6 +42,14 @@
       # Misc
       focus_on_activate = 1;
       animations = 1;
+      layer_animations = 1;
+      animation_type_open = "zoom";
+      animation_type_close = "slide";
+      animation_duration_open = 200;
+      animation_duration_close = 150;
+      animation_duration_move = 250;
+      animation_duration_tag = 150;
+      tag_animation_direction = 1;
 
       # Layout cycling
       circle_layout = "scroller,tile,grid,monocle";

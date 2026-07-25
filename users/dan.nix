@@ -35,6 +35,7 @@
   home.username = "dan";
   home.homeDirectory = "/home/work";
   home.stateVersion = "25.11";
+
   stylix.targets.nvf.transparentBackground = false;
 
   programs.retroarch = {

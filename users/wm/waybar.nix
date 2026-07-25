@@ -256,6 +256,11 @@ in
       #ext-workspaces button.active {
         background: #${c.base0D};
         color: #${c.base00};
+        border: none !important;
+        border-bottom: none !important;
+        box-shadow: none !important;
+        outline: none !important;
+        text-decoration: none !important;
       }
 
       #ext-workspaces button:focus,

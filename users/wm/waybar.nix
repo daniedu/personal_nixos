@@ -232,25 +232,29 @@ in
       }
 
       #ext-workspaces {
-          padding: 0px 5px;
-          margin: 3.5 3.5px;
-          border-radius: 16px;
-          background: #${c.base01};
-          opacity: 0.95;
+          padding: 0;
+          margin: 3.5px 0;
+          border-radius: 0;
+          background: transparent;
+          opacity: 1;
       }
 
       #ext-workspaces button {
         all: initial;
-        padding: 0 4px;
-        margin: 0 1.5px;
-        min-width: 6px;
+        min-width: 26px;
+        min-height: 26px;
+        margin: 0 2px;
         font-size: 12px;
         color: #${c.base05};
+        background: #${c.base01};
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
 
       #ext-workspaces button.active {
         background: #${c.base0D};
-        border-radius: 12px;
         color: #${c.base00};
       }
 

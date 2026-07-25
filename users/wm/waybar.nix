@@ -234,17 +234,17 @@ in
 
       #workspaces {
           background: #${c.base01};
-          border-radius: 16px;
+          border-radius: 10px;
           padding: 0px 5px;
           margin: 3.5px 3.5px;
       }
 
       #workspaces button {
-        min-width: 26px;
-        min-height: 26px;
+        min-width: 20px;
+        min-height: 20px;
         margin: 0 2px;
         padding: 0;
-        font-size: 12px;
+        font-size: 10px;
         color: #${c.base05};
         background: #${c.base01};
         border: none;

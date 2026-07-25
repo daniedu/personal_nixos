@@ -233,59 +233,64 @@ in
 
       #ext-workspaces {
           padding: 0;
-          margin: 3.5px 0;
+          margin: 0;
           border-radius: 0;
           background: transparent;
-          opacity: 1;
       }
 
-      #ext-workspaces button {
-        all: initial;
+      .modules-left #ext-workspaces button {
         min-width: 26px;
         min-height: 26px;
         margin: 0 2px;
+        padding: 0;
         font-size: 12px;
         color: #${c.base05};
         background: #${c.base01};
         border: none;
-        box-shadow: none;
-        outline: none;
+        border-bottom: none;
         border-radius: 50%;
+        box-shadow: none;
+        text-shadow: none;
+        outline: none;
       }
 
-      #ext-workspaces button.active {
+      .modules-left #ext-workspaces button.active {
         background: #${c.base0D};
         color: #${c.base00};
         border: none;
         border-bottom: none;
         box-shadow: none;
+        text-shadow: none;
         outline: none;
-        text-decoration: none;
       }
 
-      #ext-workspaces button:focus,
-      #ext-workspaces button:active,
-      #ext-workspaces button:checked {
-        border: none;
-        box-shadow: none;
-        outline: none;
+      .modules-left #ext-workspaces button:focus,
+      .modules-left #ext-workspaces button:active,
+      .modules-left #ext-workspaces button:checked {
         background: #${c.base0D};
         color: #${c.base00};
+        border: none;
+        border-bottom: none;
+        box-shadow: none;
+        text-shadow: none;
+        outline: none;
       }
 
-      #ext-workspaces button.empty {
+      .modules-left #ext-workspaces button.empty {
         opacity: 0.5;
       }
 
-      #ext-workspaces button.urgent {
+      .modules-left #ext-workspaces button.urgent {
         color: #${c.base08};
       }
 
-      #ext-workspaces button:hover {
+      .modules-left #ext-workspaces button:hover {
         background: #${c.base02};
         border: none;
+        border-bottom: none;
         box-shadow: none;
         text-shadow: none;
+        outline: none;
       }
 
       #cpu,

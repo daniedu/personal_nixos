@@ -234,8 +234,8 @@ in
 
       #workspaces {
           background: #${c.base01};
-          border-radius: 10px;
-          padding: 0px 5px;
+          border-radius: 12px;
+          padding: 3px 6px;
           margin: 3.5px 3.5px;
       }
 

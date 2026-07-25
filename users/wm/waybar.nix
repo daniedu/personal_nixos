@@ -233,9 +233,10 @@ in
       }
 
       #ext-workspaces {
-          padding: 0;
-          margin: 0;
-          border-radius: 0;
+          background: #${c.base01};
+          border-radius: 16px;
+          padding: 0px 5px;
+          margin: 3.5px 3.5px;
       }
 
       #ext-workspaces button {

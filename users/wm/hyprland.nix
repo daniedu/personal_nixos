@@ -80,8 +80,6 @@
         "$mod SHIFT, 9, movetoworkspace, 9"
 
         "$mod, C, exec, kitty -e gcalcli agenda"
-        "$mod, P, exec, wlr-which-key"
-
         "$mod, B, exec, toggle-waybar"
         "$mod, G, togglegroup"
         "$mod, TAB, changegroupactive, f"

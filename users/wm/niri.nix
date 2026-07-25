@@ -90,7 +90,6 @@
         "Mod+Shift+9".action.move-window-to-workspace = 9;
 
         "Mod+B".action.spawn = [ "toggle-waybar" ];
-        "Mod+P".action.spawn = [ "wlr-which-key" ];
       };
     };
   };

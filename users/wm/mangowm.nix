@@ -96,7 +96,6 @@
         "SUPER+SHIFT,8,tag,8"
         "SUPER+SHIFT,9,tag,9"
 
-        "SUPER,p,spawn,wlr-which-key"
         "SUPER,b,spawn,toggle-waybar"
         "SUPER,Tab,switch_layout"
         "SUPER+SHIFT,space,togglefloating"

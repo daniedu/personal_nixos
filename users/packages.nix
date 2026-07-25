@@ -62,7 +62,6 @@
     lmms
 
     # === Misc ===
-    wlr-which-key
     awww
 
     # === Misc ===

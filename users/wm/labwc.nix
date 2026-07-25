@@ -71,11 +71,7 @@ in {
               <command>nautilus</command>
             </action>
           </key>
-          <key key="W-p">
-            <action name="Execute">
-              <command>wlr-which-key</command>
-            </action>
-          </key>
+
           <key key="W-1">
             <action name="GoToDesktop">
               <to>1</to>
@@ -301,7 +297,5 @@ in {
     '';
   };
 
-  home.packages = with pkgs; [
-    wlr-which-key
-  ];
+
 }

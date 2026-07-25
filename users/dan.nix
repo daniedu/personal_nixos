@@ -17,7 +17,6 @@
     ./wm/niri.nix
     ./wm/waybar.nix
     ./services/vicinae.nix
-    ./services/wlr-which-key.nix
     
     ./launchers/opencode.nix
     ./programs/direnv.nix

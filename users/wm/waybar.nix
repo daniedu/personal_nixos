@@ -247,6 +247,9 @@ in
         font-size: 12px;
         color: #${c.base05};
         background: #${c.base01};
+        border: none;
+        box-shadow: none;
+        outline: none;
         border-radius: 50%;
       }
 
@@ -265,6 +268,7 @@ in
 
       #ext-workspaces button:hover {
         background: #${c.base02};
+        border: none;
         box-shadow: none;
         text-shadow: none;
       }

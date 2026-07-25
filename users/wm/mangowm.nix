@@ -41,7 +41,7 @@
 
       # Misc
       focus_on_activate = 1;
-      animations = 0;
+      animations = 1;
 
       # Layout cycling
       circle_layout = "scroller,tile,grid,monocle";

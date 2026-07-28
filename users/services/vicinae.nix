@@ -38,7 +38,6 @@ in {
     (ext "awww-switcher"            vx.awww-switcher)
     (ext "protondb-search"          vx.protondb-search)
     (ext "zoxide-recent-directories" vx.zoxide-recent-directories)
-    (ext "niri"                      vx.niri)
     (ext "process-manager"           vx.process-manager)
     (ext "color-converter"           vx.color-converter)
     (ext "nerdfont-search"           vx.nerdfont-search)

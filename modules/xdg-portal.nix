@@ -17,12 +17,7 @@ config = {
     mango = {
       default = lib.mkForce [ "wlr" "gtk" ];
     };
-    labwc = {
-      default = [ "wlr" "gtk" ];
-    };
-    niri = {
-      default = [ "gtk" ];
-    };
+  };
   };
   };
   services.dbus.enable = true;

@@ -3,9 +3,8 @@
     enable = true;
     interactiveShellInit = ''
       fish_add_path ~/.local/bin
-      fish_add_path ~/.config/emacs/bin
-      fish_add_path ~/.doom-emacs/bin
       set -g fish_greeting ""
+      alias nvf="nix run github:daniedu/personal_nvf"
       starship init fish | source
       fastfetch --file-raw ~/.config/fastfetch/art2.txt --structure OS:Kernel:Uptime:Shell:Terminal:CPU:GPU:MEMORY:DISK:DISPLAY:COLORS
     '';

@@ -31,8 +31,6 @@
     protonup-qt
 
     # === Window Managers (alternative sessions) ===
-    labwc
-    niri
 
     # === Extras ===
     inputs.helium.packages.${pkgs.stdenv.hostPlatform.system}.default

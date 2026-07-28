@@ -32,34 +32,22 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    niri = {
-      url = "github:sodiboo/niri-flake";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    emacs-overlay = {
-      url = "github:nix-community/emacs-overlay";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
   };
 
   nixConfig = {
     extra-substituters = [
       "https://nix-community.cachix.org"
       "https://vicinae.cachix.org"
-      "https://niri.cachix.org"
       "https://nvf.cachix.org"
     ];
     extra-trusted-public-keys = [
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
       "vicinae.cachix.org-1:1kDrfienkGHPYbkpNj1mWTr7Fm1+zcenzgTizIcI3oc="
-      "niri.cachix.org-1:Wv0OmO7PsuocRKzfDoJ3mulSl7Z6oezYhGhR+3W2964="
       "nvf.cachix.org-1:GMQWiUhZ6ux9D5CvFFMwnc2nFrUHTeGaXRlVBXo+naI="
     ];
   };
 
-  outputs = { self, nixpkgs, home-manager, stylix, mangowm, niri, emacs-overlay, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, stylix, mangowm, ... }@inputs:
     let
       system = "x86_64-linux";
       pkgs = import nixpkgs { inherit system; };
@@ -91,16 +79,10 @@
         # Overlay for openldap to skip tests and save time
         ({ ... }: {
           nixpkgs.overlays = [
-            inputs.emacs-overlay.overlays.default
             (final: prev: {
               openldap = prev.openldap.overrideAttrs (old: {
                 doCheck = false;
               });
-              # Silence xorg deprecation aliases from upstream inputs
-              xorg = prev.xorg // {
-                libxcb = prev.libxcb;
-                xcbutilwm = prev."libxcb-wm";
-              };
             })
           ];
         })

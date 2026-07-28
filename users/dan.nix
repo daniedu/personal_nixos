@@ -6,23 +6,20 @@
   ...
 }:
 {
-  imports = [
-    inputs.mangowm.hmModules.mango
-    inputs.vicinae.homeManagerModules.default
-    inputs.niri.homeModules.niri
-    ./shell/fish.nix
+    imports = [
+      inputs.mangowm.hmModules.mango
+      inputs.vicinae.homeManagerModules.default
+      ./shell/fish.nix
     ./shell/starship.nix
     ./shell/zoxide.nix
     ./shell/tmux.nix
 
     ./text/kitty.nix
-    ./text/vscode.nix
-    ./text/emacs.nix
-    # ./text/zed.nix (disabled — no Vulkan support)
+      ./text/vscode.nix
+      # ./text/zed.nix (disabled — no Vulkan support)
 
-    ./wm/mangowm.nix
-    ./wm/niri.nix
-    ./wm/waybar.nix
+      ./wm/mangowm.nix
+      ./wm/waybar.nix
     ./services/vicinae.nix
 
     ./launchers/opencode.nix

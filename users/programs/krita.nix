@@ -13,17 +13,17 @@ let
   hexToDec = hex: builtins.foldl' (acc: d: acc * 16 + toDecimal d) 0 (strToChars hex);
   color = hex: "${toString (hexToDec (builtins.substring 0 2 hex))},${toString (hexToDec (builtins.substring 2 2 hex))},${toString (hexToDec (builtins.substring 4 2 hex))}";
 
-  section = name: bg: alt: fg: inactive: active: link: visited: focus: hover: ''
+  section = name: bg: fg: accent: ''
     [Colors:${name}]
     BackgroundNormal=${color bg}
-    BackgroundAlternate=${color alt}
+    BackgroundAlternate=${color bg}
     ForegroundNormal=${color fg}
-    ForegroundInactive=${color inactive}
-    ForegroundActive=${color active}
-    ForegroundLink=${color link}
-    ForegroundVisited=${color visited}
-    DecorationFocus=${color focus}
-    DecorationHover=${color hover}
+    ForegroundInactive=${color fg}
+    ForegroundActive=${color accent}
+    ForegroundLink=${color accent}
+    ForegroundVisited=${color accent}
+    DecorationFocus=${color accent}
+    DecorationHover=${color accent}
   '';
 in {
   home.file.".var/app/org.kde.krita/data/krita/color-schemes/stylix.colors" = {
@@ -35,13 +35,13 @@ in {
       [KDE]
       ColorScheme=Stylix
 
-      ${section "Window" c.base00 c.base01 c.base05 c.base03 c.base0D c.base0D c.base0E c.base0D c.base0C}
-      ${section "View" c.base01 c.base00 c.base05 c.base04 c.base0D c.base0D c.base0E c.base0D c.base0C}
-      ${section "Button" c.base02 c.base01 c.base05 c.base04 c.base0D c.base0D c.base0E c.base0D c.base0C}
-      ${section "Selection" c.base0D c.base02 c.base07 c.base04 c.base0D c.base0D c.base0E c.base0D c.base0C}
-      ${section "Tooltip" c.base00 c.base01 c.base05 c.base04 c.base0D c.base0D c.base0E c.base0D c.base0C}
-      ${section "Header" c.base00 c.base01 c.base05 c.base04 c.base0D c.base0D c.base0E c.base0D c.base0C}
-      ${section "Complementary" c.base00 c.base01 c.base05 c.base04 c.base0D c.base0D c.base0E c.base0D c.base0C}
+      ${section "Window" c.base00 c.base07 c.base0D}
+      ${section "View" c.base00 c.base07 c.base0D}
+      ${section "Button" c.base00 c.base07 c.base0D}
+      ${section "Selection" c.base0D c.base07 c.base0D}
+      ${section "Tooltip" c.base00 c.base07 c.base0D}
+      ${section "Header" c.base00 c.base07 c.base0D}
+      ${section "Complementary" c.base00 c.base07 c.base0D}
     '';
   };
 }

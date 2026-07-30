@@ -4,7 +4,7 @@
     systemd.enable = true;
 
     autostart_sh = ''
-      systemctl --user import-environment XDG_CURRENT_DESKTOP XDG_SESSION_TYPE WAYLAND_DISPLAY XDG_DATA_DIRS
+      systemctl --user import-environment PATH XDG_CURRENT_DESKTOP XDG_SESSION_TYPE WAYLAND_DISPLAY XDG_DATA_DIRS
       systemctl --user set-environment XDG_CURRENT_DESKTOP=mango
       systemctl --user restart xdg-desktop-portal
       swaynotificationcenter &

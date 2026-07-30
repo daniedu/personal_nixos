@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 let
   uriSchemes = pkgs.runCommandLocal "x-scheme-handler-mime" { } ''
     mkdir -p $out/share/mime/packages
@@ -40,7 +40,7 @@ in {
     ];
     config = {
       common.default = [ "gtk" ];
-      mango.default = [ "wlr" "gtk" ];
+      mango.default = lib.mkForce [ "wlr" "gtk" ];
     };
   };
 

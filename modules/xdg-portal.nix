@@ -33,6 +33,7 @@ let
 in {
   xdg.portal = {
     enable = true;
+    wlr.enable = true;
     xdgOpenUsePortal = true;
     extraPortals = with pkgs; [
       xdg-desktop-portal-wlr
@@ -40,7 +41,12 @@ in {
     ];
     config = {
       common.default = [ "gtk" ];
-      mango.default = lib.mkForce [ "wlr" "gtk" ];
+      mango = {
+        default = [ "gtk" ];
+        "org.freedesktop.impl.portal.ScreenCast" = [ "wlr" ];
+        "org.freedesktop.impl.portal.Screenshot" = [ "wlr" ];
+        "org.freedesktop.impl.portal.Inhibit" = [ ];
+      };
     };
   };
 

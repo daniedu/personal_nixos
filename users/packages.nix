@@ -33,26 +33,10 @@
     playerctl
 
     # === Development ===
-    nil
     lazygit
     shellcheck
     pandoc
     statix
-    nixpkgs-fmt
-    # Language servers
-    clang-tools            # cc +lsp (clangd)
-    nodejs                 # javascript / json
-    typescript             # javascript
-    lua-language-server    # lua
-    python3Packages.python-lsp-server  # python
-    rust-analyzer          # rust +lsp
-    zls                    # zig
-    odin                   # odin
-    php                    # php
-    phpactor               # php lsp
-    bash-language-server   # sh
-    dart                   # dart +flutter
-    yaml-language-server   # yaml
 
     # === Gaming ===
     osu-lazer

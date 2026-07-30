@@ -38,7 +38,7 @@ in {
       ${section "Window" c.base00 c.base07}
       ${section "View" c.base00 c.base07}
       ${section "Button" c.base00 c.base07}
-      ${section "Selection" c.base0D c.base07}
+      ${section "Selection" c.base01 c.base07}
       ${section "Tooltip" c.base00 c.base07}
       ${section "Header" c.base00 c.base07}
       ${section "Complementary" c.base00 c.base07}

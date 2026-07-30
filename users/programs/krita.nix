@@ -35,13 +35,13 @@ in {
       [KDE]
       ColorScheme=Stylix
 
-      ${section "Window" c.base00 c.base07}
-      ${section "View" c.base00 c.base07}
-      ${section "Button" c.base00 c.base07}
-      ${section "Selection" c.base01 c.base07}
-      ${section "Tooltip" c.base00 c.base07}
-      ${section "Header" c.base00 c.base07}
-      ${section "Complementary" c.base00 c.base07}
+      ${section "Window" c.base00 "FFFFFF"}
+      ${section "View" c.base00 "FFFFFF"}
+      ${section "Button" c.base00 "FFFFFF"}
+      ${section "Selection" c.base01 "FFFFFF"}
+      ${section "Tooltip" c.base00 "FFFFFF"}
+      ${section "Header" c.base00 "FFFFFF"}
+      ${section "Complementary" c.base00 "FFFFFF"}
     '';
   };
 }

@@ -13,17 +13,17 @@ let
   hexToDec = hex: builtins.foldl' (acc: d: acc * 16 + toDecimal d) 0 (strToChars hex);
   color = hex: "${toString (hexToDec (builtins.substring 0 2 hex))},${toString (hexToDec (builtins.substring 2 2 hex))},${toString (hexToDec (builtins.substring 4 2 hex))}";
 
-  section = name: bg: fg: accent: ''
+  section = name: bg: fg: ''
     [Colors:${name}]
     BackgroundNormal=${color bg}
     BackgroundAlternate=${color bg}
     ForegroundNormal=${color fg}
     ForegroundInactive=${color fg}
-    ForegroundActive=${color accent}
-    ForegroundLink=${color accent}
-    ForegroundVisited=${color accent}
-    DecorationFocus=${color accent}
-    DecorationHover=${color accent}
+    ForegroundActive=${color fg}
+    ForegroundLink=${color fg}
+    ForegroundVisited=${color fg}
+    DecorationFocus=${color fg}
+    DecorationHover=${color fg}
   '';
 in {
   home.file.".var/app/org.kde.krita/data/krita/color-schemes/stylix.colors" = {
@@ -35,13 +35,13 @@ in {
       [KDE]
       ColorScheme=Stylix
 
-      ${section "Window" c.base00 c.base07 c.base0D}
-      ${section "View" c.base00 c.base07 c.base0D}
-      ${section "Button" c.base00 c.base07 c.base0D}
-      ${section "Selection" c.base0D c.base07 c.base0D}
-      ${section "Tooltip" c.base00 c.base07 c.base0D}
-      ${section "Header" c.base00 c.base07 c.base0D}
-      ${section "Complementary" c.base00 c.base07 c.base0D}
+      ${section "Window" c.base00 c.base07}
+      ${section "View" c.base00 c.base07}
+      ${section "Button" c.base00 c.base07}
+      ${section "Selection" c.base0D c.base07}
+      ${section "Tooltip" c.base00 c.base07}
+      ${section "Header" c.base00 c.base07}
+      ${section "Complementary" c.base00 c.base07}
     '';
   };
 }

@@ -70,16 +70,16 @@
 
         "SUPER,h,focusdir,left"
         "SUPER,l,focusdir,right"
-        "SUPER,j,focusdir,up"
-        "SUPER,k,focusdir,down"
+        "SUPER,j,focusdir,down"
+        "SUPER,k,focusdir,up"
 
         "ALT,h,focusstack,prev"
         "ALT,l,focusstack,next"
 
         "SUPER+SHIFT,h,exchange_client,left"
         "SUPER+SHIFT,l,exchange_client,right"
-        "SUPER+SHIFT,j,exchange_client,up"
-        "SUPER+SHIFT,k,exchange_client,down"
+        "SUPER+SHIFT,j,exchange_client,down"
+        "SUPER+SHIFT,k,exchange_client,up"
         
         "SUPER,1,view,1"
         "SUPER,2,view,2"
@@ -103,10 +103,10 @@
 
         "SUPER,b,spawn,toggle-waybar"
         "SUPER,n,switch_layout"
+        "SUPER+SHIFT,n,switch_layout,prev"
         "SUPER,Tab,focusstack,next"
         "SUPER+SHIFT,Tab,focusstack,prev"
         "SUPER+SHIFT,space,togglefloating"
-        "SUPER+SHIFT,v,togglefloating"
         "SUPER+SHIFT,m,setlayout,monocle"
         "SUPER+SHIFT,t,setlayout,tile"
       ];

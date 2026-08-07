@@ -27,6 +27,7 @@ in {
       "ctrl+shift+l" = "next_tab";
       "ctrl+shift+t" = "new_tab";
       "ctrl+shift+w" = "close_tab";
+      "ctrl+/" = "send_text all \\x1f";
     };
   };
 

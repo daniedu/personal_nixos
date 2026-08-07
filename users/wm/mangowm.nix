@@ -103,6 +103,8 @@
 
         "SUPER,b,spawn,toggle-waybar"
         "SUPER,n,switch_layout"
+        "SUPER,Tab,focusstack,next"
+        "SUPER+SHIFT,Tab,focusstack,prev"
         "SUPER+SHIFT,space,togglefloating"
         "SUPER+SHIFT,v,togglefloating"
         "SUPER+SHIFT,m,setlayout,monocle"

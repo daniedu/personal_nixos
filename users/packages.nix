@@ -1,5 +1,6 @@
 { pkgs, ... }: {
   home.packages = with pkgs; [
+
     # === Fonts ===
     nerd-fonts.jetbrains-mono
     nerd-fonts.caskaydia-cove
@@ -23,6 +24,7 @@
 
     # === System Tools ===
     btop
+    bat
     ripgrep
     fd
     tree
@@ -33,21 +35,18 @@
     playerctl
 
     # === Development ===
-    bat
     lazygit
     shellcheck
     pandoc
     statix
 
-    # === Gaming ===
-    osu-lazer
-
-    # === Art ===
+    # === Art&Music ===
     aseprite
     lmms
 
-    # === Misc ===
+    # === Wallpaper ===
     awww
+    mpvpaper
 
     # === Misc ===
   ];

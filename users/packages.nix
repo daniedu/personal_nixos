@@ -49,6 +49,6 @@
     mpvpaper
 
     # === Misc ===
-    obs
+    obs-studio
   ];
 }

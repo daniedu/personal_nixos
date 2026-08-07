@@ -30,8 +30,6 @@
     heroic
     protonup-qt
 
-    # === Window Managers (alternative sessions) ===
-
     # === Extras ===
     inputs.helium.packages.${pkgs.stdenv.hostPlatform.system}.default
     localsend

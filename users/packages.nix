@@ -49,5 +49,6 @@
     mpvpaper
 
     # === Misc ===
+    obs
   ];
 }

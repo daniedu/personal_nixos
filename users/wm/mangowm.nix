@@ -73,6 +73,9 @@
         "SUPER,j,focusdir,up"
         "SUPER,k,focusdir,down"
 
+        "ALT,h,focusstack,prev"
+        "ALT,l,focusstack,next"
+
         "SUPER+SHIFT,h,exchange_client,left"
         "SUPER+SHIFT,l,exchange_client,right"
         "SUPER+SHIFT,j,exchange_client,up"
@@ -99,7 +102,7 @@
         "SUPER+SHIFT,9,tag,9"
 
         "SUPER,b,spawn,toggle-waybar"
-        "SUPER,Tab,switch_layout"
+        "SUPER,n,switch_layout"
         "SUPER+SHIFT,space,togglefloating"
         "SUPER+SHIFT,v,togglefloating"
         "SUPER+SHIFT,m,setlayout,monocle"

@@ -33,6 +33,7 @@
     playerctl
 
     # === Development ===
+    bat
     lazygit
     shellcheck
     pandoc

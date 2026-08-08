@@ -1,9 +1,9 @@
 { pkgs, ... }:
 let
-  opencode-version = "1.17.9";
+  opencode-version = "1.18.15";
   opencode-src = pkgs.fetchurl {
     url = "https://github.com/anomalyco/opencode/releases/download/v${opencode-version}/opencode-linux-x64.tar.gz";
-    sha256 = "sha256-ha6slSWNQJ0WyjTxz810x42dGnCwpBVBKLWI4UBThPk=";
+    sha256 = "sha256-2ELg6MYixnKkgbfcbwMpAJtk25ayumBB5W9Pk/ApOxw=";
   };
   opencode-bin = pkgs.runCommandLocal "opencode-${opencode-version}" { } ''
     mkdir -p $out/bin

@@ -84,6 +84,10 @@
                 doCheck = false;
               });
             })
+            # Nuclear pinned to latest release (nixpkgs lags behind)
+            (final: prev: {
+              nuclear = final.callPackage ./packages/nuclear.nix { };
+            })
           ];
         })
       ];

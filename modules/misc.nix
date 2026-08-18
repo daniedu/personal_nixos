@@ -7,6 +7,6 @@
 
   nixpkgs.config.allowUnfree = true;
   zramSwap.enable = true;
-  services.power-profiles-daemon.enable = true;
+  powerManagement.cpuFreqGovernor = "performance";
   system.stateVersion = "25.11";
 }

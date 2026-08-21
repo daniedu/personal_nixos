@@ -35,20 +35,6 @@
 
   stylix.targets.bat.enable = true;
 
-  programs.retroarch = {
-    enable = true;
-    cores = {
-      mgba.enable = true;
-      snes9x.enable = true;
-      fbneo.enable = true;
-      fceumm.enable = true;
-      melonds.enable = true;
-      # Sega Saturn & Dreamcast
-      beetle-saturn.enable = true;
-      flycast.enable = true;
-    };
-  };
-
   gtk = {
     enable = true;
     gtk4.theme = null;

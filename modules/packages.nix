@@ -16,7 +16,8 @@
     blueman
     system-config-printer
     networkmanagerapplet
-    gnome-disk-utility
+    gnome-disk-utility # Disks
+    baobab # GNOME Disk Usage Analyzer – visual storage browser (like gnome tool)
     power-profiles-daemon
 
     # === File Manager ===

@@ -44,6 +44,12 @@
     aseprite
     lmms
 
+    # === Gaming (SDVX) ===
+    kson-rs # provides `rusc` (game) + `kson-editor` (ignored, same derivation)
+
+    # === Gaming (SDOJ) ===
+    sdoj-recomp # `sdoj-recomp` wrapper -> ~/Games/SDOJ (see packages/sdoj-recomp.nix)
+
     # === Wallpaper ===
     awww
     mpvpaper

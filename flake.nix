@@ -55,8 +55,20 @@
   outputs = { self, nixpkgs, home-manager, stylix, mangowm, ... }@inputs:
     let
       system = "x86_64-linux";
-      pkgs = import nixpkgs { inherit system; };
+      pkgs = import nixpkgs {
+        inherit system;
+        config.allowUnfree = true;
+      };
     in {
+    # Expose for `nix build .#kson-rs` / `nix build .#sdoj-recomp`
+    packages.${system} = let
+      kson-rs = pkgs.callPackage ./packages/kson-rs.nix { };
+      sdoj-recomp = pkgs.callPackage ./packages/sdoj-recomp.nix { };
+    in {
+      inherit kson-rs sdoj-recomp;
+      default = kson-rs;
+    };
+
     devShells.${system}.default = pkgs.mkShell {
       packages = with pkgs; [
         nixpkgs-fmt
@@ -81,6 +93,8 @@
             users.dan = import ./users/dan.nix;
           };
         }
+        # Allow unfree for sdoj-recomp (requires dump, SDK BSD-3 but package unfree)
+        ({ ... }: { nixpkgs.config.allowUnfree = true; })
         # Overlay for openldap to skip tests and save time
         ({ ... }: {
           nixpkgs.overlays = [
@@ -89,9 +103,11 @@
                 doCheck = false;
               });
             })
-            # Nuclear pinned to latest release (nixpkgs lags behind)
+            # Self-packaged apps (pinned manually)
             (final: prev: {
               nuclear = final.callPackage ./packages/nuclear.nix { };
+              kson-rs = final.callPackage ./packages/kson-rs.nix { };
+              sdoj-recomp = final.callPackage ./packages/sdoj-recomp.nix { };
             })
           ];
         })

@@ -7,6 +7,7 @@
 , pkg-config
 , makeWrapper
 , autoPatchelfHook
+, python3
 , gtk3
 , libx11
 , libxcb
@@ -102,6 +103,7 @@ stdenv.mkDerivation rec {
     cmake
     ninja
     pkg-config
+    python3 # for spirv-tools (FindPython3) in thirdparty/rexglue-sdk
     makeWrapper
     autoPatchelfHook
   ];

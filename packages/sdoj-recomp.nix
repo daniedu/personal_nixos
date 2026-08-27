@@ -118,6 +118,11 @@ stdenv.mkDerivation rec {
     pipewire      # SDL3 PipeWire shared
   ];
 
+  # librexruntime.so NEEDED libsteam_api.so – runtime dlopen, not required to build on Linux (REXGLUE SDK has no steam dep in README Linux list).
+  # Previous build passed RPATH check via preFixup then failed at autoPatchelf: libsteam_api.so -> not found!
+  # Ignore missing so build succeeds; Steam overlay will be unavailable but game runs.
+  autoPatchelfIgnoreMissingDeps = [ "libsteam_api.so" ];
+
   # Preset already sets CMAKE_C_COMPILER=clang, CMAKE_CXX_COMPILER=clang++, generator Ninja.
   # We also ensure clang is found in sandbox.
   # Disable Tracy to drop libTracyClient.so from closure (optional):

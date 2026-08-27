@@ -193,6 +193,25 @@ stdenv.mkDerivation rec {
     runHook postInstall
   '';
 
+  # Fix forbidden /build RPATH *before* fixupPhase audit (audit runs in fixupOutput, before postFixup).
+  # Previous postFixup-only fix ran too late – audit failed before it executed.
+  # We sanitize here *and* keep defensive fix in postFixup.
+  preFixup = ''
+    echo "preFixup: sanitizing RPATHs containing /build (before audit)..."
+    for f in $out/lib/*.so* $out/bin/saidaioujou_recomp_tu1; do
+      [ -e "$f" ] || continue
+      if patchelf --print-rpath "$f" 2>/dev/null | grep -q "/build"; then
+        echo "preFixup: stripping /build RPATH from $f: $(patchelf --print-rpath "$f" 2>/dev/null)"
+        patchelf --shrink-rpath --allowed-rpath-prefixes "$NIX_STORE:$out" "$f" || true
+        if patchelf --print-rpath "$f" 2>/dev/null | grep -q "/build"; then
+          echo "preFixup: forcing RPATH to \$ORIGIN for $f"
+          patchelf --set-rpath '$ORIGIN' "$f" || patchelf --set-rpath "$out/lib" "$f" || true
+        fi
+        echo "preFixup: final RPATH for $f: $(patchelf --print-rpath "$f" 2>/dev/null)"
+      fi
+    done
+  '';
+
   postFixup = ''
     # Wrap the raw binary for LD_LIBRARY_PATH (gtk3, vulkan-loader, alsa etc.)
     # This is the low-level binary; the high-level $out/bin/sdoj-recomp wrapper below handles ~/Games/SDOJ

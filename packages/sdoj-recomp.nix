@@ -297,6 +297,17 @@ EOF
 
     # Keep raw binary also wrapped (already done) – but ensure sdoj-recomp gets libs too
     wrapProgram $out/bin/sdoj-recomp --prefix LD_LIBRARY_PATH : "${lib.makeLibraryPath buildInputs}:$out/lib" --set GDK_BACKEND x11
+
+    # Fix forbidden /build RPATH from ReXGlue SDK (librexruntime.so links TracyClient in /build)
+    # SDK sets CMAKE_INSTALL_RPATH_USE_LINK_PATH=ON and outputs to /build/source/thirdparty/.../out
+    # Manual installPhase preserves BUILD_RPATH containing /build, which autoPatchelfHook does not strip.
+    for f in $out/lib/*.so* $out/bin/saidaioujou_recomp_tu1; do
+      [ -e "$f" ] || continue
+      patchelf --shrink-rpath --allowed-rpath-prefixes "$NIX_STORE:$out" "$f" || true
+      if patchelf --print-rpath "$f" 2>/dev/null | grep -q "/build"; then
+        patchelf --set-rpath '$ORIGIN' "$f"
+      fi
+    done
   '';
 
   meta = with lib; {

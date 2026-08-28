@@ -240,10 +240,31 @@ STORE_LIB="@out@/lib"
 mkdir -p "$GAME_ROOT"
 mkdir -p "$GAME_ROOT/game_data" "$GAME_ROOT/user_data" "$GAME_ROOT/tools/extract-xiso"
 
-# Symlink runtime files into GAME_ROOT so prepare_game.sh sees ROOT == GAME_ROOT
+# Symlink/copy runtime files into GAME_ROOT so prepare_game.sh sees ROOT == GAME_ROOT
 # (prepare_game.sh does ROOT="$(cd -- "$(dirname -- "$BASH_SOURCE")" && pwd -P)")
+# NOTE: saidaioujou_recomp_tu1 must be *copied* not symlinked – it tries to create
+#  $exe_dir/logs on startup (rex::logging / Tracy). If exe is a symlink to
+#  /nix/store/.../bin (read-only) that mkdir fails with SIGABRT.
+#  See: filesystem error: cannot create directories: Read-only file system [/nix/store/.../bin/logs]
 for f in saidaioujou_recomp_tu1 librexruntime.so libTracyClient.so libsaidaioujou_recomp_tu1_CA022100.so libsaidaioujou_recomp_tu1_CA022110.so; do
-  # try bin then lib
+  if [[ "$f" == "saidaioujou_recomp_tu1" ]]; then
+    # $STORE_BIN/$f is a wrapProgram wrapper script (bash) that execs .$f-wrapped (real ELF).
+    # The real ELF does mkdir $exe_dir/logs – if we copy the wrapper, exe_dir resolves to /nix/store/.../bin (RO) -> SIGABRT.
+    # So copy the hidden wrapped ELF directly so exe_dir == $GAME_ROOT (writable).
+    if [ -f "$STORE_BIN/.$f-wrapped" ]; then
+      cp -f --remove-destination -- "$STORE_BIN/.$f-wrapped" "$GAME_ROOT/$f"
+      chmod +x "$GAME_ROOT/$f"
+    elif [ -f "$STORE_BIN/$f" ]; then
+      # fallback: no wrapProgram hidden file (older build), copy wrapper/script itself
+      cp -f --remove-destination -- "$STORE_BIN/$f" "$GAME_ROOT/$f"
+      chmod +x "$GAME_ROOT/$f"
+    elif [ -f "$STORE_LIB/$f" ]; then
+      cp -f --remove-destination -- "$STORE_LIB/$f" "$GAME_ROOT/$f"
+      chmod +x "$GAME_ROOT/$f"
+    fi
+    continue
+  fi
+  # libs: symlink is fine (they don't create dirs)
   if [ -f "$STORE_BIN/$f" ]; then
     ln -sf "$STORE_BIN/$f" "$GAME_ROOT/$f"
   elif [ -f "$STORE_LIB/$f" ]; then
@@ -256,6 +277,8 @@ for f in saidaioujou_recomp_tu1 librexruntime.so libTracyClient.so libsaidaioujo
     [ -f "$GAME_ROOT/$base" ] || ln -sf "$so" "$GAME_ROOT/$base"
   done
 done
+# Ensure writable logs dir next to the copied exe (prevents first-run abort)
+mkdir -p "$GAME_ROOT/logs"
 
 # Ensure extract-xiso at expected relative path $ROOT/tools/extract-xiso/extract-xiso
 if [ ! -f "$GAME_ROOT/tools/extract-xiso/extract-xiso" ]; then

@@ -1,6 +1,7 @@
 { ... }: {
   imports = [
     ./hardware-configuration.nix
+    ./modules/amd.nix
     ./modules/tablet.nix
     ./modules/stylix.nix
     ./modules/boot.nix

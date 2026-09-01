@@ -6,8 +6,9 @@
     wget
     glib
     xdg-utils
+    rsync
+
     # === Archive Tools ===
-    file-roller
     unzip
     p7zip
     unrar

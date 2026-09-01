@@ -1,11 +1,11 @@
 { lib, appimageTools, fetchurl }:
 let
   pname = "nuclear";
-  version = "1.45.1";
+  version = "1.47.1";
 
   src = fetchurl {
-    url = "https://github.com/nukeop/nuclear/releases/download/player%401.45.1/Nuclear_${version}_amd64.AppImage";
-    sha256 = "fdMh2PS7CJ+nnNL9QMaU5HBSnBPhZJlOMXW9IQ4lBp0=";
+    url = "https://github.com/nukeop/nuclear/releases/download/player%40${version}/Nuclear_${version}_amd64.AppImage";
+    hash = "sha256-URTJmsbS6IFp4uzUJOYjN0u2BfaOnlHhhNzu/sCfxkI=";
   };
 
   appimageContents = appimageTools.extract { inherit pname version src; };

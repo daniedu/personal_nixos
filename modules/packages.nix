@@ -7,6 +7,7 @@
     glib
     xdg-utils
     rsync
+    rclone
 
     # === Archive Tools ===
     unzip

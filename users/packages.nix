@@ -45,10 +45,10 @@
     lmms
 
     # === Gaming (SDVX) ===
-    kson-rs # provides `rusc` (game) + `kson-editor` (ignored, same derivation)
+    # kson-rs # DISABLED 2026-08: commented to avoid rebuild (keep packages/kson-rs.nix, use `nix build .#kson-rs`)
 
     # === Gaming (SDOJ) ===
-    sdoj-recomp # `sdoj-recomp` wrapper -> ~/Games/SDOJ (see packages/sdoj-recomp.nix)
+    # sdoj-recomp # DISABLED 2026-08: commented to avoid rebuild (keep packages/sdoj-recomp.nix, use `nix build .#sdoj-recomp`)
 
     # === Wallpaper ===
     awww

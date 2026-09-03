@@ -83,6 +83,8 @@ in {
       set -g visual-activity off
 
       set -g focus-events on
+      # ensure wl-copy/xclip work inside tmux (yy global) - forward Wayland/X11 vars
+      set -ga update-environment " WAYLAND_DISPLAY XDG_RUNTIME_DIR XDG_SESSION_TYPE"
 
       # --- clipboard (OSC52) + Ctrl-key passthrough ---
       set -g allow-passthrough on

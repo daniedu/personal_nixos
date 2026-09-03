@@ -80,6 +80,16 @@ in {
       set -g visual-activity off
 
       set -g focus-events on
+
+      # --- clipboard (OSC52) + Ctrl-key passthrough ---
+      set -g allow-passthrough on
+      set -g set-clipboard on
+      set -g xterm-keys on
+      set -s extended-keys on
+      set -as terminal-features 'xterm*:extkeys'
+      set -ga terminal-overrides ',*:Ms=\E]52;c;%p2%s\007'
+      # ensure C-s / C-q are passed to neovim (disable XON/XOFF flow control handling)
+      # (also add `stty -ixon` in shell init as fallback)
     '';
   };
 

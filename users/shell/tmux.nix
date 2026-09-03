@@ -36,8 +36,11 @@ in {
       bind -r K resize-pane -U 5
       bind -r L resize-pane -R 5
 
+      # Fix: match nvf wrapper (.nvim-wrapped) and 'nvf' command; broader 'vim' pattern
       is_vim="ps -o state= -o comm= -t '#{pane_tty}' \
-          | grep -iqE '^[^TXZ ]+ +(\\S+\\/)?g?(view|l?n?vim?x?)(diff)?$'"
+          | grep -iqE '^[^TXZ ]+ +(\\S+\\/)?g?(view|l?n?vim?x?|nvf)(diff)?$' \
+          || ps -o state= -o comm= -t '#{pane_tty}' | grep -iq 'vim' \
+          || ps -o state= -o comm= -t '#{pane_tty}' | grep -iq '.nvim-wrapped'"
       bind -n 'C-h' if-shell "$is_vim" 'send-keys C-h'  'select-pane -L'
       bind -n 'C-j' if-shell "$is_vim" 'send-keys C-j'  'select-pane -D'
       bind -n 'C-k' if-shell "$is_vim" 'send-keys C-k'  'select-pane -U'

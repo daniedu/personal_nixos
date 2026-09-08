@@ -2,7 +2,7 @@
 let
   vx = inputs.vicinae-extensions.packages.${pkgs.stdenv.hostPlatform.system};
 in {
-  services.vicinae = {
+  programs.vicinae = {
     enable = true;
     systemd.enable = false;
     settings = {

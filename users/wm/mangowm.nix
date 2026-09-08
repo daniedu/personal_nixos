@@ -24,8 +24,6 @@
 
       # Touchpad
       trackpad_natural_scrolling = 1;
-      disable_while_typing = 1;
-      click_method = 2;
       tap_to_click = 1;
       drag_lock = 1;
       trackpad_scroll_factor = 0.5;

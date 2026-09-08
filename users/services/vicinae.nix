@@ -11,8 +11,8 @@ in {
       pop_to_root_on_close = true;
       font = {
         normal = {
-          size = 12;
-          family = "JetBrainsMono Nerd Font";
+          size = lib.mkForce 12;
+          family = lib.mkForce "JetBrainsMono Nerd Font";
         };
       };
       launcher_window = {
@@ -21,7 +21,6 @@ in {
     };
     extensions = [
       vx.wifi-commander
-      vx.bluetooth
       vx.power-profile
       vx.player-pilot
     ];
@@ -42,7 +41,6 @@ in {
     (ext "color-converter"           vx.color-converter)
     (ext "nerdfont-search"           vx.nerdfont-search)
     (ext "wifi-commander"            vx.wifi-commander)
-    (ext "bluetooth"                 vx.bluetooth)
     (ext "power-profile"             vx.power-profile)
     (ext "player-pilot"              vx.player-pilot)
   ];

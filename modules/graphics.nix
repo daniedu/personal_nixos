@@ -9,7 +9,8 @@
       libva
       libva-utils
       mesa
-      gst_all_1.gst-vaapi
+      # gst_all_1.gst-vaapi removed in GStreamer 1.28 (2026-06-28) - use gst-plugins-bad instead
+      gst_all_1.gst-plugins-bad
       intel-media-driver
       vulkan-loader
       vulkan-tools

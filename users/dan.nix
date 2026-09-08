@@ -15,7 +15,7 @@
     ./shell/tmux.nix
 
     ./text/kitty.nix
-    ./text/vscode.nix
+    # ./text/vscode.nix
     # ./text/zed.nix (disabled — no Vulkan support)
 
     ./wm/mangowm.nix

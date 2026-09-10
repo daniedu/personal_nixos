@@ -44,7 +44,7 @@
 
     # === Art&Music ===
     aseprite
-    purref
+    pureref
     lmms
 
     # === Gaming (SDVX) ===

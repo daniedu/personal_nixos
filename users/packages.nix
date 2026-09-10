@@ -40,6 +40,7 @@
     shellcheck
     pandoc
     statix
+    rustdesk-flutter
 
     # === Art&Music ===
     aseprite

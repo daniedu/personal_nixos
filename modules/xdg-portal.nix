@@ -30,7 +30,8 @@ let
     # Ensure mime.cache is regenerated
     ${pkgs.shared-mime-info}/bin/update-mime-database $out/share/mime
   '';
-in {
+in
+{
   xdg.portal = {
     enable = true;
     wlr.enable = true;
@@ -43,9 +44,8 @@ in {
       common.default = [ "gtk" ];
       mango = {
         default = [ "gtk" ];
-        "org.freedesktop.impl.portal.ScreenCast" = [ "wlr" ];
+        "org.freedesktop.impl.portal.Screencast" = [ "wlr" ];
         "org.freedesktop.impl.portal.Screenshot" = [ "wlr" ];
-        "org.freedesktop.impl.portal.Inhibit" = [ ];
       };
     };
   };

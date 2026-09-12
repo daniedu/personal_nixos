@@ -36,6 +36,7 @@
 
     # === Development ===
     lazygit
+    gh
     lazysql
     shellcheck
     pandoc

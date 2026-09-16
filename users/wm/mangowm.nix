@@ -112,7 +112,7 @@
         "SUPER+SHIFT,t,setlayout,tile"
 
         "SUPER,z,toggle_scratchpad"
-        "SUPER+SHIFT,z,move_to_scratchpad"
+        # "SUPER+SHIFT,z,move_to_scratchpad"
       ];
 
       mousebind = [

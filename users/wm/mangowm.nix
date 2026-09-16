@@ -112,7 +112,8 @@
         "SUPER+SHIFT,t,setlayout,tile"
 
         "SUPER,z,toggle_scratchpad"
-        # "SUPER+SHIFT,z,move_to_scratchpad"
+        "SUPER,i,minimized"
+        "SUPER+SHIFT,i,restore_minimized"
       ];
 
       mousebind = [

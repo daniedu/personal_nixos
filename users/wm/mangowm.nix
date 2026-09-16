@@ -11,6 +11,7 @@
       nm-applet --indicator &
       blueman-applet &
       awww-daemon &
+      otd-daemon &
       vicinae server &
       vicinae set theme stylix &
       waybar &
@@ -37,8 +38,6 @@
       border_radius = 0;
       focuscolor = "0x00000000";
 
-      
-
       # Misc
       focus_on_activate = 1;
       animations = 1;
@@ -56,6 +55,10 @@
 
       # Layout cycling
       circle_layout = "scroller,tile,grid,monocle";
+
+      # Scratchpad
+      scratchpad_width_ratio = 0.8;
+      scratchpad_height_ratio = 0.9;
 
       # Keybindings
       bind = [
@@ -78,7 +81,7 @@
         "SUPER+SHIFT,l,exchange_client,right"
         "SUPER+SHIFT,j,exchange_client,down"
         "SUPER+SHIFT,k,exchange_client,up"
-        
+
         "SUPER,1,view,1"
         "SUPER,2,view,2"
         "SUPER,3,view,3"
@@ -107,6 +110,9 @@
         "SUPER+SHIFT,space,togglefloating"
         "SUPER+SHIFT,m,setlayout,monocle"
         "SUPER+SHIFT,t,setlayout,tile"
+
+        "SUPER,z,toggle_scratchpad"
+        "SUPER+SHIFT,z,move_to_scratchpad"
       ];
 
       mousebind = [

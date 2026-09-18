@@ -1,5 +1,8 @@
-{ pkgs, ... }: {
+{ pkgs, inputs, ... }: {
   home.packages = with pkgs; [
+
+    # === late.sh music client ===
+    inputs.late-sh.packages.${pkgs.stdenv.hostPlatform.system}.late
 
     # === Fonts ===
     nerd-fonts.jetbrains-mono

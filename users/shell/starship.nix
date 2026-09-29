@@ -19,15 +19,6 @@ in {
           color_accent = "#${c.base0D}";
           color_git = "#${c.base0B}";
           color_red = "#${c.base08}";
-          # color_bg1 = "#${c.base01}"
-          # color_bg3 = "#${c.base03}";
-          # color_blue = "#${c.base0D}";
-          # color_aqua = "#${c.base0C}";
-          # color_green = "#${c.base0B}";
-          # color_orange = "#${c.base09}";
-          # color_purple = "#${c.base0E}";
-          # color_red = "#${c.base08}";
-          # color_yellow = "#${c.base0A}";
         };
       };
 

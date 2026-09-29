@@ -5,7 +5,6 @@
     inputs.late-sh.packages.${pkgs.stdenv.hostPlatform.system}.late
 
     # === Fonts ===
-    nerd-fonts.jetbrains-mono
     nerd-fonts.caskaydia-cove
     nerd-fonts.symbols-only
     symbola
@@ -43,7 +42,6 @@
     lazysql
     shellcheck
     pandoc
-    statix
     rustdesk-flutter
 
     # === Art&Music ===

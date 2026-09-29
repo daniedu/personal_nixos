@@ -16,7 +16,6 @@
 
     ./text/kitty.nix
     # ./text/vscode.nix
-    # ./text/zed.nix (disabled — no Vulkan support)
 
     ./wm/mangowm.nix
     ./wm/waybar.nix

@@ -7,9 +7,4 @@
   };
 
   programs.fish.enable = true;
-
-  # users.users.lab = {
-  #   isNormalUser = true;
-  #   extraGroups  = [ "networkmanager" "video" "render" "audio" ];
-  # };
 }

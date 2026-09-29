@@ -9,7 +9,6 @@
       if status is-interactive
         stty -ixon 2>/dev/null; or true
       end
-      starship init fish | source
       fastfetch --file-raw ~/.config/fastfetch/art2.txt --structure OS:Kernel:Uptime:Shell:Terminal:CPU:GPU:MEMORY:DISK:DISPLAY:COLORS
     '';
   };

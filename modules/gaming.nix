@@ -18,7 +18,4 @@
   programs.gamemode.enable = true;
 
   hardware.xone.enable = true;
-
-  # environment.systemPackages = with pkgs; [ es-de ];
-  # services.displayManager.sessionPackages = [ es-de-session ];
 }

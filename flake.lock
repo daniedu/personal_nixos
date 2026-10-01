@@ -435,7 +435,8 @@
         "nixpkgs": "nixpkgs",
         "stylix": "stylix",
         "vicinae": "vicinae",
-        "vicinae-extensions": "vicinae-extensions"
+        "vicinae-extensions": "vicinae-extensions",
+        "zen-browser": "zen-browser"
       }
     },
     "rust-overlay": {
@@ -776,6 +777,29 @@
       "original": {
         "owner": "vicinaehq",
         "repo": "vicinae",
+        "type": "github"
+      }
+    },
+    "zen-browser": {
+      "inputs": {
+        "home-manager": [
+          "home-manager"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1790742031,
+        "narHash": "sha256-zno5kJyjkflDauJgy9NHyoHfhAr0S2kCCMEwaHJ0a6A=",
+        "owner": "0xc000022070",
+        "repo": "zen-browser-flake",
+        "rev": "90424e159acc21e53ea76780a3ad9cb5acef7cba",
+        "type": "github"
+      },
+      "original": {
+        "owner": "0xc000022070",
+        "repo": "zen-browser-flake",
         "type": "github"
       }
     }

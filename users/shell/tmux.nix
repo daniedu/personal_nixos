@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ config, lib, pkgs, ... }:
 let
   c = config.lib.stylix.colors.withHashtag;
 in {
@@ -96,12 +96,14 @@ in {
       # --- tmux buffer -> Wayland clipboard (the missing bridge) ---
       # Without this, y/Enter/mouse-drag only hit tmux's internal buffer.
       # copy-command covers bare copy-pipe; explicit binds cover vi keys + mouse.
-      set -s copy-command 'wl-copy'
+      # Absolute wl-copy path: the tmux server's inherited PATH is stale/fragile on NixOS.
+      # Mouse release uses copy-pipe (no cancel) so the highlight stays until y/Enter.
+      set -s copy-command '${pkgs.wl-clipboard}/bin/wl-copy'
       bind -T copy-mode-vi v send -X begin-selection
       bind -T copy-mode-vi C-v send -X rectangle-toggle
-      bind -T copy-mode-vi y send -X copy-pipe-and-cancel 'wl-copy'
-      bind -T copy-mode-vi Enter send -X copy-pipe-and-cancel 'wl-copy'
-      bind -T copy-mode-vi MouseDragEnd1Pane send -X copy-pipe-and-cancel 'wl-copy'
+      bind -T copy-mode-vi y send -X copy-pipe-and-cancel '${pkgs.wl-clipboard}/bin/wl-copy'
+      bind -T copy-mode-vi Enter send -X copy-pipe-and-cancel '${pkgs.wl-clipboard}/bin/wl-copy'
+      bind -T copy-mode-vi MouseDragEnd1Pane send -X copy-pipe '${pkgs.wl-clipboard}/bin/wl-copy'
 
       # ensure C-s / C-q are passed to neovim (disable XON/XOFF flow control handling)
       # (also add `stty -ixon` in shell init as fallback)

@@ -7,7 +7,7 @@ in {
     aggressiveResize = true;
     baseIndex = 1;
     clock24 = true;
-    escapeTime = 0;
+    escapeTime = 10;
     historyLimit = 50000;
     keyMode = "vi";
     mouse = true;
@@ -36,11 +36,10 @@ in {
       bind -r K resize-pane -U 5
       bind -r L resize-pane -R 5
 
-      # Fix: match nvf wrapper (.nvim-wrapped) and 'nvf' command; broader 'vim' pattern
+      # Vim/tmux navigation: single ps, same matches as before
+      # (vim family + nvf + .nvim-wrapped). Previously 3x ps per keypress.
       is_vim="ps -o state= -o comm= -t '#{pane_tty}' \
-          | grep -iqE '^[^TXZ ]+ +(\\S+\\/)?g?(view|l?n?vim?x?|nvf)(diff)?$' \
-          || ps -o state= -o comm= -t '#{pane_tty}' | grep -iq 'vim' \
-          || ps -o state= -o comm= -t '#{pane_tty}' | grep -iq '.nvim-wrapped'"
+          | grep -iqE '(^[^TXZ ]+ +(\\S+\\/)?g?(view|l?n?vim?x?|nvf)(diff)?$|.nvim-wrapped)'"
       bind -n 'C-h' if-shell "$is_vim" 'send-keys C-h'  'select-pane -L'
       bind -n 'C-j' if-shell "$is_vim" 'send-keys C-j'  'select-pane -D'
       bind -n 'C-k' if-shell "$is_vim" 'send-keys C-k'  'select-pane -U'
@@ -93,6 +92,17 @@ in {
       set -s extended-keys on
       set -as terminal-features 'xterm*:extkeys'
       set -ga terminal-overrides ',*:Ms=\E]52;c;%p2%s\007'
+
+      # --- tmux buffer -> Wayland clipboard (the missing bridge) ---
+      # Without this, y/Enter/mouse-drag only hit tmux's internal buffer.
+      # copy-command covers bare copy-pipe; explicit binds cover vi keys + mouse.
+      set -s copy-command 'wl-copy'
+      bind -T copy-mode-vi v send -X begin-selection
+      bind -T copy-mode-vi C-v send -X rectangle-toggle
+      bind -T copy-mode-vi y send -X copy-pipe-and-cancel 'wl-copy'
+      bind -T copy-mode-vi Enter send -X copy-pipe-and-cancel 'wl-copy'
+      bind -T copy-mode-vi MouseDragEnd1Pane send -X copy-pipe-and-cancel 'wl-copy'
+
       # ensure C-s / C-q are passed to neovim (disable XON/XOFF flow control handling)
       # (also add `stty -ixon` in shell init as fallback)
     '';

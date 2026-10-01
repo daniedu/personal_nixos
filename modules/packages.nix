@@ -25,6 +25,11 @@
     # === File Manager ===
     nautilus
 
+    # === Writing ===
+    # NEO – distraction-free word processor for novelists (EPUB/Word/PDF export).
+    # AppImage-only upstream; we drive its app.asar with nixpkgs' electron.
+    neo-writer
+
     # === Gaming ===
     heroic
 

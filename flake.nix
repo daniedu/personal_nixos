@@ -75,14 +75,15 @@
       };
     in
     {
-      # Expose for `nix build .#kson-rs` / `nix build .#sdoj-recomp`
+      # Expose for `nix build .#kson-rs` / `nix build .#sdoj-recomp` / `nix build .#neo-writer`
       packages.${system} =
         let
           kson-rs = pkgs.callPackage ./packages/kson-rs.nix { };
           sdoj-recomp = pkgs.callPackage ./packages/sdoj-recomp.nix { };
+          neo-writer = pkgs.callPackage ./packages/neo-writer.nix { };
         in
         {
-          inherit kson-rs sdoj-recomp;
+          inherit kson-rs sdoj-recomp neo-writer;
           default = kson-rs;
         };
 
@@ -124,6 +125,8 @@
               (final: prev: {
                 kson-rs = final.callPackage ./packages/kson-rs.nix { };
                 sdoj-recomp = final.callPackage ./packages/sdoj-recomp.nix { };
+                # nixpkgs already owns `neo` (st3w/neo Matrix rain toy) -> neo-writer
+                neo-writer = final.callPackage ./packages/neo-writer.nix { };
               })
             ];
           })

@@ -13,5 +13,5 @@
     '';
   };
 
-  home.file.".config/fastfetch/art.txt".source = ../../assets/ascii/kyubae.txt;
+  home.file.".config/fastfetch/art.txt".source = ../../assets/ascii/copland.txt.txt;
 }

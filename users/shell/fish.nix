@@ -9,9 +9,9 @@
       if status is-interactive
         stty -ixon 2>/dev/null; or true
       end
-      fastfetch --file-raw ~/.config/fastfetch/pochita.txt --structure OS:Kernel:Uptime:Shell:Terminal:CPU:GPU:MEMORY:DISK:DISPLAY:COLORS
+      fastfetch --file-raw ~/.config/fastfetch/art.txt --structure OS:Kernel:Uptime:Shell:Terminal:CPU:GPU:MEMORY:DISK:DISPLAY:COLORS
     '';
   };
 
-  home.file.".config/fastfetch/pochita.txt".source = ../../assets/ascii/pochita.txt;
+  home.file.".config/fastfetch/art.txt".source = ../../assets/ascii/kyubae.txt.txt;
 }

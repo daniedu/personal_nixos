@@ -10,6 +10,7 @@
     ./modules/graphics.nix
     ./modules/multimedia.nix
     ./modules/packages.nix
+    ./modules/artcraft.nix
     ./modules/bluetooth.nix
     ./modules/display.nix
     ./modules/audio.nix

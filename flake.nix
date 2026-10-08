@@ -76,6 +76,8 @@
     in
     {
       # Expose for `nix build .#kson-rs` / `nix build .#sdoj-recomp` / `nix build .#neo-writer`
+      # The four ArtCraft apps build too, but only if you ask: they are gated by
+      # the `artcraft.enable` toggle in modules/artcraft.nix.
       packages.${system} =
         let
           kson-rs = pkgs.callPackage ./packages/kson-rs.nix { };
@@ -85,6 +87,13 @@
         {
           inherit kson-rs sdoj-recomp neo-writer;
           default = kson-rs;
+        }
+        // {
+          # Built only when named explicitly, e.g. `nix build .#photocraft`.
+          photocraft = pkgs.callPackage ./packages/photocraft.nix { };
+          vectorcraft = pkgs.callPackage ./packages/vectorcraft.nix { };
+          filmcraft = pkgs.callPackage ./packages/filmcraft.nix { };
+          pdfcraft = pkgs.callPackage ./packages/pdfcraft.nix { };
         };
 
       devShells.${system}.default = pkgs.mkShell {
@@ -127,6 +136,13 @@
                 sdoj-recomp = final.callPackage ./packages/sdoj-recomp.nix { };
                 # nixpkgs already owns `neo` (st3w/neo Matrix rain toy) -> neo-writer
                 neo-writer = final.callPackage ./packages/neo-writer.nix { };
+                # ArtCraft "Crafting Apps" suite, gated by artcraft.enable in
+                # modules/artcraft.nix. Overlays are lazy, so naming these costs
+                # nothing until something actually references them.
+                photocraft = final.callPackage ./packages/photocraft.nix { };
+                vectorcraft = final.callPackage ./packages/vectorcraft.nix { };
+                filmcraft = final.callPackage ./packages/filmcraft.nix { };
+                pdfcraft = final.callPackage ./packages/pdfcraft.nix { };
               })
             ];
           })

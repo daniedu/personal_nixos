@@ -3,6 +3,20 @@
   stdenvNoCC,
   fetchurl,
   appimageTools,
+  patchelf,
+  glibc,
+  libgcc,
+  libx11,
+  libxcb,
+  libxcursor,
+  libxi,
+  libxkbcommon,
+  wayland,
+  mesa,
+  vulkan-loader,
+  fontconfig,
+  freetype,
+  ...
 }:
 
 # =============================================================================
@@ -63,40 +77,64 @@
 # top-level `ai.storyteller.pdfcraft.{desktop,png}` / `.DirIcon` copies.
 #
 # -----------------------------------------------------------------------------
-# RUNTIME DEPS – why this needs no wrapper at all
 # -----------------------------------------------------------------------------
-# `ldd` on usr/bin/pdfcraft gives exactly three NEEDED libs:
-#   libgcc_s.so.1, libm.so.6, libc.so.6
-# Everything else is dlopen()ed at run time, which we cannot see statically:
-#   libX11.so.6, libXcursor.so.1, libXi.so.6, libX11-xcb.so.1, libxcb.so.1,
-#   libwayland-client.so.0, libwayland-egl.so.1, libxkbcommon.so.0,
-#   libEGL.so.1, libvulkan.so.1, libfontconfig.so.1, libfreetype.so.6
-# All of those are already reachable on this system, so $out/bin/pdfcraft is the
-# unwrapped upstream binary.
+# RUNTIME DEPS – why this file patches the ELF (do not "simplify" this away)
+# -----------------------------------------------------------------------------
+# Upstream builds on Ubuntu and ships a generic binary. `ldd` on it shows only
+# these NEEDED libs:
+#     libgcc_s.so.1, libm.so.6, libc.so.6
+# and the ELF interpreter is the generic /lib64/ld-linux-x86-64.so.2.
 #
-# (filmcraft is the one exception in the suite – it has a hard DT_NEEDED on
-# libasound.so.2, so that file adds a makeWrapper.)
+# Everything else is dlopen()ed at run time, which ldd cannot show:
+#     libX11.so.6, libXcursor.so.1, libXi.so.6, libX11-xcb.so.1, libxcb.so.1,
+#     libwayland-client.so.0, libwayland-egl.so.1, libxkbcommon.so.0,
+#     libEGL.so.1, libvulkan.so.1, libfontconfig.so.1, libfreetype.so.6
 #
 # Note on fonts: PdfCraft renders PDFs, so its own text shaping needs
 # fontconfig. That is dlopen()ed, and users/dan.nix already sets
 # `fonts.fontconfig.enable` plus Nerd Fonts + Symbola in home.packages, so the
 # same fonts every other app on this system uses are visible to it. No
-# fontconfig wrapper or FONTCONFIG_FILE needed – that is the nice part of
-# not being a Flatpak.
+# FONTCONFIG_FILE override needed – that is the nice part of not being a
+# Flatpak.
 #
+# Left alone, that binary only runs on NixOS by ACCIDENT: the kernel resolves
+# /lib64/ld-linux-x86-64.so.2 through /usr/lib symlinks that some other package
+# in the closure happens to create, and the dlopen()s land there too. Those
+# symlinks come and go with unrelated packages, so the app "works" until a
+# rebuild removes them and then fails with:
+#     Could not start dynamically linked executable: pdfcraft
+#     NixOS cannot run dynamically linked executables intended for generic
+#     linux environments out of the box.
+#
+# So installPhase rewrites both binaries to be genuinely Nix-native:
+#   1. --set-interpreter to Nix glibc's ld.so, so the kernel never has to find
+#      a generic /lib64 path.
+#   2. --set-rpath to an explicit store path per library above, so every
+#      dlopen() resolves out of this package's own closure and never touches
+#      /usr/lib.
+# With that, the binary is self-contained, needs no wrapper script, and keeps
+# working when unrelated packages come and go. See runtimeInputs below.
 # -----------------------------------------------------------------------------
 # GPU ON THIS MACHINE – read this before blaming the app for being slow
 # -----------------------------------------------------------------------------
 # This box is an Intel Pentium G630 (Sandy Bridge, gen6) with HD Graphics 2000.
-#   * No Vulkan. Mesa's Intel ANV driver needs Broadwell/Haswell (gen8+).
-#   * No hardware GL either. Mesa 26 has dropped the legacy i965 driver, so
-#     /run/opengl-driver/lib/dri has no i965_dri.so – only swrast_dri.so.
-#
-# So rendering runs on Mesa's software stack: lavapipe (software Vulkan) or
-# llvmpipe (software GL). Present and correct, just CPU-bound on 2 cores.
-# Page previews, continuous scrolling and the two-up read mode will lag on
-# image-heavy documents. Text-only PDFs should be fine.
-#
+# Verified on it:
+#   * `vulkaninfo --summary` reports exactly one device:
+#       llvmpipe (LLVM 21.1.8, 128 bits) / PHYSICAL_DEVICE_TYPE_CPU
+#     i.e. software Vulkan. Mesa's Intel ANV driver needs Broadwell/Haswell
+#     (gen8+), so there is no hardware Vulkan here.
+#   * The apps still enumerate a GL adapter – they log
+#       "Mesa Intel(R) HD Graphics 2000 (SNB GT1) (Gl, IntegratedGpu)"
+#     because EGL reports the DRM node. But /run/opengl-driver/lib/dri has no
+#     i965_dri.so (Mesa 26 dropped it), so the draws themselves land on
+#     llvmpipe. The name is real; the silicon is not doing the work.
+#   * So: wgpu takes the Vulkan path and gets a CPU device. Rendering is
+#     correct and it is not going to crash — it is just CPU-bound on 2 cores.
+# # Expect page previews, continuous scrolling and two-up read mode to lag on
+# image-heavy documents. Text-only PDFs should be fine. This is the hardware,
+# not this package.
+# A zbus warning about org.freedesktop.DBus at startup is normal and harmless
+# here (xdg-desktop-portal not up yet); the apps carry on.
 # -----------------------------------------------------------------------------
 # HOW TO UPDATE (manual-hash workflow – same as packages/kson-rs.nix)
 # -----------------------------------------------------------------------------
@@ -160,6 +198,24 @@ let
   appimageContents = appimageTools.extract {
     inherit pname version src;
   };
+  # Everything the GUI and CLI need at run time, resolved into one RPATH.
+  # glibc + libgcc cover the NEEDED libs; the rest cover the dlopen()s.
+  # libxkbcommon also ships libxkbcommon-x11.so.0, which these apps need on the
+  # X11 fallback path.
+  runtimeInputs = [
+    glibc
+    libgcc
+    libx11
+    libxcb
+    libxcursor
+    libxi
+    libxkbcommon
+    wayland
+    mesa
+    vulkan-loader
+    fontconfig
+    freetype
+  ];
 in
 stdenvNoCC.mkDerivation rec {
   inherit pname version src;
@@ -170,6 +226,9 @@ stdenvNoCC.mkDerivation rec {
   dontBuild = true;
   dontPatchELF = true;
 
+  nativeBuildInputs = [ patchelf ];
+  buildInputs = runtimeInputs;
+
   installPhase = ''
     runHook preInstall
 
@@ -179,6 +238,17 @@ stdenvNoCC.mkDerivation rec {
     # .desktop rewriting is needed here.
     install -Dm755 ${appimageContents}/usr/bin/$pname     $out/bin/$pname
     install -Dm755 ${appimageContents}/usr/bin/$pname-cli $out/bin/$pname-cli
+
+    # Make the upstream ELF Nix-native: a Nix glibc interpreter plus an RPATH
+    # that covers every NEEDED and dlopen()ed library. This is what keeps the
+    # apps working when /usr/lib symlinks from other packages disappear.
+    for bin in $pname $pname-cli; do
+      patchelf \
+        --set-interpreter ${glibc}/lib/ld-linux-x86-64.so.2 \
+        --set-rpath ${lib.makeLibraryPath runtimeInputs} \
+        "$out/bin/$bin"
+    done
+
 
     # Whole trees, so icon sizes and MIME registrations survive upstream growth.
     cp -a ${appimageContents}/usr/share/icons    $out/share/icons
@@ -194,7 +264,24 @@ stdenvNoCC.mkDerivation rec {
     test -f $out/share/applications/$pname.desktop
     grep -q "^Exec=$pname %F" $out/share/applications/$pname.desktop
 
+    for bin in $pname $pname-cli; do
+      patchelf --print-interpreter "$out/bin/$bin" \
+        | grep -q "${glibc}/lib/ld-linux-x86-64.so.2"
+    done
+
     runHook postInstall
+  '';
+
+  # Belt and braces: after the package is realised, prove it links with NOTHING
+  # from the host. A stray DT_NEEDED left unresolved would only show up at run
+  # time as the generic-dynamic-executable error this file exists to prevent.
+  doInstallCheck = true;
+  installCheckPhase = ''
+    runHook preInstallCheck
+    export LD_LIBRARY_PATH=""
+    ldd $out/bin/$pname     > /dev/null
+    ldd $out/bin/$pname-cli > /dev/null
+    runHook postInstallCheck
   '';
 
   meta = with lib; {

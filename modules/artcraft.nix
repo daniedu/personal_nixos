@@ -44,13 +44,16 @@ in
   # closure and use your real system fonts.
   #
   # PERFORMANCE EXPECTATION ON THIS MACHINE (Intel Pentium G630, HD Graphics 2000)
-  # These are GPU-composited apps and this box has no usable hardware GPU:
-  # Intel ANV needs Broadwell/Haswell (gen8+), and Mesa 26 has dropped the legacy
-  # i965 driver, so there is no i965_dri.so either. Everything therefore renders
-  # on Mesa's software stack (lavapipe / llvmpipe) across 2 cores. They will open,
-  # draw and save correctly – just slowly on large documents. That is the
-  # hardware, not the packaging. If a given app is unusably slow at your working
-  # resolution, turn the suite off rather than debugging the build.
+  # These are GPU-composited apps and this box has no hardware acceleration for
+  # them. `vulkaninfo --summary` reports one device — llvmpipe, device type CPU.
+  # Mesa's Intel ANV needs Broadwell/Haswell (gen8+) and Mesa 26 has dropped the
+  # legacy i965 driver, so wgpu ends up on a software Vulkan device across 2
+  # cores. The apps still open a real native Wayland window (no XWayland in the
+  # path), so drag and drop works. Everything renders correctly — it is just
+  # CPU-bound, so keep documents small. FilmCraft is the one to watch: HD
+  # playback will drop frames. That is the hardware, not the packaging. If an app
+  # is unusably slow at your working resolution, turn the suite off rather than
+  # debugging the build.
   #
   # Updating to a newer release: each packages/*.nix has a "HOW TO UPDATE"
   # section at the top with the exact curl and nix-prefetch commands. These apps

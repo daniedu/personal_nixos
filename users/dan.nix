@@ -24,6 +24,7 @@
     ./launchers/opencode.nix
     ./programs/direnv.nix
     ./programs/krita.nix
+    ./programs/nautilus.nix
 
     ./packages.nix
   ];
@@ -34,13 +35,7 @@
 
   stylix.targets.bat.enable = true;
 
-  gtk = {
-    enable = true;
-    iconTheme = {
-      name = "Adwaita";
-      package = pkgs.adwaita-icon-theme;
-    };
-  };
+  gtk.enable = true;
 
   fonts.fontconfig.enable = true;
 

@@ -140,32 +140,48 @@ let
   accentNames = lib.attrNames accents;
   themeName = "SnowAccent";
   root = "share/icons/${themeName}";
-  template = "${pkgs.adwaita-icon-theme}/share/icons/Adwaita/scalable/places/folder.svg";
+  adwaita = "${pkgs.adwaita-icon-theme}/share/icons/Adwaita";
+  # Every Adwaita icon painted from this palette: folder.svg, the xdg user
+  # dirs (desktop, home, bookmarks), the folder-<type> family and a few file
+  # icons. Recolouring all of them keeps Desktop and Home matching plain
+  # folders instead of staying Adwaita blue.
+  blues = "#438de6|#62a0ea|#afd4ff|#c0d5ea|#a4caee";
   tint = mix c.base0D-hex "#ffffff" 0.55;
+  directories = [
+    "scalable/places"
+    "scalable/mimetypes"
+    "scalable/devices"
+  ];
 
-  # Adwaita paints folder.svg from five flat tones: a shaded back flap, the
-  # body, two gradient stops and a lit front flap. The accent keeps that
-  # shading by mixing itself towards snow's background and highlight.
+  # Adwaita paints these from five flat tones: a shaded back flap, the body,
+  # two gradient stops and a lit front flap. The accent keeps that shading by
+  # mixing itself towards snow's background and highlight.
   recolour =
     body:
-    let
-      file = "$out/${root}/scalable/places/folder.svg";
-    in
     ''
-      mkdir -p "$(dirname "${file}")"
-      cp ${template} "${file}"
-      chmod u+w "${file}"
-      sed -i \
-        -e 's|#438de6|${mix body c.base00-hex 0.32}|g' \
-        -e 's|#62a0ea|${body}|g' \
-        -e 's|#afd4ff|${mix body tint 0.62}|g' \
-        -e 's|#c0d5ea|${mix body tint 0.82}|g' \
-        -e 's|#a4caee|${mix body tint 0.28}|g' \
-        "${file}"
-      if grep -q '#62a0ea' "${file}"; then
-        echo "recolour failed" >&2
+      for dir in ${lib.concatStringsSep " " directories}; do
+        mkdir -p "$out/${root}/$dir"
+        for src in ${adwaita}/$dir/*.svg; do
+          if grep -Eq '${blues}' "$src"; then
+            sed \
+              -e 's|#438de6|${mix body c.base00-hex 0.32}|g' \
+              -e 's|#62a0ea|${body}|g' \
+              -e 's|#afd4ff|${mix body tint 0.62}|g' \
+              -e 's|#c0d5ea|${mix body tint 0.82}|g' \
+              -e 's|#a4caee|${mix body tint 0.28}|g' \
+              "$src" > "$out/${root}/$dir/$(basename "$src")"
+          fi
+        done
+      done
+
+      if grep -rqE '${blues}' "$out/${root}/scalable/places" "$out/${root}/scalable/devices"; then
+        echo "recolour left unconverted colours" >&2
         exit 1
       fi
+
+      # Adwaita draws inode-directory as a monitor; GTK apps ask for it when
+      # they mean "folder", so hand them the recoloured folder instead.
+      cp "$out/${root}/scalable/places/folder.svg" "$out/${root}/scalable/mimetypes/inode-directory.svg"
     '';
 
   indexTheme = pkgs.writeText "index.theme" ''
@@ -176,7 +192,7 @@ let
     Example=folder
     DesktopDefault=48
     DesktopSizes=16,22,32,48,64,72,96,128
-    Directories=scalable/places,scalable/mimetypes
+    Directories=${lib.concatStringsSep "," directories}
 
     [scalable/places]
     Size=128
@@ -191,6 +207,13 @@ let
     MaxSize=512
     Context=MimeTypes
     Type=Scalable
+
+    [scalable/devices]
+    Size=128
+    MinSize=8
+    MaxSize=512
+    Context=Devices
+    Type=Scalable
   '';
 
   theme = pkgs.runCommand "${themeName}-icon-theme"
@@ -198,10 +221,6 @@ let
       nativeBuildInputs = [ (lib.getBin pkgs.gtk4) ];
     } ''
     ${recolour (hslToHex accents.${config.nautilus.folderAccent.colour})}
-
-    # GTK apps that ask for inode-directory instead of folder.
-    mkdir -p "$out/${root}/scalable/mimetypes"
-    cp "$out/${root}/scalable/places/folder.svg" "$out/${root}/scalable/mimetypes/inode-directory.svg"
 
     cp ${indexTheme} "$out/${root}/index.theme"
 

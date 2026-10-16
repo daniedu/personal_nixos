@@ -141,11 +141,30 @@ let
   themeName = "SnowAccent";
   root = "share/icons/${themeName}";
   adwaita = "${pkgs.adwaita-icon-theme}/share/icons/Adwaita";
-  # Every Adwaita icon painted from this palette: folder.svg, the xdg user
-  # dirs (desktop, home, bookmarks), the folder-<type> family and a few file
-  # icons. Recolouring all of them keeps Desktop and Home matching plain
-  # folders instead of staying Adwaita blue.
-  blues = "#438de6|#62a0ea|#afd4ff|#c0d5ea|#a4caee";
+  # Adwaita paints folders from one blue family and most location and file
+  # icons from another, so a folder-only recolour leaves blue monitors and
+  # blue page accents sitting next to accent-coloured folders. Map both
+  # families onto the accent, keeping their light/dark structure: values are
+  # mixed towards snow's background and highlight rather than flattened.
+  tones =
+    body: {
+      # folder.svg: shaded back flap, body, two gradient stops, lit front flap
+      "#438de6" = mix body c.base00-hex 0.32;
+      "#62a0ea" = body;
+      "#afd4ff" = mix body tint 0.62;
+      "#c0d5ea" = mix body tint 0.82;
+      "#a4caee" = mix body tint 0.28;
+      # blue accent family used by the remaining icons
+      "#3584e4" = body;
+      "#4b96d8" = mix body c.base00-hex 0.12;
+      "#1c71d8" = mix body c.base00-hex 0.28;
+      "#1a5fb4" = mix body c.base00-hex 0.4;
+      "#204a87" = mix body c.base00-hex 0.58;
+      "#14498a" = mix body c.base00-hex 0.55;
+      "#98c1f1" = mix body tint 0.55;
+      "#99c1f1" = mix body tint 0.55;
+      "#b3d3f9" = mix body tint 0.75;
+    };
   tint = mix c.base0D-hex "#ffffff" 0.55;
   directories = [
     "scalable/places"
@@ -153,28 +172,24 @@ let
     "scalable/devices"
   ];
 
-  # Adwaita paints these from five flat tones: a shaded back flap, the body,
-  # two gradient stops and a lit front flap. The accent keeps that shading by
-  # mixing itself towards snow's background and highlight.
   recolour =
     body:
+    let
+      palette = tones body;
+      pattern = lib.concatStringsSep "|" (lib.attrNames palette);
+      rules = lib.concatMapStringsSep " \\\n          " (hex: "-e 's|${hex}|${palette.${hex}}|g'") (lib.attrNames palette);
+    in
     ''
       for dir in ${lib.concatStringsSep " " directories}; do
         mkdir -p "$out/${root}/$dir"
         for src in ${adwaita}/$dir/*.svg; do
-          if grep -Eq '${blues}' "$src"; then
-            sed \
-              -e 's|#438de6|${mix body c.base00-hex 0.32}|g' \
-              -e 's|#62a0ea|${body}|g' \
-              -e 's|#afd4ff|${mix body tint 0.62}|g' \
-              -e 's|#c0d5ea|${mix body tint 0.82}|g' \
-              -e 's|#a4caee|${mix body tint 0.28}|g' \
-              "$src" > "$out/${root}/$dir/$(basename "$src")"
+          if grep -Eq '${pattern}' "$src"; then
+            sed ${rules} "$src" > "$out/${root}/$dir/$(basename "$src")"
           fi
         done
       done
 
-      if grep -rqE '${blues}' "$out/${root}/scalable/places" "$out/${root}/scalable/devices"; then
+      if grep -rqE '${pattern}' "$out/${root}/scalable/places" "$out/${root}/scalable/devices"; then
         echo "recolour left unconverted colours" >&2
         exit 1
       fi

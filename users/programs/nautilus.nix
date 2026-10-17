@@ -4,6 +4,10 @@
   pkgs,
   ...
 }:
+# Builds a GTK icon theme that inherits Adwaita and recolours the blues in its
+# places/mimetypes/devices icons (folders, locations, file types). Every colour
+# comes from the active `stylix.base16Scheme`: the accent is the scheme's own
+# base0B, and the lighter and darker tones are mixed from it.
 let
   c = config.lib.stylix.colors;
 
@@ -85,10 +89,9 @@ let
       (hueToRgb p q (hue - 1.0 / 3.0))
     ];
 
-  # Hue anchors are the ones snow actually uses: warm cream for orange, the
-  # sage for yellow-green, base0B for teal, base07 for blue, base0A for purple
-  # and base09 for pink. Saturation is lifted past snow's pastels so the nine
-  # folders stay distinguishable side by side.
+  # Opt-in named hues, used only when `nautilus.folderAccent.colour` names one.
+  # The default does not come from here: it takes the accent straight from the
+  # scheme's base0B, so the icons follow a theme change on their own.
   accents = {
     red = {
       h = 8;
@@ -149,14 +152,14 @@ let
     then hslToHex accents.${name}
     else slot name;
 
-  themeName = "SnowAccent";
+  themeName = "StylixAccent";
   root = "share/icons/${themeName}";
   adwaita = "${pkgs.adwaita-icon-theme}/share/icons/Adwaita";
   # Adwaita paints folders from one blue family and most location and file
   # icons from another, so a folder-only recolour leaves blue monitors and
   # blue page accents sitting next to accent-coloured folders. Map both
   # families onto the accent, keeping their light/dark structure: values are
-  # mixed towards snow's background and highlight rather than flattened.
+  # mixed towards the scheme's background and highlight rather than flattened.
   tones =
     body: {
       # folder.svg: shaded back flap, body, two gradient stops, lit front flap
@@ -261,9 +264,10 @@ in
       default = "base0B";
       example = "purple";
       description = ''
-        Folder icon accent. Defaults to the scheme's own accent slot so the
-        icons follow `stylix.base16Scheme`; pick a base16 slot or one of the
-        named hues to override it.
+        Accent colour for the recoloured folder icons. Defaults to base0B, the
+        accent slot of `stylix.base16Scheme`, so the icons follow a theme
+        change on their own. Set a base16 slot (base00-base0F) or one of the
+        named hues to override that.
       '';
     };
   };

@@ -138,6 +138,17 @@ let
   };
 
   accentNames = lib.attrNames accents;
+  base16Slots = lib.filter (name: builtins.match "base0[0-9A-F]" name != null) (lib.attrNames c);
+  # A base16 slot keeps the folder following the scheme across theme swaps;
+  # the named hues are there for when one specific tone is wanted instead.
+  slot = name: "#${lib.removePrefix "#" c."${name}-hex"}";
+  accent =
+    let name = config.nautilus.folderAccent.colour;
+    in
+    if accents ? ${name}
+    then hslToHex accents.${name}
+    else slot name;
+
   themeName = "SnowAccent";
   root = "share/icons/${themeName}";
   adwaita = "${pkgs.adwaita-icon-theme}/share/icons/Adwaita";
@@ -235,7 +246,7 @@ let
     {
       nativeBuildInputs = [ (lib.getBin pkgs.gtk4) ];
     } ''
-    ${recolour (hslToHex accents.${config.nautilus.folderAccent.colour})}
+    ${recolour accent}
 
     cp ${indexTheme} "$out/${root}/index.theme"
 
@@ -246,9 +257,14 @@ in
 {
   options.nautilus.folderAccent = {
     colour = lib.mkOption {
-      type = lib.types.enum accentNames;
-      default = "teal";
-      description = "Accent colour for folder icons, picked from the stylix scheme's hues.";
+      type = lib.types.enum (accentNames ++ base16Slots);
+      default = "base0B";
+      example = "purple";
+      description = ''
+        Folder icon accent. Defaults to the scheme's own accent slot so the
+        icons follow `stylix.base16Scheme`; pick a base16 slot or one of the
+        named hues to override it.
+      '';
     };
   };
 

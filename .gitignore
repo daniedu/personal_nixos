@@ -7,4 +7,8 @@ result-*
 
 # Ignore NixOS interactive test driver history
 **/.nixos-test-history
-assets/pico-8
+
+# PICO-8 is commercial software: the extracted archive is not redistributable
+# and never enters this repository. Nix builds it from the store copy instead
+# (see packages/pico-8.nix).
+assets/pico-8/

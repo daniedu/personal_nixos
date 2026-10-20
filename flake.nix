@@ -94,6 +94,9 @@
           vectorcraft = pkgs.callPackage ./packages/vectorcraft.nix { };
           filmcraft = pkgs.callPackage ./packages/filmcraft.nix { };
           pdfcraft = pkgs.callPackage ./packages/pdfcraft.nix { };
+          # PICO-8 – commercial, so the archive has to be in the Nix store
+          # first (see packages/pico-8.nix for the nix-prefetch-url line).
+          pico-8 = pkgs.callPackage ./packages/pico-8.nix { };
         };
 
       devShells.${system}.default = pkgs.mkShell {
@@ -143,6 +146,10 @@
                 vectorcraft = final.callPackage ./packages/vectorcraft.nix { };
                 filmcraft = final.callPackage ./packages/filmcraft.nix { };
                 pdfcraft = final.callPackage ./packages/pdfcraft.nix { };
+                # PICO-8 (commercial/unfree). The purchased archive is not
+                # fetched by Nix, it has to be in the store already – see
+                # packages/pico-8.nix.
+                pico-8 = final.callPackage ./packages/pico-8.nix { };
               })
             ];
           })

@@ -38,7 +38,7 @@
 # Upstream: https://www.lexaloffle.com/pico-8.php
 #
 # This is a repackaging of the official Linux 64-bit archive
-# (pico-8_0.2.7_amd64.zip). It is modelled on the nixpkgs PR that is still
+# (pico-8_0.2.7a6_amd64.zip). It is modelled on the nixpkgs PR that is still
 # open upstream (NixOS/nixpkgs#551567, "pico-8: init at 0.2.7") and on the
 # standalone flake that PR's author published (codeberg.org/husjon/nix-pico-8).
 #
@@ -65,8 +65,14 @@
 # build 0.2.7a6 hashes to the same value, only the file name differs); if
 # your archive is a different build, `nix-prefetch-url` prints the one to use.
 #
+# The FILE NAME matters as much as the hash: the store path Nix expects is
+# derived from both, so prefetching the identical bytes under a different
+# name lands on a different path and the build will not find it. Keep the
+# name as `pico-8_0.2.7a6_amd64.zip`.
+#
 # Nothing proprietary ever lands in this git repository: the archive stays on
 # disk / in the Nix store, the repository only holds this expression.
+# See PICO-8.md at the repo root for the full story.
 # -----------------------------------------------------------------------------
 # HOW TO UPDATE
 # -----------------------------------------------------------------------------

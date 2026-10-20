@@ -16,6 +16,35 @@ something goes wrong.
 | Want PICO-8 gone from the system | `pico8.enable = false;` in `configuration.nix`, rebuild — see [Turning it off](#turning-it-off) |
 | Want to update to a newer PICO-8 | See [Updating](#updating) |
 
+## On a new device
+
+Short version: **you download it, Nix never does.** Three steps, and only the
+first one needs the network:
+
+```bash
+# 1. Buy PICO-8 and download the Linux 64-bit archive from your own
+#    Lexaloffle account. Save it as pico-8_0.2.7a6_amd64.zip.
+#    https://www.lexaloffle.com/games.php?page=my
+
+# 2. Copy that file into the Nix store (local copy, works offline):
+nix-prefetch-url file://$PWD/pico-8_0.2.7a6_amd64.zip
+
+# 3. Everything else is automatic:
+nixos-rebuild switch --flake .#dan
+```
+
+Step 2 is the only manual step. It performs no network access at all — it
+takes the file you already have and puts a copy in the store.
+
+After that, the repository behaves like any other: `git clone`, `nixos-rebuild
+switch`, done. There is no secret, no token, and no account to configure for
+the *packaging* — only for the purchase itself.
+
+What does **not** happen on a new device: Nix never contacts Lexaloffle, and
+no public cache can serve the archive either (it is not on cache.nixos.org or
+any other cache, and it cannot be, because the derivation that would produce
+it is designed to fail).
+
 ## How it is packaged
 
 `packages/pico-8.nix` follows the approach of the nixpkgs PR that is still
@@ -72,6 +101,25 @@ If the printed hash differs from the one in `packages/pico-8.nix`, update
 The archive is not re-downloaded by any of this — `nix-prefetch-url` reads
 your local file. If you still have the zip in `~/Downloads`, running the
 command again after a garbage collection takes a couple of seconds.
+
+### The filename has to match exactly
+
+The store path Nix expects is derived from **both** the content hash *and* the
+file name. Prefetching the identical bytes under a different name produces a
+different store path, and the build will not find it:
+
+```bash
+# wrong – lands on a different store path
+nix-prefetch-url file://$PWD/pico-8.zip
+
+# right – matches the `name` field in packages/pico-8.nix
+nix-prefetch-url file://$PWD/pico-8_0.2.7a6_amd64.zip
+```
+
+If you renamed the file after downloading it, rename it back before
+prefetching. The store path is then
+`/nix/store/...-pico-8_0.2.7a6_amd64.zip`, and the "not valid" error is
+gone.
 
 ## Where things live
 

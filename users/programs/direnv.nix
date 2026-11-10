@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 {
   programs.direnv = {
     enable = true;
@@ -21,8 +21,8 @@
     '';
   };
 
-  home.packages = with pkgs; [
-    devenv
-    nixfmt
+  home.packages = [
+    inputs.devenv.packages."${pkgs.system}".devenv
+    pkgs.nixfmt
   ];
 }

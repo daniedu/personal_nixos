@@ -43,6 +43,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    devenv = {
+      url = "github:cachix/devenv/v2.4.0";
+    };
+
   };
 
   nixConfig = {

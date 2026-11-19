@@ -91,6 +91,8 @@
         {
           inherit kson-rs sdoj-recomp neo-writer;
           default = kson-rs;
+          # Horizon – Minecraft: Java Edition 26.3 in Rust (launcher).
+          horizon-launcher = pkgs.callPackage ./packages/horizon-launcher.nix { };
         }
         // {
           # Built only when named explicitly, e.g. `nix build .#photocraft`.
@@ -103,12 +105,25 @@
           pico-8 = pkgs.callPackage ./packages/pico-8.nix { };
         };
 
-      devShells.${system}.default = pkgs.mkShell {
-        packages = with pkgs; [
-          nixpkgs-fmt
-          statix
-          deadnix
-        ];
+      devShells.${system} = {
+        default = pkgs.mkShell {
+          packages = with pkgs; [
+            nixpkgs-fmt
+            statix
+            deadnix
+          ];
+        };
+
+        # The launcher compiles native Horizon mods with its own Rust, but on
+        # Linux it still needs a C compiler, pkg-config and the ALSA/udev
+        # headers. Enter with: nix develop .#horizon-mod
+        horizon-mod = pkgs.mkShell {
+          packages = with pkgs; [
+            pkg-config
+            alsa-lib
+            udev
+          ];
+        };
       };
 
       nixosConfigurations.dan = nixpkgs.lib.nixosSystem {
@@ -154,6 +169,8 @@
                 # fetched by Nix, it has to be in the store already – see
                 # packages/pico-8.nix.
                 pico-8 = final.callPackage ./packages/pico-8.nix { };
+                # Horizon launcher (Minecraft: Java Edition 26.3 in Rust).
+                horizon-launcher = final.callPackage ./packages/horizon-launcher.nix { };
               })
             ];
           })

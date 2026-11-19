@@ -12,6 +12,7 @@
     ./modules/packages.nix
     ./modules/artcraft.nix
     ./modules/pico-8.nix
+    ./modules/horizon.nix
     ./modules/bluetooth.nix
     ./modules/display.nix
     ./modules/audio.nix
